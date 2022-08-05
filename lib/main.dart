@@ -1,0 +1,60 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:nakshekadam/common_utils/bigThreeBg.dart';
+import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/screens/login_signup/login.dart';
+import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
+import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
+import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
+import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
+import 'package:nakshekadam/services/globals.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Colors.transparent,
+  // ));
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: APP_TITLE,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        textTheme: DEFAULT_TEXT_THEME,
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: COLOR_THEME['primary'],
+              secondary: COLOR_THEME['secondary'],
+            ),
+        buttonTheme: Theme.of(context).buttonTheme.copyWith(
+              buttonColor: const Color(0xFFC1F0F6),
+            ),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        textTheme: DEFAULT_TEXT_THEME,
+      ),
+      themeMode: ThemeMode.light,
+      debugShowCheckedModeBanner: true,
+      initialRoute: '/wt',
+      routes: {
+        // '/wt': (context) => const WTOne(),
+        // '/wt': (context) => const WalkThrough(),
+        '/wt': (context) => const BigTwoSmallOneBG(),
+        '/login': (context) => const Login(),
+        // '/': (context) => const Splash(),
+      },
+    );
+  }
+}

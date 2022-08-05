@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1035077222293",
+    "project_id": "nakshekadam2022",
+    "storage_bucket": "nakshekadam2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035077222293:android:025214c9083a2691fc809c",
+        "android_client_info": {
+          "package_name": "com.example.nakshekadam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035077222293-h3kvltp49e79v437r5neeejiqv6ofria.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nakshekadam",
+            "certificate_hash": "d15d3278745173c4b72dbbd0d313fb74b6243061"
+          }
+        },
+        {
+          "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaRZn1cCVpwi-iFyd541YzUSNp6knDR8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
