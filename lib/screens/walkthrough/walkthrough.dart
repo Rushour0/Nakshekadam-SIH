@@ -6,7 +6,7 @@ import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 class WalkThrough extends StatefulWidget {
   const WalkThrough({Key? key}) : super(key: key);
@@ -23,9 +23,8 @@ class _WalkThroughState extends State<WalkThrough>
   @override
   void initState() {
     super.initState();
-    print("YOUR MOM");
     _animationController = AnimationController(
-        duration: const Duration(milliseconds:400), vsync: this, upperBound: 1)
+        duration: const Duration(milliseconds: 400), vsync: this, upperBound: 1)
       ..forward(from: 0);
   }
 
@@ -55,7 +54,7 @@ class _WalkThroughState extends State<WalkThrough>
                   wtPageNumber++;
                   setState(() {});
                   _animationController = AnimationController(
-                      duration: const Duration(milliseconds:500),
+                      duration: const Duration(milliseconds: 500),
                       vsync: this,
                       upperBound: wtPageNumber.toDouble())
                     ..forward(from: wtPageNumber - 1);
@@ -100,7 +99,9 @@ class _WalkThroughState extends State<WalkThrough>
                             BorderRadius.circular(screenHeight * 0.01),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/signup');
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -141,7 +142,9 @@ class _WalkThroughState extends State<WalkThrough>
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushReplacementNamed(context, '/login');
+                          },
                           child: Text(
                             "Login",
                             textAlign: TextAlign.center,

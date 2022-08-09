@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/common_utils/bigThreeBg.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
@@ -59,31 +56,31 @@ class Signup extends StatelessWidget {
                       vertical: screenHeight * 0.007),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: TextButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                          ),
-                          child: Text(
-                            "BACK",
-                            style: TextStyle(
-                              fontFamily: "Cabin",
-                              fontSize: screenWidth * 0.06,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xff615793),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.topLeft,
+                      //   child: TextButton(
+                      //     onPressed: () {},
+                      //     style: ButtonStyle(
+                      //       overlayColor:
+                      //           MaterialStateProperty.all(Colors.transparent),
+                      //     ),
+                      //     child: Text(
+                      //       "BACK",
+                      //       style: TextStyle(
+                      //         fontFamily: "Cabin",
+                      //         fontSize: screenWidth * 0.06,
+                      //         fontWeight: FontWeight.w500,
+                      //         color: const Color(0xff615793),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.27),
                         child: Text(
                           "CREATE YOUR ACCOUNT",
                           style: TextStyle(
-                            fontFamily: "DM Sans",
+                            fontFamily: "Nunito",
                             fontSize: screenWidth * 0.08,
                             color: const Color(0xff32324D),
                           ),

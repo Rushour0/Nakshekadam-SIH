@@ -1,16 +1,15 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_utils/bigThreeBg.dart';
-import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
+
+import 'package:nakshekadam/screens/login_signup/signup.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
-import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
-import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
-import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
@@ -46,13 +45,14 @@ class MyApp extends StatelessWidget {
         textTheme: DEFAULT_TEXT_THEME,
       ),
       themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: true,
-      initialRoute: '/wt',
+      // debugShowCheckedModeBanner: true,
+      initialRoute: '/login',
       routes: {
         // '/wt': (context) => const WTOne(),
-        // '/wt': (context) => const WalkThrough(),
-        '/wt': (context) => const BigTwoSmallOneBG(),
-        '/login': (context) => const Login(),
+        '/wt': (context) => const WalkThrough(),
+        // '/wt': (context) => const BigTwoSmallOneBG(),
+        '/login': (context) => const AadharLoginPage(),
+        '/signup': (context) => const Signup(),
         // '/': (context) => const Splash(),
       },
     );
