@@ -12,7 +12,7 @@ import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
 import 'package:nakshekadam/services/PushNotifications/push_notification_service.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

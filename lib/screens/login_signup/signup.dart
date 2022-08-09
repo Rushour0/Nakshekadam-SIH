@@ -7,7 +7,7 @@ import 'package:nakshekadam/common_utils/bigThreeBg.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -155,16 +155,6 @@ class _SignupState extends State<Signup> {
                             fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
                             color: const Color(0xff32324D),
-                          ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
                         ),
                       ),
