@@ -9,7 +9,7 @@ import 'package:nakshekadam/common_utils/bigThreeBg.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
