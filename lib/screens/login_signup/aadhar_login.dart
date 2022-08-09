@@ -48,8 +48,8 @@ class _AadharLoginPageState extends State<AadharLoginPage> {
                 isWebViewOn = true;
                 Map<String, dynamic> results = await aadharSignIn();
                 print(results);
-                link = results['sign_in_url'];
-                requestID = results['request_id'];
+                link = results['url'];
+                requestID = results['id'];
                 setState(() {});
               },
               child: Text("Login"),
