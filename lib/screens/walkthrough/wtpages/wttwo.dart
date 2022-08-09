@@ -4,7 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
-import 'package:nakshekadam/services/globals.dart';
+import 'package:nakshekadam/globals.dart';
 
 class WTTwo extends StatelessWidget {
   const WTTwo({Key? key}) : super(key: key);
@@ -76,7 +76,8 @@ class WTTwo extends StatelessWidget {
                 width: screenWidth * 0.7,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/centerRightFullCircle.png'),
+                    image:
+                        AssetImage('assets/images/centerRightFullCircle.png'),
                     fit: BoxFit.contain,
                   ),
                 ),

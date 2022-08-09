@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -157,7 +156,16 @@ class _SignupState extends State<Signup> {
                             fontSize: screenWidth * 0.08,
                             color: const Color(0xff32324D),
                           ),
-                          textAlign: TextAlign.center,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       NotificationListener<OverscrollIndicatorNotification>(
