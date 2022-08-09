@@ -1,12 +1,11 @@
-import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // Anonymous sign in
@@ -47,6 +46,9 @@ Future<List<dynamic>> signInUser(
       return [1, 'No user found for that email'];
     } else if (e.code == 'wrong-password') {
       return [2, 'Wrong password provided for that user'];
+    }
+    else{
+      return [3, e.code];
     }
   }
 
@@ -166,9 +168,6 @@ void initialData() async {
     "email": _auth.currentUser!.email,
     "formFilled": false,
     "isAdmin": false,
-    "isSubscribed": false,
-    "subscriptions": 0,
-    'coins': 0,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
 }

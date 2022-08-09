@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1035077222293:android:43d638fd3961cdb2fc809c",
+        "android_client_info": {
+          "package_name": "com.underdogs.nakshekadam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaRZn1cCVpwi-iFyd541YzUSNp6knDR8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nakshekadam"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1035077222293:android:04f0c66a9d2ab6b3fc809c",
         "android_client_info": {
           "package_name": "com.underdogs.nakshekadam"
@@ -37,6 +73,13 @@
             {
               "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nakshekadam"
+              }
             },
             {
               "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",

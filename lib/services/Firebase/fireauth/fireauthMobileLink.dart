@@ -23,7 +23,7 @@ Future<String> linkMobile(PhoneAuthCredential credential) async {
     }
   }
   updateInitialData();
-
+  
   return "0";
 }
 
@@ -33,3 +33,4 @@ void updateInitialData() async {
     "phone": _auth.currentUser!.phoneNumber,
   });
 }
+
