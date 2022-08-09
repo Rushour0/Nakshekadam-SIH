@@ -196,6 +196,20 @@ class _LoginState extends State<Login> {
                                                   BorderRadius.circular(
                                                       screenWidth * 0.05),
                                             ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
@@ -247,6 +261,20 @@ class _LoginState extends State<Login> {
                                               ),
                                             ),
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:
