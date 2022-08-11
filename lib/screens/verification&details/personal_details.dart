@@ -258,7 +258,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                       bottom: screenHeight * 0.2,
                                       
                                     ),
-                                    child: ,
+                                    // child: ,
                                     // child: DropdownButtonFormField<String>(
 
                                     //   decoration: InputDecoration(
