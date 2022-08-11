@@ -6,6 +6,7 @@ import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // Anonymous sign in
@@ -46,8 +47,7 @@ Future<List<dynamic>> signInUser(
       return [1, 'No user found for that email'];
     } else if (e.code == 'wrong-password') {
       return [2, 'Wrong password provided for that user'];
-    }
-    else{
+    } else {
       return [3, e.code];
     }
   }
@@ -118,7 +118,7 @@ Future<bool?> checkAdmin() async {
 // Check if form is filled
 Future<bool> checkFormFilled() async {
   CollectionReference users = usersCollectionReference();
-  User user = getCurrentUser();
+  User user = getCurrentUser()!;
   if (checkLoggedIn()) {
     Map<String, dynamic> data =
         (await users.doc(user.email).get()).data() as Map<String, dynamic>;
@@ -137,8 +137,8 @@ String getCurrentUserId() {
 }
 
 // Get the current user
-User getCurrentUser() {
-  return _auth.currentUser!;
+User? getCurrentUser() {
+  return _auth.currentUser;
 }
 
 // Check if there is any login
@@ -168,7 +168,7 @@ void initialData() async {
     "email": _auth.currentUser!.email,
     "formFilled": false,
     "isAdmin": false,
-    "role" : "none",
+    "role": "none",
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
 }

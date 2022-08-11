@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/services/AadharOTP/otp/auth/otp_auth.dart';
 import 'package:path_provider/path_provider.dart';

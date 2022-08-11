@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nakshekadam/common_utils/bigThreeBg.dart';
-import 'package:nakshekadam/common_utils/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
+import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -260,13 +260,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                     ),
                                     // child:
                                     child: DropdownButton2<String>(
-                                      
-                                     
                                       dropdownDecoration: BoxDecoration(
                                         shape: BoxShape.rectangle,
-                                        borderRadius:  BorderRadius.all(Radius.circular(screenWidth * 0.05)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(
+                                                screenWidth * 0.05)),
                                         border: Border.all(
-                                             color: Colors.black,),
+                                          color: Colors.black,
+                                        ),
                                       ),
                                       dropdownOverButton: false,
                                       // dropdownWidth: screenWidth * 0.85,
@@ -328,9 +329,13 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                         Icons.arrow_drop_down,
                                         color: Colors.grey,
                                       ),
-                                      items: roles.map((item) =>  DropdownMenuItem<String>(
-                                          value: item,
-                                          child:Text(item),)).toList(),
+                                      items: roles
+                                          .map((item) =>
+                                              DropdownMenuItem<String>(
+                                                value: item,
+                                                child: Text(item),
+                                              ))
+                                          .toList(),
                                       // roles.map((String item) {
                                       //   return DropDownMenuItem<String>(
                                       //     value: item,
