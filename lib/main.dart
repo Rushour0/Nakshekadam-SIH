@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:nakshekadam/common_utils/bigThreeBg.dart';
 import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
@@ -16,49 +17,13 @@ import 'package:nakshekadam/globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Colors.transparent,
-  // ));
-  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await PushNotificationService().setupInteractedMessage();
-  print('TOKEN : ${await FirebaseMessaging.instance.getToken()}');
+  // print('TOKEN : ${await FirebaseMessaging.instance.getToken()}');
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  FirebaseMessaging.onBackgroundMessage((message) async {
-    RemoteNotification? notification = message.notification;
-    AndroidNotification? android = message.notification!.android;
-    print("CHANNEL ID : ${message.notification!.android!.channelId}");
-    if (notification != null && android != null) {
-      flutterLocalNotificationsPlugin.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-              android.channelId!, android.channelId!,
-              icon: android.smallIcon,
-              playSound: true,
-              importance: Importance.max,
-              priority: Priority.max,
-              visibility: NotificationVisibility.public,
-              channelShowBadge: true,
-              colorized: true),
-        ),
-      );
-    }
-  });
-  
   runApp(const MyApp());
 }
 
@@ -87,12 +52,13 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/signup',
+      initialRoute: '/',
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
         '/wt': (context) => const BigTwoSmallOneBG(),
         '/login': (context) => const Login(),
+        '/': (context) => const AadharLoginPage(),
         '/signup': (context) => const Signup(),
         // '/': (context) => const Splash(),
       },
