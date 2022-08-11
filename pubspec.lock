@@ -527,6 +527,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.2"
+  pinput:
+    dependency: "direct main"
+    description:
+      name: pinput
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.12"
   platform:
     dependency: transitive
     description:
@@ -616,13 +623,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sms_autofill:
-    dependency: "direct main"
+  smart_auth:
+    dependency: transitive
     description:
-      name: sms_autofill
+      name: smart_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "1.0.5"
   source_span:
     dependency: transitive
     description:

@@ -102,26 +102,13 @@ class _WalkThroughState extends State<WalkThrough>
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/signup');
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "SIGN UP",
-                          style: TextStyle(
-                            fontFamily: 'Cabin',
-                            fontSize: screenWidth * 0.06,
-                            color: const Color(0xffA5A5BA),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: screenWidth * 0.24),
-                          child: Icon(
-                            CupertinoIcons.arrow_right,
-                            color: const Color(0xffA5A5BA),
-                            size: screenWidth * 0.07,
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      "SIGN UP",
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontSize: screenWidth * 0.06,
+                        color: const Color(0xffA5A5BA),
+                      ),
                     ),
                   ),
                 ),
@@ -159,7 +146,69 @@ class _WalkThroughState extends State<WalkThrough>
                           ),
                         ),
                       ]),
-                )
+                ),
+                SizedBox(
+                  width: screenWidth * 0.9,
+                  height: screenHeight * 0.04,
+                  child: Stack(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: screenWidth * 0.4,
+                            child: const Divider(
+                              color: Color(0xff756F86),
+                              thickness: 1,
+                            ),
+                          ),
+                          SizedBox(
+                            width: screenWidth * 0.4,
+                            child: const Divider(
+                              color: Color(0xff756F86),
+                              thickness: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          "OR",
+                          style: TextStyle(
+                            fontFamily: "DM Sans",
+                            fontSize: screenWidth * 0.04,
+                            color: const Color(0xff756F86),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: screenWidth * 0.9,
+                  height: screenHeight * 0.06,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xff615793),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(screenHeight * 0.01),
+                      ),
+                    ),
+                    onPressed: () {
+                      // Navigator.pushReplacementNamed(context, '/signup');
+                    },
+                    child: Text(
+                      "Proceed without LOGIN",
+                      style: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontSize: screenWidth * 0.06,
+                        color: const Color(0xffA5A5BA),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

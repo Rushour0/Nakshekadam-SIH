@@ -7,6 +7,9 @@ import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
+import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
+import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth_otp.dart';
+import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
@@ -56,10 +59,12 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/wt': (context) => const BigTwoSmallOneBG(),
+        '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/': (context) => const AadharLoginPage(),
         '/signup': (context) => const Signup(),
+        '/mobno': (context) => const PhoneAuth(),
+        '/personalDetails': (context) => const PersonalDetails(),
         // '/': (context) => const Splash(),
       },
     );

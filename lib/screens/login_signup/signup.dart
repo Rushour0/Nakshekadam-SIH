@@ -131,7 +131,9 @@ class _SignupState extends State<Signup> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           style: ButtonStyle(
                             overlayColor:
                                 MaterialStateProperty.all(Colors.transparent),
@@ -152,8 +154,9 @@ class _SignupState extends State<Signup> {
                         child: Text(
                           "CREATE YOUR ACCOUNT",
                           style: TextStyle(
-                            fontFamily: "DM Sans",
+                            fontFamily: "Balsamiq Sans",
                             fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),
                           ),
                         ),
@@ -203,6 +206,20 @@ class _SignupState extends State<Signup> {
                                                   BorderRadius.circular(
                                                       screenWidth * 0.05),
                                             ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
@@ -243,6 +260,20 @@ class _SignupState extends State<Signup> {
                                                 ? null
                                                 : errorTextEmail,
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:
@@ -299,7 +330,21 @@ class _SignupState extends State<Signup> {
                                                 size: screenWidth * 0.08,
                                               ),
                                             ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:
@@ -364,6 +409,20 @@ class _SignupState extends State<Signup> {
                                               ),
                                             ),
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:

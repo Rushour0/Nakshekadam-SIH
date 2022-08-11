@@ -19,7 +19,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _hidePassword = true;
@@ -115,32 +114,61 @@ class _LoginState extends State<Login> {
                       vertical: screenHeight * 0.007),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: TextButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                          ),
-                          child: Text(
-                            "BACK",
-                            style: TextStyle(
-                              fontFamily: "Cabin",
-                              fontSize: screenWidth * 0.06,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xff615793),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                              ),
+                              child: Text(
+                                "BACK",
+                                style: TextStyle(
+                                  fontFamily: "Cabin",
+                                  fontSize: screenWidth * 0.06,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff615793),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/signup');
+                              },
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                              ),
+                              child: Text(
+                                "SIGN UP",
+                                style: TextStyle(
+                                  fontFamily: "Cabin",
+                                  fontSize: screenWidth * 0.06,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff615793),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.27),
                         child: Text(
                           "LOGIN",
                           style: TextStyle(
-                            fontFamily: "DM Sans",
+                            fontFamily: "Balsamiq Sans",
                             fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),
                           ),
                           textAlign: TextAlign.center,
@@ -190,6 +218,20 @@ class _LoginState extends State<Login> {
                                                 ? null
                                                 : errorTextEmail,
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:
@@ -247,6 +289,20 @@ class _LoginState extends State<Login> {
                                               ),
                                             ),
                                             enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: Colors.grey),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      screenWidth * 0.05),
+                                            ),
+                                            focusedErrorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Colors.grey),
                                               borderRadius:
@@ -355,7 +411,7 @@ class _LoginState extends State<Login> {
                                               ),
                                             ),
                                             Text(
-                                              "SIGN UP WITH GOOGLE",
+                                              "LOG IN WITH GOOGLE",
                                               style: TextStyle(
                                                 fontFamily: "DM Sans",
                                                 fontSize: screenWidth * 0.045,
