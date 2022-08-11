@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -178,267 +179,41 @@ class _SignupState extends State<Signup> {
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.02),
-                                        child: TextFormField(
-                                          controller: nameController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return "Please enter your name";
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType: TextInputType.name,
-                                          decoration: InputDecoration(
-                                            hintText: "Full Name",
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                        ),
+                                        child: normalformfield(
+                                            nameController,
+                                            screenWidth,
+                                            setState,
+                                            "Full Name",
+                                            TextInputType.name),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: TextFormField(
-                                          controller: emailController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            if (!isValidEmail(
-                                                value as String)) {
-                                              return "Check if mail is valid";
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            hintText: "Email",
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            errorText: errorTextEmail == ''
-                                                ? null
-                                                : errorTextEmail,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                        ),
+                                        child: emailformfield(
+                                            emailController,
+                                            screenWidth,
+                                            setState,
+                                            errorTextEmail),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            return null;
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            hintText: "Password",
-                                            errorText: errorTextPassword == ''
-                                                ? null
-                                                : errorTextPassword,
-                                            suffixIcon: IconButton(
-                                              padding: EdgeInsets.only(
-                                                  right: screenWidth * 0.07),
-                                              onPressed: () {
-                                                setState(() => _hidePassword =
-                                                    !_hidePassword);
-                                              },
-                                              icon: Icon(
-                                                _hidePassword
-                                                    ? Icons
-                                                        .visibility_off_outlined
-                                                    : Icons.visibility_outlined,
-                                                color: Colors.black,
-                                                size: screenWidth * 0.08,
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                          obscureText: _hidePassword,
-                                        ),
+                                        child: PasswordFormField(
+                                            passwordController:
+                                                passwordController,
+                                            errorTextPassword:
+                                                errorTextPassword,
+                                            hintText: "Password"),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: TextFormField(
-                                          controller: confirmPasswordController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            if (value !=
-                                                passwordController.text) {
-                                              return "Passwords do not match";
-                                            }
-                                            return null;
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            errorText:
-                                                errorTextConfirmPassword == ''
-                                                    ? null
-                                                    : errorTextConfirmPassword,
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            hintText: "Confirm Password",
-                                            suffixIcon: IconButton(
-                                              padding: EdgeInsets.only(
-                                                  right: screenWidth * 0.07),
-                                              onPressed: () {
-                                                setState(() =>
-                                                    _hideConfirmPassword =
-                                                        !_hideConfirmPassword);
-                                              },
-                                              icon: Icon(
-                                                _hideConfirmPassword
-                                                    ? Icons
-                                                        .visibility_off_outlined
-                                                    : Icons.visibility_outlined,
-                                                color: Colors.black,
-                                                size: screenWidth * 0.08,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                          obscureText: _hideConfirmPassword,
-                                        ),
+                                        child: PasswordFormField(
+                                            passwordController:
+                                                confirmPasswordController,
+                                            errorTextPassword:
+                                                errorTextPassword,
+                                            hintText: "Confirm Password"),
                                       ),
                                     ],
                                   ),

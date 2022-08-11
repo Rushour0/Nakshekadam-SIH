@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -23,12 +24,6 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
   bool _hidePassword = true;
   String errorTextEmail = '', errorTextPassword = '';
-
-  bool isValidEmail(String input) {
-    return RegExp(
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-        .hasMatch(input);
-  }
 
   Future<void> login() async {
     if (emailController.text == '' || passwordController.text == '') {
@@ -189,135 +184,21 @@ class _LoginState extends State<Login> {
                                   child: Column(
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            top: screenHeight * 0.02),
-                                        child: TextFormField(
-                                          controller: emailController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            if (!isValidEmail(
-                                                value as String)) {
-                                              return "Check if mail is valid";
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            hintText: "Email",
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            errorText: errorTextEmail == ''
-                                                ? null
-                                                : errorTextEmail,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                          padding: EdgeInsets.only(
+                                              top: screenHeight * 0.02),
+                                          child: emailformfield(
+                                              emailController,
+                                              screenWidth,
+                                              setState,
+                                              errorTextEmail)),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          onChanged: (value) {
-                                            setState(() {});
-                                          },
-                                          validator: (value) {
-                                            return null;
-                                          },
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .singleLineFormatter,
-                                          ],
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            hintText: "Password",
-                                            errorText: errorTextPassword == ''
-                                                ? null
-                                                : errorTextPassword,
-                                            suffixIcon: IconButton(
-                                              padding: EdgeInsets.only(
-                                                  right: screenWidth * 0.07),
-                                              onPressed: () {
-                                                setState(() => _hidePassword =
-                                                    !_hidePassword);
-                                              },
-                                              icon: Icon(
-                                                _hidePassword
-                                                    ? Icons
-                                                        .visibility_off_outlined
-                                                    : Icons.visibility_outlined,
-                                                color: Colors.black,
-                                                size: screenWidth * 0.08,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedErrorBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      screenWidth * 0.05),
-                                            ),
-                                          ),
-                                          obscureText: _hidePassword,
+                                        child: PasswordFormField(
+                                          passwordController:
+                                              passwordController,
+                                          errorTextPassword: errorTextPassword,
+                                          hintText: "Password",
                                         ),
                                       ),
                                     ],

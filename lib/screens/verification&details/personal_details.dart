@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -106,152 +107,28 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.025),
-                                    child: TextFormField(
-                                      controller: nameController,
-                                      onChanged: (value) {
-                                        setState(() {});
-                                      },
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Please enter your name";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter
-                                            .singleLineFormatter,
-                                      ],
-                                      keyboardType: TextInputType.name,
-                                      decoration: InputDecoration(
-                                        hintText: "Full Name",
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                      ),
-                                    ),
+                                    child: normalformfield(
+                                        nameController,
+                                        screenWidth,
+                                        setState,
+                                        "Full Name",
+                                        TextInputType.name),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.025),
-                                    child: TextFormField(
-                                      controller: phoneController,
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return "Please enter your number";
-                                        } else if (value.length != 10) {
-                                          return "Mobile number is 10 length long";
-                                        } else if (!(value[0] == '6' ||
-                                            value[0] == '7' ||
-                                            value[0] == '8' ||
-                                            value[0] == '9')) {
-                                          return "Invalid mobile number";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter
-                                            .singleLineFormatter,
-                                      ],
-                                      keyboardType: TextInputType.emailAddress,
-                                      decoration: InputDecoration(
-                                        hintText: "Email",
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                      ),
-                                    ),
+                                    child: phoneformfield(
+                                        phoneController, screenWidth, setState),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.025),
-                                    child: TextFormField(
-                                      controller: ageController,
-                                      validator: (value) {
-                                        return null;
-                                      },
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter
-                                            .singleLineFormatter,
-                                      ],
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        hintText: "Age",
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                      ),
-                                    ),
+                                    child: normalformfield(
+                                        ageController,
+                                        screenWidth,
+                                        setState,
+                                        "Age",
+                                        TextInputType.number),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
