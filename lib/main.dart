@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               secondary: COLOR_THEME['secondary'],
             ),
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-              buttonColor: const Color(0xFFC1F0F6),
+              buttonColor: const Color(0xff615793),
             ),
       ),
       darkTheme: ThemeData(

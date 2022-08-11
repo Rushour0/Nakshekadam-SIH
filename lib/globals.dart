@@ -10,12 +10,13 @@ const String DEFAULT_PROFILE_PICTURE =
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {
-  "primary": Color(0xFF7DD076),
-  "secondary": Color(0xFF26ABFF),
-  "tertiary": Color(0xFFB4E197),
+  "primary": Color(0xFF615793),
+  "secondary": Color(0xFFDBD3FF),
+  "tertiary": Color(0x4CFFB01D),
   "background": Color(0xFFFFFFFF),
-  "extraButtonColor": Color(0xFFF4CB4A),
-  "formFieldColor": Color(0xFFF4CB81),
+  "buttonBackground": Color(0xFF615793),
+  "textHeader": Color(0xFF32324D),
+  "appBarText": Color(0xFFFFFFFF),
   "plusMinusBar": Color(0xFFF4CB81),
   "searchFieldBackground": Color(0xFFF4CB81),
   "searchFieldText": Colors.black,
