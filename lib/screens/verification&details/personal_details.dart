@@ -45,9 +45,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             ),
           ),
           onPressed: () async {
-            if(_formKey.currentState!.validate()){
-
-            }
+            if (_formKey.currentState!.validate()) {}
           },
           child: Text(
             "CONTINUE",
@@ -256,12 +254,16 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        top: screenHeight * 0.025,
-                                        bottom: screenHeight * 0.2,
-                                        ),
+                                      top: screenHeight * 0.025,
+                                      bottom: screenHeight * 0.2,
+                                    ),
                                     child: DropdownButtonFormField<String>(
                                       decoration: InputDecoration(
-                                        suffixIcon: Icon(Icons.arrow_drop_down, size: screenWidth * 0.12, color: Colors.grey,),
+                                        suffixIcon: Icon(
+                                          Icons.arrow_drop_down,
+                                          size: screenWidth * 0.12,
+                                          color: Colors.grey,
+                                        ),
                                         hintText: "Age",
                                         filled: true,
                                         fillColor: Colors.white,
