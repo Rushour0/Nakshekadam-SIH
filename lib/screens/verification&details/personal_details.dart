@@ -45,9 +45,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             ),
           ),
           onPressed: () async {
-            if(_formKey.currentState!.validate()){
-
-            }
+            if (_formKey.currentState!.validate()) {}
           },
           child: Text(
             "CONTINUE",
@@ -256,63 +254,71 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        top: screenHeight * 0.025,
-                                        bottom: screenHeight * 0.2,
-                                        ),
-                                    child: DropdownButtonFormField<String>(
-                                      decoration: InputDecoration(
-                                        suffixIcon: Icon(Icons.arrow_drop_down, size: screenWidth * 0.12, color: Colors.grey,),
-                                        hintText: "Age",
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius: BorderRadius.circular(
-                                              screenWidth * 0.05),
-                                        ),
-                                      ),
-                                      validator: (value) {
-                                        if (value == null) {
-                                          return "Please select role";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      hint: const Text("Continue"),
-                                      value: selectedRole,
-                                      dropdownColor: Colors.white,
-                                      icon: const SizedBox.shrink(),
-                                      items: roles.map((String items) {
-                                        return DropdownMenuItem<String>(
-                                          value: items,
-                                          child: Text(items),
-                                        );
-                                      }).toList(),
-                                      onChanged: (String? newValue) {
-                                        setState(() {
-                                          selectedRole = newValue!;
-                                        });
-                                      },
+                                      top: screenHeight * 0.025,
+                                      bottom: screenHeight * 0.2,
+                                      
                                     ),
+                                    child: ,
+                                    // child: DropdownButtonFormField<String>(
+
+                                    //   decoration: InputDecoration(
+                                    //     suffixIcon: Icon(
+                                    //       Icons.arrow_drop_down,
+                                    //       size: screenWidth * 0.12,
+                                    //       color: Colors.grey,
+                                    //     ),
+                                    //     hintText: "Age",
+                                    //     filled: true,
+                                    //     fillColor: Colors.white,
+                                    //     enabledBorder: OutlineInputBorder(
+                                    //       borderSide: const BorderSide(
+                                    //           color: Colors.grey),
+                                    //       borderRadius: BorderRadius.circular(
+                                    //           screenWidth * 0.05),
+                                    //     ),
+                                    //     errorBorder: OutlineInputBorder(
+                                    //       borderSide: const BorderSide(
+                                    //           color: Colors.grey),
+                                    //       borderRadius: BorderRadius.circular(
+                                    //           screenWidth * 0.05),
+                                    //     ),
+                                    //     focusedErrorBorder: OutlineInputBorder(
+                                    //       borderSide: const BorderSide(
+                                    //           color: Colors.grey),
+                                    //       borderRadius: BorderRadius.circular(
+                                    //           screenWidth * 0.05),
+                                    //     ),
+                                    //     focusedBorder: OutlineInputBorder(
+                                    //       borderSide: const BorderSide(
+                                    //           color: Colors.grey),
+                                    //       borderRadius: BorderRadius.circular(
+                                    //         screenWidth * 0.05,
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    //   validator: (value) {
+                                    //     if (value == null) {
+                                    //       return "Please select role";
+                                    //     } else {
+                                    //       return null;
+                                    //     }
+                                    //   },
+                                    //   hint: const Text("Continue as"),
+                                    //   value: selectedRole,
+                                    //   dropdownColor: Colors.white,
+                                    //   icon: const SizedBox.shrink(),
+                                    //   items: roles.map((String items) {
+                                    //     return DropdownMenuItem<String>(
+                                    //       value: items,
+                                    //       child: Text(items),
+                                    //     );
+                                    //   }).toList(),
+                                    //   onChanged: (String? newValue) {
+                                    //     setState(() {
+                                    //       selectedRole = newValue!;
+                                    //     });
+                                    //   },
+                                    // ),
                                   ),
                                 ],
                               ),

@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/',
+      initialRoute: '/personalDetails',
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const Signup(),
         '/mobno': (context) => const PhoneAuth(),
         '/personalDetails': (context) => const PersonalDetails(),
+        '/aadharAuth': (context) => const AadharLoginPage(),
         // '/': (context) => const Splash(),
       },
     );
