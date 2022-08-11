@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/common_appbar.dart';
@@ -15,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  var _bottomNavIndex = 0;
+  var _bottomNavIndex = 2;
   late List<StatefulWidget> bodies;
   late TabController _tabController;
 
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(
-      animationDuration: const Duration(seconds: 0),
+      animationDuration: const Duration(milliseconds: 500),
       initialIndex: 2,
       length: 5,
       vsync: this,
@@ -49,6 +52,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    final double aspectRatio = MediaQuery.of(context).devicePixelRatio;
+    TextStyle navigationStyle = TextStyle(
+      fontFamily: "DM Sans",
+      color: Colors.white,
+      fontSize: screenWidth * 0.03,
+    );
 
     return Scaffold(
       key: scaffoldKey,
@@ -69,118 +78,138 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
       // backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            // screenHeight * 0.01,
+            // screenHeight * 0.01,
+            // screenHeight * 0.01,
+            screenWidth * 0.053,
+            0,
+            screenWidth * 0.04,
 
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: COLOR_THEME['primary'],
-          // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-          primaryColor: COLOR_THEME['bottomNavigationSelected'],
-        ), // sets the inactive color of the `BottomNavigationBar`
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
-          fixedColor: COLOR_THEME['bottomNavigationSelected'],
-          currentIndex: _bottomNavIndex,
-          backgroundColor: COLOR_THEME['primary'],
-          elevation: 5,
-          selectedLabelStyle: TextStyle(
-            fontSize: screenWidth / 34,
-            fontFamily: 'FigTree',
-            color: COLOR_THEME['bottomNavigationSelected'],
+            screenHeight * 0.01,
           ),
-          unselectedLabelStyle: TextStyle(
-            fontSize: screenWidth / 34,
-            fontFamily: 'FigTree',
-            color: COLOR_THEME['bottomNavigationUnselected'],
-          ),
-          items: [
-            BottomNavigationBarItem(
-              label: 'Colleges',
-              activeIcon: ImageIcon(
-                AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/bolt.png"),
-                color: COLOR_THEME['bottomNavigationSelected'],
-              ),
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/bolt.png"),
+          child: CustomNavigationBar(
+            selectedColor: COLOR_THEME['bottomNavigationSelected'],
+            currentIndex: _bottomNavIndex,
+            backgroundColor: COLOR_THEME['bottomNavigation']!,
+            elevation: 0,
+            borderRadius: Radius.circular(screenWidth / 20),
+            // isFloating: true,
+            // selectedtitleStyle: TextStyle(
+            //   fontSize: screenWidth / 34,
+            //   fontFamily: 'DM Sans',
+            //   color: COLOR_THEME['bottomNavigationSelected'],
+            // ),
+            // unselectedtitleStyle: TextStyle(
+            //   fontSize: screenWidth / 34,
+            //   fontFamily: 'DM Sans',
+            //   color: COLOR_THEME['bottomNavigationUnselected'],
+            // ),
+            items: [
+              CustomNavigationBarItem(
+                selectedTitle: Text(
+                  'Colleges',
+                  style: navigationStyle,
+                ),
+                title: Container(),
+                selectedIcon: ImageIcon(
+                  // size: screenWidth * 0.09,
+                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
+                  color: COLOR_THEME['bottomNavigationSelected'],
+                ),
+                icon: ImageIcon(
+                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
                   color: COLOR_THEME['bottomNavigationUnselected'],
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Tests',
-              activeIcon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: ImageIcon(
+              CustomNavigationBarItem(
+                selectedTitle: Text(
+                  'Tests',
+                  style: navigationStyle,
+                ),
+                title: Container(),
+                selectedIcon: ImageIcon(
+                  // size: screenWidth * 0.09,
                   AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
                   color: COLOR_THEME['bottomNavigationSelected'],
                 ),
-              ),
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: ImageIcon(
+                icon: ImageIcon(
                   AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
                   color: COLOR_THEME['bottomNavigationUnselected'],
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Home',
-              activeIcon: ImageIcon(
-                AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
-                color: COLOR_THEME['bottomNavigationSelected'],
-              ),
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: ImageIcon(
+              CustomNavigationBarItem(
+                selectedTitle: Text(
+                  'Home',
+                  style: navigationStyle,
+                ),
+                title: Container(),
+                selectedIcon: ImageIcon(
+                  // size: screenWidth * 0.09,
+                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
+                  color: COLOR_THEME['bottomNavigationSelected'],
+                ),
+                icon: ImageIcon(
                   AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
                   color: COLOR_THEME['bottomNavigationUnselected'],
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              label: 'Genuine spares',
-              activeIcon: ImageIcon(
-                AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
-                color: COLOR_THEME['bottomNavigationSelected'],
+              CustomNavigationBarItem(
+                selectedTitle: Text(
+                  'Counsellors',
+                  style: navigationStyle,
+                ),
+                title: Container(),
+                selectedIcon: ImageIcon(
+                  // size: screenWidth * 0.09,
+                  AssetImage(
+                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
+                  color: COLOR_THEME['bottomNavigationSelected'],
+                ),
+                icon: ImageIcon(
+                  AssetImage(
+                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
+                  color: COLOR_THEME['bottomNavigationUnselected'],
+                ),
               ),
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: ImageIcon(
+              CustomNavigationBarItem(
+                selectedTitle: Text(
+                  'Explore',
+                  style: navigationStyle,
+                ),
+                title: Container(),
+                selectedIcon: ImageIcon(
+                  // size: screenWidth * 0.09,
+                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
+                  color: COLOR_THEME['bottomNavigationSelected'],
+                ),
+                icon: ImageIcon(
                   AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
                   color: COLOR_THEME['bottomNavigationUnselected'],
                 ),
-              ),
+              )
+            ],
+            onTap: (index) => setState(
+              () {
+                _bottomNavIndex = index;
+                _tabController.index = index;
+              },
             ),
-            BottomNavigationBarItem(
-              label: 'My cart',
-              activeIcon: Icon(
-                Icons.shopping_cart_checkout_outlined,
-                color: COLOR_THEME['bottomNavigationSelected'],
-              ),
-              icon: Padding(
-                padding: EdgeInsets.symmetric(vertical: screenHeight / 60),
-                child: Icon(
-                  Icons.shopping_cart_checkout_outlined,
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-            )
-          ],
-          onTap: (index) => setState(
-            () {
-              _bottomNavIndex = index;
-              _tabController.index = index;
-            },
+            //other params
           ),
-          //other params
         ),
       ),
+
       body: TabBarView(
         controller: _tabController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
           // Put FIVE pages in the tab bar view
+
           NoItemsInTab(text: "NULL"),
           NoItemsInTab(text: "NULL"),
           NoItemsInTab(text: "NULL"),

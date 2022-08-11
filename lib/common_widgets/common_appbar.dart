@@ -61,7 +61,7 @@ class CommonAppBar extends StatelessWidget {
         // ),
       ),
       toolbarHeight: screenHeight / 10,
-      backgroundColor: COLOR_THEME['background'],
+      backgroundColor: COLOR_THEME['primary'],
       elevation: 0,
     );
   }
