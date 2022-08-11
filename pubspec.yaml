@@ -33,22 +33,23 @@ dependencies:
   firebase_core: ^1.18.0
   firebase_database: ^9.0.16
   firebase_messaging: ^12.0.1
+  fluent_ui: ^3.12.0
   flutter:
     sdk: flutter
   flutter_chat_ui: ^1.6.4
+  flutter_downloader: ^1.8.1
   flutter_local_notifications: ^9.7.0
   flutter_svg: ^1.1.3
   google_sign_in: ^5.4.0
   http: ^0.13.5
+  loading_animation_widget: ^1.2.0+2
+  path_provider: ^2.0.11
   pinput: ^2.2.12
   shared_preferences: ^2.0.15
+  sms_autofill: ^2.2.0
   uuid: ^3.0.6
   webdriver: ^3.0.0
   webview_flutter: ^3.0.4
-  loading_animation_widget: ^1.2.0+2
-  flutter_downloader: ^1.8.1
-  path_provider: ^2.0.11
-  sms_autofill: ^2.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
