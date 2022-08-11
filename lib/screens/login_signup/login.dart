@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nakshekadam/common_utils/bigThreeBg.dart';
-import 'package:nakshekadam/common_utils/customPageRouter.dart';
-import 'package:nakshekadam/common_utils/formfields.dart';
+import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
+import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -197,10 +197,11 @@ class _LoginState extends State<Login> {
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
                                         child: PasswordFormField(
-                                             passwordController: passwordController,
-                                           errorTextPassword:
-                                            errorTextPassword,
-                                            hintText:"Password",),
+                                          passwordController:
+                                              passwordController,
+                                          errorTextPassword: errorTextPassword,
+                                          hintText: "Password",
+                                        ),
                                       ),
                                     ],
                                   ),

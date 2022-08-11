@@ -91,7 +91,7 @@ Future<bool> placeSubscriptionInAdmin({
   final DatabaseReference database =
       FirebaseDatabase.instance.ref("subscriptions");
 
-  User user = getCurrentUser();
+  User user = getCurrentUser()!;
 
   DatabaseReference newSubscription = database.child(subscriptionId);
   await newSubscription.set({
@@ -123,7 +123,7 @@ Future<bool> placeOrderInAdmin({
 }) async {
   // Database reference
   final DatabaseReference database = FirebaseDatabase.instance.ref("orders");
-  User user = getCurrentUser();
+  User user = getCurrentUser()!;
 
   DatabaseReference newSubscription = database.child(orderId);
   await newSubscription.set({

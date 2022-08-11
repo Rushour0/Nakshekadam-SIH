@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nakshekadam/common_utils/bigThreeBg.dart';
-import 'package:nakshekadam/common_utils/customPageRouter.dart';
-import 'package:nakshekadam/common_utils/formfields.dart';
+import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
+import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -181,19 +181,42 @@ class _SignupState extends State<Signup> {
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.02),
-                                        child: normalformfield(nameController, screenWidth, setState, "Full Name", TextInputType.name),),
+                                        child: normalformfield(
+                                            nameController,
+                                            screenWidth,
+                                            setState,
+                                            "Full Name",
+                                            TextInputType.name),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: emailformfield(emailController, screenWidth, setState, errorTextEmail),),
+                                        child: emailformfield(
+                                            emailController,
+                                            screenWidth,
+                                            setState,
+                                            errorTextEmail),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: PasswordFormField(passwordController: passwordController, errorTextPassword: errorTextPassword, hintText: "Password"),),
+                                        child: PasswordFormField(
+                                            passwordController:
+                                                passwordController,
+                                            errorTextPassword:
+                                                errorTextPassword,
+                                            hintText: "Password"),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: PasswordFormField(passwordController: confirmPasswordController, errorTextPassword: errorTextPassword, hintText: "Confirm Password"),),
+                                        child: PasswordFormField(
+                                            passwordController:
+                                                confirmPasswordController,
+                                            errorTextPassword:
+                                                errorTextPassword,
+                                            hintText: "Confirm Password"),
+                                      ),
                                     ],
                                   ),
                                 ),
