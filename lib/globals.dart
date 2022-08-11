@@ -12,7 +12,7 @@ const bool IS_GRADIENT = true;
 const Map<String, Color> COLOR_THEME = {
   "primary": Color(0xFF615793),
   "secondary": Color(0xFFDBD3FF),
-  "tertiary": Color(0x4CFFB01D),
+  "tertiary": Color(0x7FFFB01D),
   "background": Color(0xFFFFFFFF),
   "buttonBackground": Color(0xFF615793),
   "textHeader": Color(0xFF32324D),
@@ -32,17 +32,7 @@ const Map<String, Color> COLOR_THEME = {
   "tabSelectColor": Colors.black,
 };
 
-//
-// const Map<String, Color> COLOR_THEME = {
-//   "extraButtonColor": Color.fromARGB(255, 244, 203, 72),
-//   "background": Color(0xFFE9EFC0),
-//   "formFieldColor": Color(0xFFFEF5ED),
-//   "tertiary": Color(0xFFB4E197),
-//   "secondary": Color(0xFF83BD75),
-//   "primary": Color(0xFF4E944F)
-// };
-
-const String RAZORPAY_KEY = "rzp_live_80XyMCx6NSm4UA";
+// const String RAZORPAY_KEY = "rzp_live_80XyMCx6NSm4UA";
 
 final DEFAULT_TEXT_THEME = TextTheme(
   bodyText1: const TextStyle(
