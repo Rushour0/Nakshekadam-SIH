@@ -7,7 +7,6 @@ import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class WalkThrough extends StatefulWidget {
   const WalkThrough({Key? key}) : super(key: key);

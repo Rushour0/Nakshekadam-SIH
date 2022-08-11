@@ -5,7 +5,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class WTTwo extends StatelessWidget {
   const WTTwo({Key? key}) : super(key: key);
