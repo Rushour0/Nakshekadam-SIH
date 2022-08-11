@@ -62,6 +62,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
+        height: screenHeight,
+        width: screenWidth,
         color: Colors.white,
         child: Stack(
           children: [

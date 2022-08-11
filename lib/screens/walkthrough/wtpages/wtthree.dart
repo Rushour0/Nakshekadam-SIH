@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/common_utils/breakpoints.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class WTThree extends StatelessWidget {
   const WTThree({Key? key}) : super(key: key);
@@ -84,6 +86,8 @@ class WTThree extends StatelessWidget {
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         color: Colors.white,
+        height: screenHeight,
+        width: screenWidth,
         child: Stack(
           children: [
             Positioned(

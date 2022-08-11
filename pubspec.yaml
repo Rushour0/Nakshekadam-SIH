@@ -45,6 +45,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+2
   path_provider: ^2.0.11
   pinput: ^2.2.12
+  responsive_framework: ^0.2.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0
   uuid: ^3.0.6

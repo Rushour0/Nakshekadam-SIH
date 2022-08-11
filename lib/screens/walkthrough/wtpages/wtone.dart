@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/common_utils/breakpoints.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class WTOne extends StatelessWidget {
   const WTOne({Key? key}) : super(key: key);
@@ -52,6 +54,8 @@ class WTOne extends StatelessWidget {
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         color: Colors.white,
+        height: screenHeight,
+        width: screenWidth,
         child: Stack(
           children: [
             Positioned(

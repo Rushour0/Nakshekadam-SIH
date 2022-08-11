@@ -107,6 +107,8 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
+        height: screenHeight,
+        width: screenWidth,
         color: Colors.white,
         child: Stack(
           children: [

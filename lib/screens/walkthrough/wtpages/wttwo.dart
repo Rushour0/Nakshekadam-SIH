@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/common_utils/breakpoints.dart';
 import 'package:nakshekadam/common_utils/customPageRouter.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class WTTwo extends StatelessWidget {
   const WTTwo({Key? key}) : super(key: key);
@@ -51,6 +53,8 @@ class WTTwo extends StatelessWidget {
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
+        height: screenHeight,
+        width: screenWidth,
         color: Colors.white,
         child: Stack(
           children: [

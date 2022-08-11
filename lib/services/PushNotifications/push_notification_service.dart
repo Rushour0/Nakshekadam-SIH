@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -89,6 +88,6 @@ class PushNotificationService {
             'This channel is used for important notifications.', // description
         importance: Importance.high,
         enableLights: true,
-        vibrationPattern: Int64List(4),
+        
       );
 }

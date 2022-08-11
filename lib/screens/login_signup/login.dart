@@ -90,6 +90,8 @@ class _LoginState extends State<Login> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
+        height: screenHeight,
+        width: screenWidth,
         color: Colors.white,
         child: Stack(
           children: [
