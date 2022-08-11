@@ -163,25 +163,6 @@ class WTThree extends StatelessWidget {
                       vertical: screenHeight * 0.007),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                          ),
-                          child: Text(
-                            "SKIP",
-                            style: TextStyle(
-                              fontFamily: "Cabin",
-                              fontSize: screenWidth * 0.06,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xff615793),
-                            ),
-                          ),
-                        ),
-                      ),
                       // Container(
                       //   width: screenWidth * 0.6,
                       //   padding: EdgeInsets.only(top: screenHeight * 0.45),
@@ -208,7 +189,7 @@ class WTThree extends StatelessWidget {
                       //   ),
                       // ),
                       Padding(
-                        padding: EdgeInsets.only(top: screenHeight * 0.505),
+                        padding: EdgeInsets.only(top: screenHeight * 0.575),
                         // padding: EdgeInsets.only(top: screenHeight * 0.045),
                         child: Text(
                           "A one-stop personalized guide to navigate all your career related confusions - \nNaksheKADAM",

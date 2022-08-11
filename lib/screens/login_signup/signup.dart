@@ -131,7 +131,9 @@ class _SignupState extends State<Signup> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           style: ButtonStyle(
                             overlayColor:
                                 MaterialStateProperty.all(Colors.transparent),
@@ -152,8 +154,9 @@ class _SignupState extends State<Signup> {
                         child: Text(
                           "CREATE YOUR ACCOUNT",
                           style: TextStyle(
-                            fontFamily: "DM Sans",
+                            fontFamily: "Balsamiq Sans",
                             fontSize: screenWidth * 0.08,
+                            fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),
                           ),
                         ),

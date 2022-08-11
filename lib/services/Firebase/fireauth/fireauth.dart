@@ -168,6 +168,7 @@ void initialData() async {
     "email": _auth.currentUser!.email,
     "formFilled": false,
     "isAdmin": false,
+    "role" : "none",
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
 }

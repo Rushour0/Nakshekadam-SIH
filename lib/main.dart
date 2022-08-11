@@ -6,6 +6,9 @@ import 'package:nakshekadam/common_utils/bigThreeBg.dart';
 import 'package:nakshekadam/common_utils/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
+import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
+import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth_otp.dart';
+import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtone.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wtthree.dart';
@@ -87,13 +90,15 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/login',
+      initialRoute: '/personalDetails',
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/wt': (context) => const BigTwoSmallOneBG(),
+        '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/signup': (context) => const Signup(),
+        '/mobno': (context) => const PhoneAuth(),
+        '/personalDetails' : (context) => const PersonalDetails(),
         // '/': (context) => const Splash(),
       },
     );
