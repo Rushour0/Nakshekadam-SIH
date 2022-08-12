@@ -14,17 +14,17 @@ const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {
   // Main Colors
-  // "primary": Color(0xFF3E3763),
-  // "secondary": Color(0xFF615793),
-  // "tertiary": Color(0xFFDBD3FF),
-  // "backgroundComponents": Color(0x7FFFB01D),
-  // "background": Color(0xFFFFFFFF),
-
-  "primary": Color(0xFF42C2FF),
-  "secondary": Color(0xFF111D5E),
-  "tertiary": Color(0xFF00EAD3),
+  "primary": Color(0xFF3E3763),
+  "secondary": Color(0xFF615793),
+  "tertiary": Color(0xFFDBD3FF),
   "backgroundComponents": Color(0x7FFFB01D),
   "background": Color(0xFFFFFFFF),
+
+  // "primary": Color(0xFF42C2FF),
+  // "secondary": Color(0xFF111D5E),
+  // "tertiary": Color(0xFF00EAD3),
+  // "backgroundComponents": Color(0x7FFFB01D),
+  // "background": Color(0xFFFFFFFF),
 
   // AppBar Colors
   "appBarText": Color(0xFFFFFFFF),

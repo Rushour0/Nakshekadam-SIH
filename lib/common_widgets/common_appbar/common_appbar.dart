@@ -16,6 +16,11 @@ AppBar commonAppBar({
 
   User? user = getCurrentUser();
   return AppBar(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(
+        screenWidth / 30,
+      ),
+    ),
     actions: [
       Padding(
         padding: EdgeInsets.only(
@@ -56,6 +61,6 @@ AppBar commonAppBar({
     ),
     toolbarHeight: screenHeight / 10,
     backgroundColor: COLOR_THEME['primary'],
-    elevation: 0,
+    elevation: 3,
   );
 }

@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/home/home_page.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
@@ -9,7 +11,6 @@ import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
 import 'package:nakshekadam/services/PushNotifications/push_notification_service.dart';
-import 'package:nakshekadam/globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await PushNotificationService().setupInteractedMessage();
   // print('TOKEN : ${await FirebaseMessaging.instance.getToken()}');
 
