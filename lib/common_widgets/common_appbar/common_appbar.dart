@@ -32,8 +32,9 @@ AppBar commonAppBar({
           },
           child: profilePicture
               ? CircleAvatar(
-                  radius: screenWidth / 15,
+                  radius: screenWidth / 20,
                   backgroundImage: NetworkImage(
+                    scale:0.001,
                     user != null
                         ? user.photoURL ?? DEFAULT_PROFILE_PICTURE
                         : DEFAULT_PROFILE_PICTURE,

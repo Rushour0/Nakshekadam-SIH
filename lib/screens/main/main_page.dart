@@ -1,14 +1,12 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_widgets/bigOneSmallOneBg.dart';
-import 'package:nakshekadam/common_widgets/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -93,8 +91,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       ),
 
       // backgroundColor: Colors.transparent,
-
-      bottomNavigationBar: Padding(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
         padding: EdgeInsets.fromLTRB(
           // screenHeight * 0.01,
           // screenHeight * 0.01,
@@ -158,7 +156,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         children: [
           const BigOneSmallOneBG(),
           Positioned(
-            top: screenHeight / 10,
+            top: screenHeight / 7,
             left: 0,
             width: screenWidth,
             height: screenHeight * 0.9,
@@ -168,6 +166,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               children: const [
                 // Put FIVE pages in the tab bar view
 
+                // NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "1"),
                 HomePage(),

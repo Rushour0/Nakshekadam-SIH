@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
-import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
-import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
-import 'package:nakshekadam/globals.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
