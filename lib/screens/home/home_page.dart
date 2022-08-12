@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_widgets/common_appbar.dart';
-import 'package:nakshekadam/common_widgets/drawer.dart';
+import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
+import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
+import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 
@@ -62,21 +61,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       key: scaffoldKey,
       endDrawer: CommonDrawer(),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(screenHeight / 10),
-        child: CommonAppBar(
-          scaffoldKey: scaffoldKey,
-          title: SizedBox(
-            // height: MediaQuery.of(context).size.height / 2,
-            width: screenWidth / 5,
-            child: Image.asset(
-              APP_ICON,
-              fit: BoxFit.contain,
-            ),
-          ),
-          profilePicture: true,
+      appBar: commonAppBar(
+        screenWidth: screenWidth,
+        screenHeight: screenHeight,
+        scaffoldKey: scaffoldKey,
+        title: LanguageDropDown(
+          parentSet: setState,
         ),
+        // Text(
+        //   'NaksheKADAM',
+        //   style: TextStyle(
+        //     fontFamily: 'DM Sans',
+        //     fontSize: screenWidth * 0.05,
+        //     fontWeight: FontWeight.bold,
+        //     color: COLOR_THEME['appBarText'],
+        //   ),
+        // ),
+        profilePicture: true,
       ),
+
       // backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Align(
