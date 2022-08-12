@@ -6,3 +6,9 @@ const String ABOUT_DOESL =
 
 const String NEW_EDUCATION_POLICY_20__TRANSFORMING_INDIA =
     "National Educational Policy (NEP): Union cabinet paved the way for transformative reform in school and higher education system by launching the New National Education Policy (NEP) on 29th July 2020.  The policy aims to highlight new avenues for students in different subjects by increasing the choices students have in choosing their subject combinations and eventual careers. No student would be forced for any Language. Higher education will receive flexibility in subjects. There will be multiple entries and exit points with appropriate certification for higher education.";
+
+Map<String,String> infoMap() => {
+  "Our Vision": OUR_VISIOV,
+  "About DoESL": ABOUT_DOESL,
+  "New Education Policy' 20 - Transforming India": NEW_EDUCATION_POLICY_20__TRANSFORMING_INDIA,
+};

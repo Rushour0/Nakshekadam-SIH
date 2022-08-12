@@ -21,8 +21,11 @@ const Map<String, Color> COLOR_THEME = {
   "primary": Color(0xFF3E3763),
   "secondary": Color(0xFF615793),
   "tertiary": Color(0xFFDBD3FF),
-  "backgroundComponents": Color(0x7FFFB01D),
+  "backgroundComponents0": Color(0x7FFFB01D),
+  "backgroundComponents1": Color(0xC2615793),
   "background": Color(0xFFFFFFFF),
+
+  // Home Page Colors
 
   // "primary": Color(0xFF42C2FF),
   // "secondary": Color(0xFF111D5E),

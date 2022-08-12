@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/card_text.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/info_card.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons.dart';
@@ -18,6 +17,12 @@ class HomePage extends StatelessWidget {
       'industries',
       'upcoming_exams',
       'scholarships',
+    ];
+
+    List<String> infoCardNames = [
+      'Our Vision',
+      'About DoESL',
+      "New Education Policy' 20 - Transforming India",
     ];
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -43,9 +48,16 @@ class HomePage extends StatelessWidget {
                     child: const CustomCarouselSlider(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: screenHeight * 0.03, bottom: screenHeight * 0.12),
-                    child: info_card(screenWidth, screenHeight, ""),
+                    padding: EdgeInsets.only(bottom: screenHeight * 0.12),
+                    child: Column(
+                        children: infoCardNames.map((name) {
+                      int index = infoCardNames.indexOf(name);
+                      return Padding(
+                        padding: EdgeInsets.only(top: screenHeight * 0.03),
+                        child: infoCard(
+                            screenWidth, screenHeight, name, (index + 1)% 2 == 0),
+                      );
+                    }).toList()),
                   ),
                 ],
               ),
