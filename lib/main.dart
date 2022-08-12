@@ -5,7 +5,6 @@ import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
-import 'package:nakshekadam/screens/main/home_page.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const HomePage(),
+        '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),

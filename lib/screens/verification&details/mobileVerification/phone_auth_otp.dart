@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:nakshekadam/common_widgets/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/backgrounds/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauthMobileLink.dart';
 import 'package:pinput/pinput.dart';
 

@@ -1,22 +1,21 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_widgets/bigOneSmallOneBg.dart';
-import 'package:nakshekadam/common_widgets/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page.dart';
 
-class Main extends StatefulWidget {
-  const Main({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<Main> createState() => _MainState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainState extends State<Main> with TickerProviderStateMixin {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _bottomNavIndex = 2;
@@ -157,7 +156,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
         children: [
           const BigOneSmallOneBG(),
           Positioned(
-            top: screenHeight / 10,
+            top: screenHeight / 7,
             left: 0,
             width: screenWidth,
             height: screenHeight,
@@ -167,9 +166,10 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
               children: const [
                 // Put FIVE pages in the tab bar view
 
+                // NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "1"),
-                NoItemsInTab(text: "2"),
+                HomePage(),
                 NoItemsInTab(text: "3"),
                 NoItemsInTab(text: "4"),
               ],
