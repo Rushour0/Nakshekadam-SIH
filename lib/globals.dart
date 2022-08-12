@@ -54,6 +54,8 @@ const Map<String, Color> COLOR_THEME = {
   "slideToConfirmEnd": Color(0xFFF4CB4A),
   "loginSignUpButtonText": Colors.white,
   "buttonText": Colors.white,
+
+  'optionButtonText': Color(0xFF8E8EA9),
 };
 
 // const String RAZORPAY_KEY = "rzp_live_80XyMCx6NSm4UA";

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/home/home_page.dart';
+import 'package:nakshekadam/screens/home/main_page.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';

@@ -1,224 +1,75 @@
-import 'package:custom_navigation_bar/custom_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
-import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
-import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
-import 'package:nakshekadam/common_widgets/no_items.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
+import 'package:nakshekadam/common_widgets/customPageRouter.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
+import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-  var _bottomNavIndex = 2;
-  late List<StatefulWidget> bodies;
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      animationDuration: const Duration(milliseconds: 500),
-      initialIndex: 2,
-      length: 5,
-      vsync: this,
-    );
-    _tabController.addListener(
-      () {
-        ;
-        if (_tabController.previousIndex != _tabController.index) {
-          print(_tabController.index);
-          setState(() {});
-        }
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
-    final double aspectRatio = MediaQuery.of(context).devicePixelRatio;
-    TextStyle navigationStyle = TextStyle(
-      fontFamily: "DM Sans",
-      color: Colors.white,
-      fontSize: screenWidth * 0.03,
-    );
-
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
-      endDrawer: CommonDrawer(),
-      appBar: commonAppBar(
-        screenWidth: screenWidth,
-        screenHeight: screenHeight,
-        scaffoldKey: scaffoldKey,
-        title: LanguageDropDown(
-          parentSet: setState,
-        ),
-        // Text(
-        //   'NaksheKADAM',
-        //   style: TextStyle(
-        //     fontFamily: 'DM Sans',
-        //     fontSize: screenWidth * 0.05,
-        //     fontWeight: FontWeight.bold,
-        //     color: COLOR_THEME['appBarText'],
-        //   ),
-        // ),
-        profilePicture: true,
-      ),
-
-      // backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Align(
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(
-            // screenHeight * 0.01,
-            // screenHeight * 0.01,
-            // screenHeight * 0.01,
-            screenWidth * 0.04,
-            0,
-            screenWidth * 0.04,
-
-            screenHeight * 0.01,
-          ),
-          child: CustomNavigationBar(
-            selectedColor: COLOR_THEME['bottomNavigationSelected'],
-            currentIndex: _bottomNavIndex,
-            backgroundColor: COLOR_THEME['bottomNavigation']!,
-            elevation: 0,
-            borderRadius: Radius.circular(screenWidth / 20),
-            // isFloating: true,
-            // selectedtitleStyle: TextStyle(
-            //   fontSize: screenWidth / 34,
-            //   fontFamily: 'DM Sans',
-            //   color: COLOR_THEME['bottomNavigationSelected'],
-            // ),
-            // unselectedtitleStyle: TextStyle(
-            //   fontSize: screenWidth / 34,
-            //   fontFamily: 'DM Sans',
-            //   color: COLOR_THEME['bottomNavigationUnselected'],
-            // ),
-            items: [
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Colleges',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Tests',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Home',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Counsellors',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage(
-                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage(
-                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Explore',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              )
-            ],
-            onTap: (index) => setState(
-              () {
-                _bottomNavIndex = index;
-                _tabController.index = index;
-              },
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        height: screenHeight,
+        width: screenWidth,
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Positioned(
+              height: screenHeight,
+              width: screenWidth,
+              child: const BigThreeBG(),
             ),
-            //other params
-          ),
+            Positioned(
+              top: 0,
+              width: screenWidth,
+              bottom: 0,
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                      vertical: screenHeight * 0.007),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/images/features_images/career_options.png"),
+                              Text(
+                                "CAREER\nOPTIONS",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: "Cabin",
+                                    color: COLOR_THEME["optionButtonText"]),
+                              )
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ),
-
-      body: TabBarView(
-        controller: _tabController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          // Put FIVE pages in the tab bar view
-
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-        ],
       ),
     );
   }
