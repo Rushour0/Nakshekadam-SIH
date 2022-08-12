@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: optionNames.map((e) {
                   return GestureDetector(
                     onTap: () {
@@ -53,7 +54,11 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 }).toList(),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: screenHeight * 0.03),
+                child: const CustomCarouselSlider(),
+              ),
             ],
           ),
         ),

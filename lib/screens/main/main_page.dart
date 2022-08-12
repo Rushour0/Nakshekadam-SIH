@@ -8,14 +8,14 @@ import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page.dart';
 
-class MainPagePage extends StatefulWidget {
-  const MainPagePage({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPagePage> createState() => _MainPagePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPagePageState extends State<MainPagePage> with TickerProviderStateMixin {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _bottomNavIndex = 2;
