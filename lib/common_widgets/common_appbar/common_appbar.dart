@@ -31,13 +31,19 @@ AppBar commonAppBar({
             scaffoldKey.currentState!.openEndDrawer();
           },
           child: profilePicture
-              ? CircleAvatar(
-                  radius: screenWidth / 20,
-                  backgroundImage: NetworkImage(
-                    scale:0.001,
-                    user != null
-                        ? user.photoURL ?? DEFAULT_PROFILE_PICTURE
-                        : DEFAULT_PROFILE_PICTURE,
+              ? Container(
+                  width: screenWidth / 10,
+                  height: screenWidth / 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        user != null
+                            ? user.photoURL ?? DEFAULT_PROFILE_PICTURE
+                            : DEFAULT_PROFILE_PICTURE,
+                      ),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 )
               : Container(),

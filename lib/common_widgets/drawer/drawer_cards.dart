@@ -230,12 +230,19 @@ class ProfileSummaryCard extends StatelessWidget {
                 ),
               ],
             ),
-            CircleAvatar(
-              radius: screenWidth / 13,
-              backgroundImage: NetworkImage(
-                user != null
-                    ? user!.photoURL ?? DEFAULT_PROFILE_PICTURE
-                    : DEFAULT_PROFILE_PICTURE,
+            Container(
+              width: screenWidth / 8,
+              height: screenWidth / 8,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(
+                    user != null
+                        ? user!.photoURL ?? DEFAULT_PROFILE_PICTURE
+                        : DEFAULT_PROFILE_PICTURE,
+                  ),
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ],
