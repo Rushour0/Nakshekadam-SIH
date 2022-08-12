@@ -42,7 +42,7 @@ const Map<String, Color> COLOR_THEME = {
   "languageDropDownText": Colors.black,
 
   // Bottom Navigation Bar Colors
-  "bottomNavigation": Color(0xFF111D5E),
+  "bottomNavigation": Color(0xFF615793),
   "bottomNavigationSelected": Color(0xFFFFB01D),
   "bottomNavigationUnselected": Color(0xFFFFFFFF),
 
