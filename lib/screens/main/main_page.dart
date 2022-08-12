@@ -6,7 +6,7 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
