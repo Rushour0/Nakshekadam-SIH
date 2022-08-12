@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
@@ -20,18 +21,13 @@ class HomePage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
       body: Container(
         height: screenHeight,
         width: screenWidth,
-        color: Colors.white,
         child: Stack(
           children: [
-            Positioned(
-              height: screenHeight,
-              width: screenWidth,
-              child: const BigThreeBG(),
-            ),
             Positioned(
               top: 0,
               width: screenWidth,
@@ -51,7 +47,9 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Image.asset("assets/images/features_images/career_options.png"),
+                              // Image.asset(
+                              //   "$FEATURES_IMAGES_DIRECTORY/career_options.png",
+                              // ),
                               Text(
                                 "CAREER\nOPTIONS",
                                 textAlign: TextAlign.center,
@@ -62,7 +60,8 @@ class HomePage extends StatelessWidget {
                             ],
                           )
                         ],
-                      )
+                      ),
+                      CustomCarouselSlider(),
                     ],
                   ),
                 ),

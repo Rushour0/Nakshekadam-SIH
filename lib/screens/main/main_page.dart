@@ -8,15 +8,16 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
 
-class Main extends StatefulWidget {
-  const Main({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
-  State<Main> createState() => _MainState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MainState extends State<Main> with TickerProviderStateMixin {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _bottomNavIndex = 2;
@@ -160,7 +161,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
             top: screenHeight / 10,
             left: 0,
             width: screenWidth,
-            height: screenHeight,
+            height: screenHeight * 0.9,
             child: TabBarView(
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
@@ -169,7 +170,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
 
                 NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "1"),
-                NoItemsInTab(text: "2"),
+                HomePage(),
                 NoItemsInTab(text: "3"),
                 NoItemsInTab(text: "4"),
               ],

@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const Main(),
+        '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
