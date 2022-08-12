@@ -9,14 +9,14 @@ import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<Main> createState() => _MainState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+class _MainState extends State<Main> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _bottomNavIndex = 2;

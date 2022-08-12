@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nakshekadam/globals.dart';
-
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const MainPage(),
+        '/main': (context) => const Main(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
