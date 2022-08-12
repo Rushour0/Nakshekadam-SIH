@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             // screenHeight * 0.01,
             // screenHeight * 0.01,
             // screenHeight * 0.01,
-            screenWidth * 0.053,
+            screenWidth * 0.04,
             0,
             screenWidth * 0.04,
 
