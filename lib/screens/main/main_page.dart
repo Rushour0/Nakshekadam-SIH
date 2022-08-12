@@ -1,6 +1,8 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/common_widgets/bigOneSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
@@ -21,11 +23,19 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
   late List<StatefulWidget> bodies;
   late TabController _tabController;
 
+  List<String> tabNames = [
+    'Colleges',
+    'Tests',
+    'Home',
+    'Counsellors',
+    'Explore',
+  ];
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
-      animationDuration: const Duration(milliseconds: 500),
+      animationDuration: const Duration(milliseconds: 0),
       initialIndex: 2,
       length: 5,
       vsync: this,
@@ -51,7 +61,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double aspectRatio = MediaQuery.of(context).devicePixelRatio;
+
     TextStyle navigationStyle = TextStyle(
       fontFamily: "DM Sans",
       color: Colors.white,
@@ -59,6 +69,7 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
     );
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       key: scaffoldKey,
       endDrawer: CommonDrawer(),
       appBar: commonAppBar(
@@ -81,143 +92,89 @@ class _MainState extends State<Main> with TickerProviderStateMixin {
       ),
 
       // backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Align(
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(
-            // screenHeight * 0.01,
-            // screenHeight * 0.01,
-            // screenHeight * 0.01,
-            screenWidth * 0.04,
-            0,
-            screenWidth * 0.04,
 
-            screenHeight * 0.01,
-          ),
-          child: CustomNavigationBar(
-            selectedColor: COLOR_THEME['bottomNavigationSelected'],
-            currentIndex: _bottomNavIndex,
-            backgroundColor: COLOR_THEME['bottomNavigation']!,
-            elevation: 0,
-            borderRadius: Radius.circular(screenWidth / 20),
-            // isFloating: true,
-            // selectedtitleStyle: TextStyle(
-            //   fontSize: screenWidth / 34,
-            //   fontFamily: 'DM Sans',
-            //   color: COLOR_THEME['bottomNavigationSelected'],
-            // ),
-            // unselectedtitleStyle: TextStyle(
-            //   fontSize: screenWidth / 34,
-            //   fontFamily: 'DM Sans',
-            //   color: COLOR_THEME['bottomNavigationUnselected'],
-            // ),
-            items: [
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Colleges',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/colleges.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Tests',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/tests.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Home',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/home.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Counsellors',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage(
-                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage(
-                      "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/counsellors.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
-                ),
-              ),
-              CustomNavigationBarItem(
-                selectedTitle: Text(
-                  'Explore',
-                  style: navigationStyle,
-                ),
-                title: Container(),
-                selectedIcon: ImageIcon(
-                  // size: screenWidth * 0.09,
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
-                  color: COLOR_THEME['bottomNavigationSelected'],
-                ),
-                icon: ImageIcon(
-                  AssetImage("$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/explore.png"),
-                  color: COLOR_THEME['bottomNavigationUnselected'],
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(
+          // screenHeight * 0.01,
+          // screenHeight * 0.01,
+          // screenHeight * 0.01,
+          screenWidth * 0.04,
+          0,
+          screenWidth * 0.04,
+
+          screenHeight * 0.01,
+        ),
+        child: CustomNavigationBar(
+          selectedColor: COLOR_THEME['bottomNavigationSelected'],
+          currentIndex: _bottomNavIndex,
+          backgroundColor: COLOR_THEME['bottomNavigation']!,
+          elevation: 0,
+          borderRadius: Radius.circular(screenWidth / 20),
+          // isFloating: true,
+          // selectedtitleStyle: TextStyle(
+          //   fontSize: screenWidth / 34,
+          //   fontFamily: 'DM Sans',
+          //   color: COLOR_THEME['bottomNavigationSelected'],
+          // ),
+          // unselectedtitleStyle: TextStyle(
+          //   fontSize: screenWidth / 34,
+          //   fontFamily: 'DM Sans',
+          //   color: COLOR_THEME['bottomNavigationUnselected'],
+          // ),
+          items: tabNames
+              .map(
+                (tabName) => CustomNavigationBarItem(
+                  selectedTitle: Text(
+                    tabName,
+                    style: navigationStyle,
+                  ),
+                  title: Container(),
+                  selectedIcon: ImageIcon(
+                    // size: screenWidth * 0.09,
+                    AssetImage(
+                        "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                    color: COLOR_THEME['bottomNavigationSelected'],
+                  ),
+                  icon: ImageIcon(
+                    AssetImage(
+                        "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                    color: COLOR_THEME['bottomNavigationUnselected'],
+                  ),
                 ),
               )
-            ],
-            onTap: (index) => setState(
-              () {
-                _bottomNavIndex = index;
-                _tabController.index = index;
-              },
-            ),
-            //other params
+              .toList(),
+          onTap: (index) => setState(
+            () {
+              _bottomNavIndex = index;
+              _tabController.index = index;
+            },
           ),
+          //other params
         ),
       ),
 
-      body: TabBarView(
-        controller: _tabController,
-        physics: const NeverScrollableScrollPhysics(),
+      body: Stack(
         children: [
-          // Put FIVE pages in the tab bar view
+          const BigOneSmallOneBG(),
+          Positioned(
+            top: screenHeight / 10,
+            left: 0,
+            width: screenWidth,
+            height: screenHeight,
+            child: TabBarView(
+              controller: _tabController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                // Put FIVE pages in the tab bar view
 
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
-          NoItemsInTab(text: "NULL"),
+                NoItemsInTab(text: "0"),
+                NoItemsInTab(text: "1"),
+                NoItemsInTab(text: "2"),
+                NoItemsInTab(text: "3"),
+                NoItemsInTab(text: "4"),
+              ],
+            ),
+          ),
         ],
       ),
     );
