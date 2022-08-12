@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WTThree extends StatelessWidget {
-  const WTThree({Key? key}) : super(key: key);
+class BigOneSmallOneBG extends StatelessWidget {
+  const BigOneSmallOneBG({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
