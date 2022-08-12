@@ -6,7 +6,6 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/home/home_page.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
