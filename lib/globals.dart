@@ -7,8 +7,12 @@ const String APP_ICON = "assets/images/app_icon.png";
 const String DEFAULT_PROFILE_PICTURE =
     "https://i.ibb.co/FgnFSQc/default-profile-picture.jpg";
 
-String BOTTOM_NAVIGATION_IMAGE_DIRECTORY =
+const String BOTTOM_NAVIGATION_IMAGE_DIRECTORY =
     "assets/images/bottom_navigation_icons";
+
+const String BANNER_IMAGE_DIRECTORY = "assets/images/banner_images";
+
+const String FEATURES_IMAGES_DIRECTORY = "assets/images/features_images";
 
 const bool IS_GRADIENT = true;
 

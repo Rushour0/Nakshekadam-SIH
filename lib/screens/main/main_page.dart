@@ -8,14 +8,14 @@ import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPagePage extends StatefulWidget {
+  const MainPagePage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<MainPagePage> createState() => _MainPagePageState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+class _MainPagePageState extends State<MainPagePage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   var _bottomNavIndex = 2;
@@ -159,7 +159,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             top: screenHeight / 7,
             left: 0,
             width: screenWidth,
-            height: screenHeight,
+            height: screenHeight * 0.9,
             child: TabBarView(
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
