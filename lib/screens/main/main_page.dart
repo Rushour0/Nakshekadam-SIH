@@ -91,8 +91,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       ),
 
       // backgroundColor: Colors.transparent,
-
-      bottomNavigationBar: Padding(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
         padding: EdgeInsets.fromLTRB(
           // screenHeight * 0.01,
           // screenHeight * 0.01,
