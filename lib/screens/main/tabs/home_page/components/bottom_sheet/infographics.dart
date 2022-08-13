@@ -26,7 +26,7 @@ Column infographicsAndText({
           left: screenWidth * 0.1,
         ),
         child: Text(
-          stringData[routeName]!,
+          stringData[routeName]['summary'] ?? "No data provided",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: "Cabin",

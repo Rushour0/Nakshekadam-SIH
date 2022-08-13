@@ -20,6 +20,9 @@ const String BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
 const String CAREER_OPTIONS_BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
     "assets/images/career_options_bottom_sheet_illustrations";
 
+const String CAREER_OPTIONS_BOTTOM_SHEET_ICON_DIRECTORY =
+    "assets/images/bottom_sheet_illustrations/career_options_icons";
+
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {
@@ -42,7 +45,6 @@ const Map<String, Color> COLOR_THEME = {
 
   // AppBar Colors
   "appBarText": Color(0xFFFFFFFF),
-  "floatingActionButton": Color(0xFFFF9228),
 
   // Field Colors
   "searchFieldText": Colors.black,
