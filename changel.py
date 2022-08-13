@@ -8,7 +8,7 @@ for dname, dirs, files in os.walk("./lib"):
         print(fpath)
         with open(fpath,"r") as f:
             s = f.read()
-        s = s.replace("""final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;""", replacement)
+        s = s.replace("""double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;""", replacement)
         with open(fpath, "w") as f:
             f.write(s)

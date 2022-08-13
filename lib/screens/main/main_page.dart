@@ -191,8 +191,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           Positioned(
             top: screenHeight / 7,
             left: 0,
-            width: screenWidth,
-            height: screenHeight * 0.9,
+            width: tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0],
+            height: tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1] * 0.9,
             child: TabBarView(
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
