@@ -44,8 +44,6 @@ class HomePage extends StatelessWidget {
                 children: [
                   OptionButtons(
                     optionNames: optionNames,
-                    screenWidth: screenWidth,
-                    screenHeight: screenHeight,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),

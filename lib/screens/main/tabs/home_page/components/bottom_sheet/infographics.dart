@@ -20,9 +20,10 @@ Column infographicsAndText({
         ),
       ),
       Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: screenHeight * 0.01,
-          horizontal: screenWidth * 0.1,
+        padding: EdgeInsets.only(
+          top: screenHeight * 0.01,
+          right: screenWidth * 0.1,
+          left: screenWidth * 0.1,
         ),
         child: Text(
           stringData[routeName]!,

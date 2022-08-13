@@ -12,8 +12,9 @@ class CustomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String title = routeName.replaceAll('_', ' ').toUpperCase();
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     'Tests',
     'Home',
     'Counsellors',
-    'Explore',
+    'Resources',
   ];
 
   @override
@@ -58,8 +58,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
 
     TextStyle navigationStyle = TextStyle(
       fontFamily: "DM Sans",

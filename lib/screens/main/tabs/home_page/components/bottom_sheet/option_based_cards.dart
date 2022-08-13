@@ -21,7 +21,12 @@ Container careerOptionsCard({
   return Container(
     height: side,
     width: side,
-    decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.white,
+        width: side * 0.05,
+      ),
+    ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

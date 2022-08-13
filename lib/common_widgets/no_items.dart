@@ -7,8 +7,9 @@ class NoItemsInTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
