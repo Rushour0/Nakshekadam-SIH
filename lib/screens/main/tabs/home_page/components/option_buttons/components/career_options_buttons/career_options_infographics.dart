@@ -8,6 +8,7 @@ Column careerOptionsInfographicsAndText({
   required double screenWidth,
   required double screenHeight,
   required String routeName,
+  required String optionCardName,
 }) {
   return Column(
     children: [
@@ -25,7 +26,7 @@ Column careerOptionsInfographicsAndText({
           vertical: screenHeight * 0.01,
           horizontal: screenWidth * 0.1,
         ),
-        child: careerOptionsInfoCard(screenWidth, screenHeight, "Overview"),
+        child: careerOptionsInfoCard(screenWidth, screenHeight, optionCardName),
       ),
     ],
   );

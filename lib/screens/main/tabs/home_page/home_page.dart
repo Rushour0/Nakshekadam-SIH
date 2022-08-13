@@ -10,8 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
     List<String> optionNames = [
       'career_options',
       'industries',
@@ -27,10 +28,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
-      body: Container(
-        height: screenHeight,
-        width: screenWidth,
-        color: Colors.transparent,
+      body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: screenWidth * 0.04, vertical: screenHeight * 0.007),

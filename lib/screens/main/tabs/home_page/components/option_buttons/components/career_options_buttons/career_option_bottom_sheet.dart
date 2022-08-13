@@ -1,14 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/career_options_buttons/career_options_infographics.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/infographics.dart';
 import 'package:nakshekadam/strings.dart';
 
 class CareerOptionBottomSheet extends StatelessWidget {
-  const CareerOptionBottomSheet({Key? key, required this.routeName})
-      : super(key: key);
+  const CareerOptionBottomSheet({
+    Key? key,
+    required this.routeName,
+    required this.optionCardName,
+  }) : super(key: key);
   final String routeName;
+  final String optionCardName;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +58,7 @@ class CareerOptionBottomSheet extends StatelessWidget {
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
                       routeName: routeName,
+                      optionCardName : optionCardName
                     ),
                   ],
                 ),
