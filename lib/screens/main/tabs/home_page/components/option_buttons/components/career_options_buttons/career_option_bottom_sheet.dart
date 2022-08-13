@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/career_options_buttons/career_options_infographics.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/career_options_buttons/career_options_infographics.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/infographics.dart';
 import 'package:nakshekadam/strings.dart';
 
@@ -19,10 +19,9 @@ class CareerOptionBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     String title = routeName.replaceAll('_', ' ').toUpperCase();
     print(title);
-    final double screenWidth = MediaQuery.of(context).size.width ;
+    final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    
-    
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -43,7 +42,6 @@ class CareerOptionBottomSheet extends StatelessWidget {
             screenWidth: screenWidth,
           ),
           Expanded(
-          
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (overScroll) {
                 overScroll.disallowIndicator();

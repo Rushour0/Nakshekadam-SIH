@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/career_options_buttons/career_options_infoCard.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/career_options_buttons/career_options_info_card.dart';
 import 'package:nakshekadam/strings.dart';
 
 Column careerOptionsInfographicsAndText({
