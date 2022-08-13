@@ -42,7 +42,11 @@ class HomePage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  optionButtons(optionNames, screenWidth, screenHeight),
+                  OptionButtons(
+                    optionNames: optionNames,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
                     child: const CustomCarouselSlider(),

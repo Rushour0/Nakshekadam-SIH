@@ -14,6 +14,8 @@ const String BANNER_IMAGE_DIRECTORY = "assets/images/banner_images";
 
 const String FEATURES_IMAGES_DIRECTORY = "assets/images/features_images";
 
+const String BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
+    "assets/images/bottom_sheet_illustrations";
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {

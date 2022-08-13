@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/infographics.dart';
+import 'package:nakshekadam/strings.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({Key? key, required this.routeName})
@@ -11,30 +14,72 @@ class CustomBottomSheet extends StatelessWidget {
     String title = routeName.replaceAll('_', ' ').toUpperCase();
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    return BottomSheet(
-      onClosing: () {},
-      builder: (builder) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(
-                screenWidth / 20,
-              ),
-              topRight: Radius.circular(
-                screenWidth / 20,
-              ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            screenWidth / 20,
+          ),
+          topRight: Radius.circular(
+            screenWidth / 20,
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          commonBottomSheetTitle(
+            title: title,
+            screenWidth: screenWidth,
+          ),
+          SizedBox(
+            height: screenHeight * 0.65,
+            child: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.topCenter,
+                  padding: EdgeInsets.only(
+                    top: screenWidth * 0.1,
+                  ),
+                  width: screenWidth,
+                  height: screenWidth * 0.8,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/concentricCirlces.png',
+                      ),
+                      fit: BoxFit.fitWidth,
+                      alignment: FractionalOffset.bottomCenter,
+                    ),
+                  ),
+                ),
+                NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (overScroll) {
+                    overScroll.disallowIndicator();
+                    return false;
+                  },
+                  child: SingleChildScrollView(
+                    child: Wrap(
+                      runAlignment: WrapAlignment.start,
+                      alignment: WrapAlignment.center,
+                      spacing: screenWidth * 0.05,
+                      runSpacing: screenHeight * 0.02,
+                      children: [
+                        infographicsAndText(
+                          screenWidth: screenWidth,
+                          screenHeight: screenHeight,
+                          routeName: routeName,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          child: Column(
-            children: [
-              commonBottomSheetTitle(
-                title: title,
-                screenWidth: screenWidth,
-              ),
-            ],
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
@@ -47,10 +92,36 @@ commonBottomSheetTitle({required title, required screenWidth}) {
     fontWeight: FontWeight.bold,
   );
 
-  return Container(
-    child: Text(
-      title,
-      style: titleStyle,
-    ),
+  return Column(
+    children: [
+      Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth / 2.75,
+          vertical: screenWidth * 0.05,
+        ),
+        child: Container(
+          width: screenWidth,
+          height: screenWidth * 0.02,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(
+              screenWidth / 30,
+            ),
+          ),
+        ),
+      ),
+      Container(
+        color: COLOR_THEME['primary'],
+        width: screenWidth,
+        height: screenWidth * 0.14,
+        child: Center(
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: titleStyle,
+          ),
+        ),
+      ),
+    ],
   );
 }
