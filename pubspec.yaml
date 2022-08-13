@@ -78,6 +78,7 @@ flutter:
     - assets/images/bottom_navigation_icons/
     - assets/images/bottom_sheet_illustrations/
     - assets/images/career_options_bottom_sheet_illustrations/
+    - assets/images/bottom_sheet_illustrations/career_options_icons/
     # - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
