@@ -54,14 +54,15 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: screenHeight * 0.12),
                     child: Column(
-                        children: infoCardNames.map((name) {
-                      int index = infoCardNames.indexOf(name);
-                      return Padding(
-                        padding: EdgeInsets.only(top: screenHeight * 0.03),
-                        child: infoCard(screenWidth, screenHeight, name,
-                            (index + 1) % 2 == 0),
-                      );
-                    }).toList()),
+                      children: infoCardNames.map((name) {
+                        int index = infoCardNames.indexOf(name);
+                        return Padding(
+                          padding: EdgeInsets.only(top: screenHeight * 0.03),
+                          child:
+                              infoCard(screenWidth, screenHeight, name, index),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ],
               ),
