@@ -103,52 +103,84 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
           screenHeight * 0.01,
         ),
-        child: CustomNavigationBar(
-          selectedColor: COLOR_THEME['bottomNavigationSelected'],
-          currentIndex: _bottomNavIndex,
-          backgroundColor: COLOR_THEME['bottomNavigation']!,
-          elevation: 0,
-          borderRadius: Radius.circular(screenWidth / 20),
-          // isFloating: true,
-          // selectedtitleStyle: TextStyle(
-          //   fontSize: screenWidth / 34,
-          //   fontFamily: 'DM Sans',
-          //   color: COLOR_THEME['bottomNavigationSelected'],
-          // ),
-          // unselectedtitleStyle: TextStyle(
-          //   fontSize: screenWidth / 34,
-          //   fontFamily: 'DM Sans',
-          //   color: COLOR_THEME['bottomNavigationUnselected'],
-          // ),
-          items: tabNames
-              .map(
-                (tabName) => CustomNavigationBarItem(
-                  selectedTitle: Text(
-                    tabName,
-                    style: navigationStyle,
-                  ),
-                  title: Container(),
-                  selectedIcon: ImageIcon(
-                    // size: screenWidth * 0.09,
-                    AssetImage(
-                        "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
-                    color: COLOR_THEME['bottomNavigationSelected'],
-                  ),
-                  icon: ImageIcon(
-                    AssetImage(
-                        "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
-                    color: COLOR_THEME['bottomNavigationUnselected'],
-                  ),
-                ),
-              )
-              .toList(),
-          onTap: (index) => setState(
-            () {
-              _bottomNavIndex = index;
-              _tabController.index = index;
-            },
-          ),
-          //other params
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            // Padding(
+            //   padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+            //   child: _bottomNavIndex != 3
+            //       ? FloatingActionButton(
+            //           backgroundColor: COLOR_THEME['floatingActionButton'],
+            //           onPressed: () {},
+            //           child: Icon(
+            //             Icons.chat,
+            //           ),
+            //         )
+            //       : FloatingActionButton.extended(
+            //           label: Text(
+            //             "Chat with our AI Counsellors",
+            //             style: TextStyle(
+            //               fontSize: screenWidth * 0.04,
+            //               fontFamily: "DM Sans",
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //           backgroundColor: COLOR_THEME['floatingActionButton'],
+            //           onPressed: () {},
+            //           icon: Icon(
+            //             Icons.chat,
+            //           ),
+            //         ),
+            // ),
+            CustomNavigationBar(
+              selectedColor: COLOR_THEME['bottomNavigationSelected'],
+              currentIndex: _bottomNavIndex,
+              backgroundColor: COLOR_THEME['bottomNavigation']!,
+              elevation: 0,
+              borderRadius: Radius.circular(screenWidth / 20),
+              // isFloating: true,
+              // selectedtitleStyle: TextStyle(
+              //   fontSize: screenWidth / 34,
+              //   fontFamily: 'DM Sans',
+              //   color: COLOR_THEME['bottomNavigationSelected'],
+              // ),
+              // unselectedtitleStyle: TextStyle(
+              //   fontSize: screenWidth / 34,
+              //   fontFamily: 'DM Sans',
+              //   color: COLOR_THEME['bottomNavigationUnselected'],
+              // ),
+              items: tabNames
+                  .map(
+                    (tabName) => CustomNavigationBarItem(
+                      selectedTitle: Text(
+                        tabName,
+                        style: navigationStyle,
+                      ),
+                      title: Container(),
+                      selectedIcon: ImageIcon(
+                        // size: screenWidth * 0.09,
+                        AssetImage(
+                            "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        color: COLOR_THEME['bottomNavigationSelected'],
+                      ),
+                      icon: ImageIcon(
+                        AssetImage(
+                            "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        color: COLOR_THEME['bottomNavigationUnselected'],
+                      ),
+                    ),
+                  )
+                  .toList(),
+              onTap: (index) => setState(
+                () {
+                  _bottomNavIndex = index;
+                  _tabController.index = index;
+                },
+              ),
+              //other params
+            ),
+          ],
         ),
       ),
 
