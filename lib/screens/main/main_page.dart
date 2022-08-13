@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     'Tests',
     'Home',
     'Counsellors',
-    'Explore',
+    'Resources',
   ];
 
   @override
