@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/card_text.dart';
+import 'package:nakshekadam/strings.dart';
 import 'package:readmore/readmore.dart';
 
 Card infoCard(
@@ -29,7 +29,7 @@ Card infoCard(
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
               child: ReadMoreText(
-                infoMap[cardName]!,
+                stringData[cardName]!,
                 textAlign: TextAlign.left,
                 trimLines: 3,
                 colorClickableText: Colors.blue,
