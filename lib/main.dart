@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
+import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
@@ -62,6 +64,7 @@ class MyApp extends StatelessWidget {
         '/mobno': (context) => const PhoneAuth(),
         '/personalDetails': (context) => const PersonalDetails(),
         '/aadharAuth': (context) => const AadharLoginPage(),
+        '/treeView': (context) => TreeFromJson(),
         // '/': (context) => const Splash(),
       },
     );

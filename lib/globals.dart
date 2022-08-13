@@ -16,6 +16,10 @@ const String FEATURES_IMAGES_DIRECTORY = "assets/images/features_images";
 
 const String BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
     "assets/images/bottom_sheet_illustrations";
+
+const String CAREER_OPTIONS_BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
+    "assets/images/career_options_bottom_sheet_illustrations";
+
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {
