@@ -9,16 +9,14 @@ import 'package:nakshekadam/strings.dart';
 class CareerOptionBottomSheet extends StatelessWidget {
   const CareerOptionBottomSheet({
     Key? key,
-    required this.routeName,
+    required this.title,
     required this.optionCardName,
   }) : super(key: key);
-  final String routeName;
+  final String title;
   final String optionCardName;
 
   @override
   Widget build(BuildContext context) {
-    String title = routeName.replaceAll('_', ' ').toUpperCase();
-    print(title);
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -57,7 +55,7 @@ class CareerOptionBottomSheet extends StatelessWidget {
                     careerOptionsInfographicsAndText(
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      routeName: routeName,
+                      title: title,
                       optionCardName : optionCardName
                     ),
                   ],

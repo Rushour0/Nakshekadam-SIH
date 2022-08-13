@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/bottom_sheet.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/career_options_buttons/career_option_bottom_sheet.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/career_options_buttons/career_option_bottom_sheet.dart';
 
 class OptionButtons extends StatelessWidget {
   const OptionButtons({
@@ -49,8 +49,9 @@ class OptionButtons extends StatelessWidget {
             //     });
 
             await showModalBottomSheet(
+              isDismissible: false,
                 constraints: BoxConstraints(
-                  maxHeight: screenHeight * 0.85,
+                  maxHeight: screenHeight * 0.95,
                 ),
                 isScrollControlled: true,
                 // enableDrag: false,
@@ -63,7 +64,7 @@ class OptionButtons extends StatelessWidget {
                 context: context,
                 builder: (builder) {
                   return CareerOptionBottomSheet(
-                    routeName: "STEM",
+                    title: "STEM",
                     optionCardName : optionName,
                   );
                 });

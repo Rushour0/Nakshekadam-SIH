@@ -71,6 +71,9 @@ const Map<String, Color> COLOR_THEME = {
   "buttonText": Colors.white,
 
   'optionButtonText': Color(0xFF8E8EA9),
+
+  "careerTile": Color(0xFFFFC04C),
+  "careerTileExpanded": Color(0xFFFAE2B6),
 };
 
 // const String RAZORPAY_KEY = "rzp_live_80XyMCx6NSm4UA";
