@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                       children: infoCardNames.map((name) {
                         int index = infoCardNames.indexOf(name);
                         return Padding(
-                          padding: EdgeInsets.only(top: screenHeight * 0.03),
+                          padding: EdgeInsets.only(top: screenHeight * 0.02),
                           child:
                               infoCard(screenWidth, screenHeight, name, index),
                         );
