@@ -3,7 +3,7 @@ import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/info_card.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/option_buttons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
