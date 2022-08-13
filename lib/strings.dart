@@ -1,8 +1,8 @@
 const Map<String, dynamic> stringData = {
   'career_options': {
-    "Summary":
+    "summary":
         'We have designed our content to cater to all kids undergoing secondary education who are struggling to understand what combinations of subjects is the best fit for them. With the NEP in place making all bounds and restrictions in making stream based choices gone, we have categorized all the plethora of options into SEVEN SIMPLE CHOICES. Go on and explore details of each!',
-    "Overview":
+    "overview":
         'These subject combinations include the exploration of scientific temper through the study of Physics, Chemistry, Mathematics, Biology, etc which fall under "STEM" (Science, Technology, Engineering, and Mathematics). These studies can lead to a plethora of career options but this particular bifurcation here focuses on options which truly involve degrees, careers and jobs that cater to sciences and their associated applications. Previously known as the rigid stream "Science", students are now free to explore STEM subjects without the mandation of not being able to study other creatively simulating options on the side.'
   },
   "Our Vision":

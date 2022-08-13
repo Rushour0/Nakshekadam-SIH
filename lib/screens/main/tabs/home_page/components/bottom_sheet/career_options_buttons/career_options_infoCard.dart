@@ -29,7 +29,7 @@ Card careerOptionsInfoCard(
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
               child: Text(
-                stringData[optionCardName]["Overview"]!,
+                stringData[optionCardName]["overview"]!,
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontFamily: "Cabin",
