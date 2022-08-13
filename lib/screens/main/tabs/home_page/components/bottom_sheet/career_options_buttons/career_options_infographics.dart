@@ -23,7 +23,6 @@ Column careerOptionsInfographicsAndText({
       ),
       Padding(
         padding: EdgeInsets.symmetric(
-          vertical: screenHeight * 0.01,
           horizontal: screenWidth * 0.1,
         ),
         child: careerOptionsInfoCard(screenWidth, screenHeight, optionCardName),
