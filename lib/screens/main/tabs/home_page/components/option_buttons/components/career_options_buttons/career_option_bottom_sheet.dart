@@ -53,8 +53,6 @@ class CareerOptionBottomSheet extends StatelessWidget {
                   runSpacing: screenHeight * 0.02,
                   children: [
                     careerOptionsInfographicsAndText(
-                      screenWidth: screenWidth,
-                      screenHeight: screenHeight,
                       title: title,
                       optionCardName : optionCardName
                     ),
