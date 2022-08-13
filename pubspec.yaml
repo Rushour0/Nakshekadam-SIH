@@ -47,6 +47,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+2
   path_provider: ^2.0.11
   pinput: ^2.2.12
+  readmore: ^2.2.0
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0
   uuid: ^3.0.6
@@ -74,7 +75,6 @@ flutter:
     - assets/images/features_images/
     - assets/images/bottom_navigation_icons/
     - assets/images/features_images/
-
     # - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

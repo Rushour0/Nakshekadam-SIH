@@ -18,7 +18,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   List<String> roles = [
     'Student',
     'Parent',
-    'Counselor',
+    'Counsellor',
   ];
   String? selectedRole = null;
 
