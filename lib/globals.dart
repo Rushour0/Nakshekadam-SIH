@@ -37,6 +37,7 @@ const Map<String, Color> COLOR_THEME = {
 
   // AppBar Colors
   "appBarText": Color(0xFFFFFFFF),
+  "floatingActionButton": Color(0xFFFF9228),
 
   // Field Colors
   "searchFieldText": Colors.black,
