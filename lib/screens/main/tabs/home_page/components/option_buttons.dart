@@ -25,25 +25,6 @@ class OptionButtons extends StatelessWidget {
         return GestureDetector(
           onTap: () async {
             // Navigator.pushNamed(context, e);
-            await showModalBottomSheet(
-                constraints: BoxConstraints(
-                  maxHeight: screenHeight * 0.85,
-                ),
-                isScrollControlled: true,
-                // enableDrag: false,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    screenWidth,
-                  ),
-                ),
-                backgroundColor: Colors.transparent,
-                context: context,
-                builder: (builder) {
-                  return CustomBottomSheet(
-                    routeName: optionName,
-                  );
-                });
-
             // await showModalBottomSheet(
             //     constraints: BoxConstraints(
             //       maxHeight: screenHeight * 0.85,
@@ -58,10 +39,30 @@ class OptionButtons extends StatelessWidget {
             //     backgroundColor: Colors.transparent,
             //     context: context,
             //     builder: (builder) {
-            //       return CareerOptionBottomSheet(
-            //         routeName: "STEM",
+            //       return CustomBottomSheet(
+            //         routeName: optionName,
             //       );
             //     });
+
+            await showModalBottomSheet(
+                constraints: BoxConstraints(
+                  maxHeight: screenHeight * 0.85,
+                ),
+                isScrollControlled: true,
+                // enableDrag: false,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    screenWidth,
+                  ),
+                ),
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (builder) {
+                  return CareerOptionBottomSheet(
+                    routeName: "STEM",
+                    optionCardName : optionName,
+                  );
+                });
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
