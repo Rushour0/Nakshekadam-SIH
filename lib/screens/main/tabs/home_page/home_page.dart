@@ -42,7 +42,11 @@ class HomePage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  optionButtons(optionNames, screenWidth, screenHeight),
+                  OptionButtons(
+                    optionNames: optionNames,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
                     child: const CustomCarouselSlider(),
@@ -54,8 +58,8 @@ class HomePage extends StatelessWidget {
                       int index = infoCardNames.indexOf(name);
                       return Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.03),
-                        child: infoCard(
-                            screenWidth, screenHeight, name, (index + 1)% 2 == 0),
+                        child: infoCard(screenWidth, screenHeight, name,
+                            (index + 1) % 2 == 0),
                       );
                     }).toList()),
                   ),
