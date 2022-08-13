@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/bottom_sheet.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/career_options_buttons/career_option_bottom_sheet.dart';
 
 class OptionButtons extends StatelessWidget {
   const OptionButtons({
     Key? key,
     required this.optionNames,
-    required this.screenWidth,
-    required this.screenHeight,
   }) : super(key: key);
   final List<String> optionNames;
-  final double screenWidth;
-  final double screenHeight;
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -17,8 +17,9 @@ AppBar commonAppBar({
   User? user = getCurrentUser();
   return AppBar(
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(
-        screenWidth / 30,
+      borderRadius: BorderRadius.only(
+        bottomRight: Radius.circular(screenWidth / 20),
+        bottomLeft: Radius.circular(screenWidth / 20),
       ),
     ),
     actions: [
