@@ -23,6 +23,15 @@ const String CAREER_OPTIONS_BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
 const String CAREER_OPTIONS_BOTTOM_SHEET_ICON_DIRECTORY =
     "assets/images/bottom_sheet_illustrations/career_options_icons";
 
+const Map<String, dynamic> AGORA_CONFIG = {
+  "appId": "3e7fb43c9b264f02892cf9a4177e4b80",
+  "appCertificate": "46fa75d4381945ed8fb0cd08f9b37dae",
+  'whiteboard': {
+    'sdkTokenId':
+        "NETLESSSDK_YWs9SDdTa3otbVpWem5yZmVudSZub25jZT1kY2ZlYjA2MC0xYmRiLTExZWQtYTg1Zi02ZGEwNzIxYmM3Mzgmcm9sZT0wJnNpZz04ZmZiYTEwNDQ1Y2NkODM2NGFlYTA3NTI4OTYwMzcwYTY1NTg2NzVjMTYxZDRmN2I1NTE4ZWJjMWM5YTgyMmZk"
+  }
+};
+
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {

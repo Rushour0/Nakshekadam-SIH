@@ -10,9 +10,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     List<String> optionNames = [
       'career_options',
       'industries',
@@ -30,8 +37,7 @@ class HomePage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.04, vertical: screenHeight * 0.007),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           child: NotificationListener<OverscrollIndicatorNotification>(
             onNotification: (overscroll) {
               overscroll.disallowIndicator();
@@ -40,8 +46,11 @@ class HomePage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  OptionButtons(
-                    optionNames: optionNames,
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight * 0.05),
+                    child: OptionButtons(
+                      optionNames: optionNames,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),

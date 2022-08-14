@@ -1,15 +1,20 @@
-import 'dart:typed_data';
-
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PushNotificationService {
   // It is assumed that all messages contain a data field with the key 'type'
   Future<void> setupInteractedMessage() async {
     // This function is called when the app is in the background and user clicks on the notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      // Get.toNamed(NOTIFICATIOINS_ROUTE);
       print('new notification');
-      if (message.data['type'] == 'chat') {}
+      if (message.data['type'] == 'chat') {
+        // Navigator.pushNamed(context, '/chat',
+        //     arguments: ChatArguments(message));
+      }
     });
     await enableIOSNotifications();
     await registerNotificationListeners();
@@ -82,6 +87,5 @@ class PushNotificationService {
             'This channel is used for important notifications.', // description
         importance: Importance.high,
         enableLights: true,
-        vibrationPattern: Int64List(4),
       );
 }
