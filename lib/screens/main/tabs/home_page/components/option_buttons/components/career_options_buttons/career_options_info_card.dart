@@ -3,8 +3,8 @@ import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/strings.dart';
 import 'package:readmore/readmore.dart';
 
-Card careerOptionsInfoCard(
-        double screenWidth, double screenHeight, String optionCardName, String title) =>
+Card careerOptionsInfoCard(double screenWidth, double screenHeight,
+        String optionCardName, String title) =>
     Card(
       color: COLOR_THEME['bottomNavigation'],
       shape: RoundedRectangleBorder(
@@ -28,13 +28,32 @@ Card careerOptionsInfoCard(
             ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
-              child: Text(
+              child: ReadMoreText(
                 stringData[optionCardName][title]["overview"]!,
                 textAlign: TextAlign.left,
+                trimLines: 14,
+                colorClickableText: Colors.blue,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: "Read More",
+                trimExpandedText: " Read Less",
                 style: TextStyle(
                   fontFamily: "Cabin",
                   fontSize: screenWidth * 0.0375,
                   color: Colors.white,
+                ),
+                lessStyle: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontFamily: "Cabin",
+                  fontSize: screenWidth * 0.04,
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic
+                ),
+                moreStyle: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontFamily: "Cabin",
+                  fontSize: screenWidth * 0.04,
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic
                 ),
               ),
             ),
