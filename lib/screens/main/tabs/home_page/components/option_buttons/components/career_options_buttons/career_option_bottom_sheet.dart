@@ -96,7 +96,7 @@ commonBottomSheetTitle({required title, required screenWidth}) {
       Container(
         color: COLOR_THEME['primary'],
         width: screenWidth,
-        height: screenWidth * 0.14,
+        height: screenWidth * 0.18,
         child: Center(
           child: Text(
             title,
