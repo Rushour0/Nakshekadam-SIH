@@ -71,7 +71,7 @@ class _CareerOptionsCardState extends State<CareerOptionsCard> {
             context: context,
             builder: (builder) {
               return CareerOptionBottomSheet(
-                  title: "STEM", optionCardName: "career_options");
+                  title: widget.title, optionCardName: "career_options");
             });
       },
       child: Container(
