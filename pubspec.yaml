@@ -45,7 +45,6 @@ dependencies:
   flutter_downloader: ^1.8.1
   flutter_firebase_chat_core: ^1.6.3
   flutter_local_notifications: ^9.7.0
-  flutter_simple_treeview: ^3.0.1
   flutter_svg: ^1.1.3
   google_sign_in: ^5.4.0
   http: ^0.13.5

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
+import 'package:nakshekadam/common_widgets/signup_dialog.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card_dialog.dart';
@@ -100,7 +101,21 @@ class TestsPage extends StatelessWidget {
                         top: screenHeight * 0.015,
                         bottom: screenHeight * 0.03,
                       ),
-                      child: testButton(screenHeight, screenWidth, "TAKE TEST NOW!"),
+                      child: GestureDetector(onTap: () {
+                        Navigator.of(context).push(
+                              PageRouteBuilder(
+                                barrierDismissible: true,
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                opaque: false,
+                                transitionDuration:
+                                    const Duration(milliseconds: 750),
+                                pageBuilder: (_, __, ___) =>
+                                    SignupDialogBox(
+                                  title: "Sign up karle bhai pehle",
+                                ),
+                              ),
+                            );
+                      },child: testButton(screenHeight, screenWidth, "TAKE TEST NOW!")),
                     ),
                   ),
                 ],
