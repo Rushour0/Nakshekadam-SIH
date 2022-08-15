@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/data_for_bottom_sheet.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/infographics.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/upcoming_exams_button/upcoming_exam_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/option_based_cards.dart';
 import 'package:nakshekadam/strings.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -105,8 +106,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   )
                 : routeName == 'upcoming_exams'
                     ?
-                    // UpcomingExamCard()
-                    Container()
+                    // Container()
+                    Expanded(child: UpcomingExamsPage())
                     : Expanded(
                         child: WebView(
                           gestureRecognizers: Set()

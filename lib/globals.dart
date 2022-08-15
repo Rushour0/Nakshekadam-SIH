@@ -23,6 +23,15 @@ const String CAREER_OPTIONS_BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
 const String CAREER_OPTIONS_BOTTOM_SHEET_ICON_DIRECTORY =
     "assets/images/bottom_sheet_illustrations/career_options_icons";
 
+const String RESOURCE_CARD_IMAGES =
+    "assets/images/resource_card_images";
+
+const String COUNSELLOR_CARD_IMAGES =
+    "assets/images/counsellor_card_images";
+
+const String TESTS_CARD_IMAGES =
+    "assets/images/tests_card_images";
+
 const bool IS_GRADIENT = true;
 
 const Map<String, Color> COLOR_THEME = {
@@ -76,6 +85,8 @@ const Map<String, Color> COLOR_THEME = {
 
   "careerTile": Color(0xFFFFC04C),
   "careerTileExpanded": Color(0xFFFAE2B6),
+
+  "descriptionText": Color(0xFF615793),
 };
 
 // const String RAZORPAY_KEY = "rzp_live_80XyMCx6NSm4UA";

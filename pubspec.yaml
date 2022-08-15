@@ -45,6 +45,7 @@ dependencies:
   flutter_svg: ^1.1.3
   google_sign_in: ^5.4.0
   http: ^0.13.5
+  intl: ^0.17.0
   loading_animation_widget: ^1.2.0+2
   path_provider: ^2.0.11
   pinput: ^2.2.12
@@ -79,6 +80,10 @@ flutter:
     - assets/images/bottom_sheet_illustrations/
     - assets/images/career_options_bottom_sheet_illustrations/
     - assets/images/bottom_sheet_illustrations/career_options_icons/
+    - assets/images/resource_card_images/
+    - assets/images/counsellor_card_images/
+    - assets/images/tests_card_images/
+    - assets/images/upcoming_exam_images/
     # - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

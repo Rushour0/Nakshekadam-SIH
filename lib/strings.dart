@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 const Map<String, dynamic> stringData = {
   'career_options': {
     "summary":
@@ -89,7 +91,7 @@ const Map<String, dynamic> stringData = {
             • Defence Services Staff College
         ''',
       },
-      "Popular exams link" : "https://leverageedu.com/blog/entrance-exams-after-12th-science/",
+      "Popular exams link" : "https://toppersexam.com/DEFENCE-EXAMS.html",
       "Popular colleges route" : "/",
     },
     "Civil Services": {
@@ -115,7 +117,7 @@ const Map<String, dynamic> stringData = {
             • Brain Tree India, Hyderabad.
         ''',
       },
-      "Popular exams link" : "https://leverageedu.com/blog/entrance-exams-after-12th-science/",
+      "Popular exams link" : "https://upsc.gov.in/external-links/state-public-service-commissions",
       "Popular colleges route" : "/",
     },
     "Creative & Argumentative Studies": {
@@ -174,7 +176,7 @@ const Map<String, dynamic> stringData = {
             • NIMS University
         ''',
       },
-      "Popular exams link" : "https://leverageedu.com/blog/entrance-exams-after-12th-science/",
+      "Popular exams link" : "https://collegedunia.com/exams/vocational-courses",
       "Popular colleges route" : "/",
     },
     "Jobs as soon as possible": {
@@ -186,6 +188,81 @@ const Map<String, dynamic> stringData = {
         "Explore all possible paths!": "treeview",
       },
     }
+  },
+  'resources' : {
+    'swayam' : {
+      'subHeading': 'Ministry of Education',
+      'description' : 'e-Tutorials, Self assessment tools, online discussion forum, evaluation, certification and more!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'e-kalpa' : {
+      'subHeading': 'Ministry of Education',
+      'description' : 'Offers distance e-learning programs on design along with Digital Design Resource Database including the craft sector!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'sakshat' : {
+      'subHeading': 'Ministry of Education',
+      'description' : 'Educational material to learners from Kindergarten to PhD includeing self assessment tools, online forums and content based on audio visual tools, e-books, journals etc!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'e-pgathshala' : {
+      'subHeading': 'NCERT',
+      'description' : 'Offers curriculum based and interactive e-content in 70 subjects across all disciplines of social sciences, arts, etc to all post graduate students!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'e-pathshala' : {
+      'subHeading': 'NCERT',
+      'description' : 'Offers e-textbooks and supplementary books of NCERT for all subjects for classes I to XII in English,Hindi and Urdu in form of audio, video, question banks, images, maps, etc!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'national digital library of india' : {
+      'subHeading': 'Ministry of Education',
+      'description' : 'Highly filtered and focused content for users from Primary to Post Graduate Levels across all disciplines in form of audio, video, text etc!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'e-skillindia' : {
+      'subHeading': 'National Skill Development Corporation',
+      'description' : 'Provides online courses across all sectors ranging from Beauty, Agriculture to IT-ITES and BFSI',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'diksha' : {
+      'subHeading': 'NCERT',
+      'description' : 'Provides school curriculum based video courses and practise tests for students and teachers of Class I to Class XII',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'curriculum classes' : {
+      'subHeading': 'Consortium for Educational Communication (CEC-UGC)',
+      'description' : 'Offers courses in 87 UG subjects with visual, web and text based material involving self paced learning opportunity!',
+      'link' : 'https://www.swayam.gov.in/'
+    },
+    'nptel' : {
+      'subHeading': 'Seven Indian Institutes of Technology and Indian Institute of Science',
+      'description' : 'Largest online repository for web and video courses in engineering, sciences and social sciences subjects along with internship opportunities!',
+      'link' : 'https://www.swayam.gov.in/'
+    }
+  },
+  'counsellors' : {
+    "summary": "We have different types of counselor services that you can avail to help you make the most informed choice. Ask away! Unlock your true potential by connecting with a varied range of counsel including -",
+    "cards" : {
+      "vidya bot" : {
+        "description" : "Our chatbot Vidya is here to help you navigate your thoughts and feelings through this stressful time. Regardless of whether you are a parent or child, Vidya will be here to help you navigate your options, narrow down specifics, analyze your sentiments and sympathize with any fears you might have through her Artificial Intelligence and Machine Learning trained datasets.",
+        "buttonTitle" : "Begin Chatting!",
+        "color" : Color(0xFFFFB3B3)
+      },
+      "industrial experts" : {
+        "description" : "We understand the need to connect with people having hands-on experience in their domains to make an informed choice. Keeping that in mind, NaksheKADAM brings you verified and handpicked industry professionals who can solve all your queries related to any domains that you might feel particularly lost about.\n\nCONNECT TO EXPERTS !",
+        "buttonTitle" : "SIGN UP NOW!",
+        "color" : Color(0xFFC1EFFF)
+      },
+      "professional counsellors" : {
+        "description" : "At NaksheKADAM, we provide everyone a safe space to interact with certified professionals who are trained in providing one-on-one career guidance. While Vidya uses her intelligence to be a confidant, she also generates a report for your respective professional counselors that you wish to schedule meetings with. These counselors are top-rated, verified and specialize in giving you the final clarity you might need.\n\nCONNECT TO PROFESSIONALS NOW!",
+        "buttonTitle" : "SIGN UP NOW!",
+        "color" : Color(0xFFFFDBA4)
+      }
+    }
+  },
+  'tests' : {
+    "summary": "We have different types of counselor services that you can avail to help you make the most informed choice. Ask away! Unlock your true potential by connecting with a varied range of counsel including -",
   },
   "Our Vision":
       "DoESL's venture NaksheKADAM is built in mind keeping the NEP and its modifications in mind, solving all queries of 9th to 12th graders in the most coundcive manner. It provides students with relevant information regarding what subjects will lead to what career paths, what are the Higher Educational Institutions for study for pursuing such studies, what are the entrance exams required, what aptitude tests are available, etc, how to access them, making it a one-stop solution for everything. NaksheKADAM is also a safespace for students to discuss their fears and for parents to raise queries. Our verified counsellors, industry experts, AI-based tests, chatbots and comprehsive technology driven solutions are here to help all children and parents with their issues.",

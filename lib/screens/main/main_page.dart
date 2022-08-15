@@ -6,7 +6,10 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/counsellor_page/counsellor_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
+import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart';
+import 'package:nakshekadam/screens/main/tabs/tests_page.dart/test_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -201,10 +204,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
                 // NoItemsInTab(text: "0"),
                 NoItemsInTab(text: "0"),
-                NoItemsInTab(text: "1"),
+                TestsPage(),
                 HomePage(),
-                NoItemsInTab(text: "3"),
-                NoItemsInTab(text: "4"),
+                CounsellorPage(),
+                ResourcesPage(),
               ],
             ),
           ),
