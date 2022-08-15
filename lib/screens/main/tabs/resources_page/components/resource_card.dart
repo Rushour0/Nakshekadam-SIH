@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/bottom_sheet.dart';
 import 'package:nakshekadam/screens/main/tabs/resources_page/components/resource_explore_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -105,18 +106,35 @@ class ResourceCard extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return Container(
-                      height: screenHeight * 0.5,
-                      width: screenWidth * 0.9,
-                      child: WebView(
-                        initialUrl: stringData["resources"][title.toLowerCase()]
-                            ["link"],
-                        zoomEnabled: false,
-                        javascriptMode: JavascriptMode.unrestricted,
-                        onPageStarted: (url) async {},
-                        onWebViewCreated: (controller) {
-                          webViewController = controller;
-                        },
+                    return Scaffold(
+                      appBar: AppBar(
+                        title: Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "DM Sans",
+                            fontSize: screenWidth * 0.07,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        backgroundColor: COLOR_THEME['secondary'],
+                        centerTitle: true,
+                      ),
+                      body: Column(
+                        children: [
+                          Expanded(
+                            child: WebView(
+                              initialUrl: stringData["resources"]
+                                  [title.toLowerCase()]["link"],
+                              zoomEnabled: false,
+                              javascriptMode: JavascriptMode.unrestricted,
+                              onPageStarted: (url) async {},
+                              onWebViewCreated: (controller) {
+                                webViewController = controller;
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   }),
