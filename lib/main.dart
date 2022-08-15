@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
+import 'package:flutter/services.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
@@ -12,14 +12,15 @@ import 'package:nakshekadam/screens/verification&details/mobileVerification/phon
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
-import 'package:nakshekadam/services/PushNotifications/push_notification_service.dart';
+import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
+import 'package:nakshekadam/services/FlyerFirebaseChat/main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await PushNotificationService().setupInteractedMessage();
   // print('TOKEN : ${await FirebaseMessaging.instance.getToken()}');
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const MainPage(),
+        '/main': (context) => const OtherApp(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
