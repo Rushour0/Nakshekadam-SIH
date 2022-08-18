@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/college_extraction_model.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
@@ -24,6 +25,8 @@ void main() async {
   // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await PushNotificationService().setupInteractedMessage();
   // print('TOKEN : ${await FirebaseMessaging.instance.getToken()}');
+  // CollegeExtractionModel collegeExtractionModel = CollegeExtractionModel.getModel();
+  // collegeExtractionModel.fetchCollegeInfo();
 
   runApp(const MyApp());
 }
