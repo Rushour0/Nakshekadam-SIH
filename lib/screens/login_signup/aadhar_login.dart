@@ -46,9 +46,16 @@ class _AadharLoginPageState extends State<AadharLoginPage>
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
 
     SnackBar aadharLoginStatus(isSuccess) => SnackBar(
           content: Text(

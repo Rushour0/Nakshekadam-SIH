@@ -19,26 +19,10 @@ class RoomsPage extends StatefulWidget {
 }
 
 class _RoomsPageState extends State<RoomsPage> {
-  bool _error = false;
-  bool _initialized = false;
   User? _user;
 
   @override
-  void initState() {
-    initializeFlutterFire();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_error) {
-      return Container();
-    }
-
-    if (!_initialized) {
-      return Container();
-    }
-
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -134,26 +118,6 @@ class _RoomsPageState extends State<RoomsPage> {
               },
             ),
     );
-  }
-
-  void initializeFlutterFire() async {
-    try {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
-        setState(() {
-          _user = user;
-        });
-      });
-      setState(() {
-        _initialized = true;
-      });
-    } catch (e) {
-      setState(() {
-        _error = true;
-      });
-    }
   }
 
   void logout() async {
