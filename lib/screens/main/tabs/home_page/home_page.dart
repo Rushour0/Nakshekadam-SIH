@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: screenHeight * 0.05),
+                    padding: EdgeInsets.only(top: screenHeight * 0.01),
                     child: OptionButtons(
                       optionNames: optionNames,
                     ),

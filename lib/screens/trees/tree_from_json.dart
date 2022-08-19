@@ -7,7 +7,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_treeview/flutter_simple_treeview.dart';
+import 'package:nakshekadam/screens/trees/custom_tree_controller.dart';
+import 'package:nakshekadam/screens/trees/custom_tree_node.dart';
+import 'package:nakshekadam/screens/trees/custom_tree_view.dart';
 
 /// Demonstrates how to convert a json content to tree, allowing user to
 /// modify the content and see how it affects the tree.
@@ -153,26 +155,19 @@ class _TreeFromJsonState extends State<TreeFromJson> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-              height: 600,
-              width: 400,
-              child: TextField(
-                maxLines: 10000,
-                controller: _textController,
-                decoration: InputDecoration(border: OutlineInputBorder()),
-                style: TextStyle(fontFamily: "courier"),
-              )),
-          IconButton(
-            icon: Icon(Icons.arrow_right),
-            iconSize: 40,
-            onPressed: () => setState(() {}),
-          ),
-          buildTree(),
-        ],
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
+    return Scaffold(
+      body: SafeArea(
+        child: SizedBox(width: screenWidth, child: buildTree()),
       ),
     );
   }
@@ -191,13 +186,31 @@ class _TreeFromJsonState extends State<TreeFromJson> {
   }
 
   List<TreeNode> toTreeNodes(dynamic parsedJson) {
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     if (parsedJson == null) {
       return [];
     }
     if (parsedJson is Map<String, dynamic>) {
       return parsedJson.keys
           .map((k) => TreeNode(
-              content: Text(k), children: toTreeNodes(parsedJson[k])))
+              content: Text(
+                k,
+                softWrap: true,
+                style: TextStyle(
+                  fontFamily: "Cabin",
+                  fontSize: screenWidth * 0.04,
+                ),
+              ),
+              children: toTreeNodes(parsedJson[k])))
           .toList();
     }
     if (parsedJson is List<dynamic>) {

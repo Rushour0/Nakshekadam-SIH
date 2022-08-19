@@ -96,12 +96,18 @@ commonBottomSheetTitle({required title, required screenWidth}) {
       Container(
         color: COLOR_THEME['primary'],
         width: screenWidth,
-        height: screenWidth * 0.18,
+        height: screenWidth * 0.14,
         child: Center(
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: titleStyle,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: titleStyle,
+              ),
+            ),
           ),
         ),
       ),

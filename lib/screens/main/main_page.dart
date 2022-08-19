@@ -6,6 +6,7 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/counsellor_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
 import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart';
@@ -197,13 +198,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             width: tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0],
             height: tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1] * 0.9,
             child: TabBarView(
+              // viewportFraction: 0.9,
               controller: _tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
                 // Put FIVE pages in the tab bar view
 
                 // NoItemsInTab(text: "0"),
-                NoItemsInTab(text: "0"),
+                CollegePage(),
                 TestsPage(),
                 HomePage(),
                 CounsellorPage(),
