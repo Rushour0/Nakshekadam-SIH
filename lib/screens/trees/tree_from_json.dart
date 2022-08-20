@@ -14,6 +14,8 @@ import 'package:nakshekadam/screens/trees/custom_tree_view.dart';
 /// Demonstrates how to convert a json content to tree, allowing user to
 /// modify the content and see how it affects the tree.
 class TreeFromJson extends StatefulWidget {
+  const TreeFromJson({Key? key}) : super(key: key);
+
   @override
   _TreeFromJsonState createState() => _TreeFromJsonState();
 }
@@ -155,19 +157,17 @@ class _TreeFromJsonState extends State<TreeFromJson> {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [
-      MediaQuery.of(context).size.width,
-      MediaQuery.of(context).size.height
-    ];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[0]
-        : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[1]
-        : tempDimensions[0];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(width: screenWidth, child: buildTree()),
+        child: SizedBox(
+          width: screenWidth,
+          height: screenHeight,
+          child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(child: buildTree())),
+        ),
       ),
     );
   }
@@ -190,12 +190,8 @@ class _TreeFromJsonState extends State<TreeFromJson> {
       MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height
     ];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[0]
-        : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[1]
-        : tempDimensions[0];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     if (parsedJson == null) {
       return [];
     }

@@ -32,7 +32,8 @@ class CounsellorDialogBox extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: screenHeight * 0.03, bottom: screenHeight * 0.02),
+                  padding: EdgeInsets.only(
+                      top: screenHeight * 0.03, bottom: screenHeight * 0.02),
                   child: Container(
                     color: COLOR_THEME['primary'],
                     width: screenWidth,
@@ -61,7 +62,7 @@ class CounsellorDialogBox extends StatelessWidget {
                     horizontal: screenWidth * 0.05,
                   ),
                   child: Card(
-                    shape : RoundedRectangleBorder(
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(screenWidth * 0.05),
                     ),
                     color: COLOR_THEME["backgroundComponents0"],
@@ -73,7 +74,8 @@ class CounsellorDialogBox extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            stringData["counsellors"]["cards"][title.toLowerCase()]["description"],
+                            stringData["counsellors"]["cards"]
+                                [title.toLowerCase()]["description"],
                             softWrap: true,
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -88,7 +90,10 @@ class CounsellorDialogBox extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () {},
                               child: counsellorDialogBoxButton(
-                                  screenHeight, screenWidth, stringData["counsellors"]["cards"][title.toLowerCase()]["buttonTitle"]),
+                                  screenHeight,
+                                  screenWidth,
+                                  stringData["counsellors"]["cards"]
+                                      [title.toLowerCase()]["buttonTitle"]),
                             ),
                           ),
                         ],
