@@ -7,42 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1035077222293:android:43d638fd3961cdb2fc809c",
-        "android_client_info": {
-          "package_name": "com.underdogs.nakshekadam"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAaRZn1cCVpwi-iFyd541YzUSNp6knDR8s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nakshekadam"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1035077222293:android:04f0c66a9d2ab6b3fc809c",
         "android_client_info": {
           "package_name": "com.underdogs.nakshekadam"
@@ -55,6 +19,14 @@
           "android_info": {
             "package_name": "com.underdogs.nakshekadam",
             "certificate_hash": "7977d3c5b21037b41bae611e7bd94e3af3aa827e"
+          }
+        },
+        {
+          "client_id": "1035077222293-cvqo9fskmnatidahdo35i7jhudlt7r37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.underdogs.nakshekadam",
+            "certificate_hash": "d15d3278745173c4b72dbbd0d313fb74b6243061"
           }
         },
         {
@@ -73,13 +45,6 @@
             {
               "client_id": "1035077222293-mbrmima5bln5st25gb3dtj2e9e882jsg.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.nakshekadam"
-              }
             },
             {
               "client_id": "1035077222293-1f04lefkfj2gv6d4kumroq6eb7bnk0nh.apps.googleusercontent.com",
