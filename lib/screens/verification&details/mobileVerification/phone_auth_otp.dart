@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:nakshekadam/common_widgets/backgrounds/bigTwoSmallOneBg.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauthMobileLink.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:pinput/pinput.dart';
 
 class PhoneAuthOtp extends StatefulWidget {
@@ -68,9 +69,16 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: SizedBox(
@@ -85,15 +93,7 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
           ),
           onPressed: () {
             final isValid = _formKey.currentState!.validate();
-            if (isValid) {
-              // Navigator.of(context).push(
-              //   CustomPageRouter(
-              //     child: PhoneAuthOTP(
-              //       mobileNumber: _mobileNumberController.text.trim(),
-              //     ),
-              //   ),
-              // );
-            }
+            if (isValid) {}
           },
           child: Text(
             "CONTINUE",
@@ -244,6 +244,11 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
                                           ),
                                         );
                                       }
+                                      userDocumentReference().update({
+                                        'mobile': widget.mobileNumber,
+                                      });
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/postLogin', (route) => false);
                                     }
                                   },
                                   onSubmitted: (String pin) async {
@@ -267,6 +272,11 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
                                         ),
                                       );
                                     }
+                                    userDocumentReference().update({
+                                      'mobile': widget.mobileNumber,
+                                    });
+                                    Navigator.pushNamedAndRemoveUntil(context,
+                                        '/postLogin', (route) => false);
                                   },
                                   pinAnimationType: PinAnimationType.fade,
                                 ),

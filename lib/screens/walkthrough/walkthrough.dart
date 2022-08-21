@@ -32,9 +32,16 @@ class _WalkThroughState extends State<WalkThrough>
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     return Scaffold(
       floatingActionButton: (wtPageNumber != 3)
           ? SizedBox(
@@ -194,7 +201,8 @@ class _WalkThroughState extends State<WalkThrough>
                       ),
                     ),
                     onPressed: () {
-                      // Navigator.pushReplacementNamed(context, '/signup');
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/main', (route) => false);
                     },
                     child: Text(
                       "Proceed without LOGIN",

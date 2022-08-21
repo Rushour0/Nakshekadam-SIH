@@ -6,6 +6,7 @@ import 'package:nakshekadam/common_widgets/common_appbar/components/language_dro
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/counsellor_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
@@ -13,6 +14,7 @@ import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart
 import 'package:nakshekadam/screens/main/tabs/tests_page.dart/test_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/home_page/student_home_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/student_tests.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
 class StudentMainPage extends StatefulWidget {
   const StudentMainPage({Key? key}) : super(key: key);
@@ -28,6 +30,8 @@ class _StudentMainPageState extends State<StudentMainPage>
   var _bottomNavIndex = 2;
   late List<StatefulWidget> bodies;
   late TabController _tabController;
+  // UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
+  // UserDetailsModelTwo userDetailsModelTwo = UserDetailsModelTwo.getModel();
 
   List<String> tabNames = [
     'Notifications',
@@ -40,6 +44,22 @@ class _StudentMainPageState extends State<StudentMainPage>
   @override
   void initState() {
     super.initState();
+    userDocumentReference().get().then((value) {
+      UserDetailsModelOne.fromMap(value.data()!);
+      setState(() {
+        // print("usermodel : $userDetailsModelOne");
+      });
+    });
+    userDocumentReference()
+        .collection("data")
+        .doc("userInfo")
+        .get()
+        .then((value) {
+      UserDetailsModelTwo.fromMap(value.data()!);
+      setState(() {
+        // print("usermodeltwo : $userDetailsModelTwo");
+      });
+    });
     _tabController = TabController(
       animationDuration: const Duration(milliseconds: 0),
       initialIndex: 2,
@@ -48,7 +68,6 @@ class _StudentMainPageState extends State<StudentMainPage>
     );
     _tabController.addListener(
       () {
-        ;
         if (_tabController.previousIndex != _tabController.index) {
           print(_tabController.index);
           setState(() {});

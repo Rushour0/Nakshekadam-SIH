@@ -18,7 +18,7 @@ ListTile drawerListTile(
       Icons.arrow_forward_ios_rounded,
       color: Colors.black,
     ),
-    tileColor: COLOR_THEME["backgroundComponents$index"],
+    tileColor: COLOR_THEME["backgroundComponents${index % 4}"],
     title: Text(
       title,
       style: TextStyle(

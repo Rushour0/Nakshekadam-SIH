@@ -10,6 +10,7 @@ import 'package:nakshekadam/screens/main/tabs/home_page/components/option_button
 import 'package:nakshekadam/screens/main/tabs/resources_page/components/resource_card.dart';
 import 'package:nakshekadam/screens/main/tabs/tests_page.dart/components/test_button.dart';
 import 'package:nakshekadam/screens/main/tabs/tests_page.dart/components/tests_card.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/strings.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -32,16 +33,15 @@ class TestsPage extends StatelessWidget {
     List<String> testNames = [
       'Aptitude',
       'Interests',
-      'Academic Background',
-      'Personality & History',
+      'Academic',
+      'Personality',
     ];
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overscroll) {
             overscroll.disallowIndicator();
@@ -101,21 +101,27 @@ class TestsPage extends StatelessWidget {
                         top: screenHeight * 0.015,
                         bottom: screenHeight * 0.03,
                       ),
-                      child: GestureDetector(onTap: () {
-                        Navigator.of(context).push(
-                              PageRouteBuilder(
-                                barrierDismissible: true,
-                                barrierColor: Colors.black.withOpacity(0.5),
-                                opaque: false,
-                                transitionDuration:
-                                    const Duration(milliseconds: 750),
-                                pageBuilder: (_, __, ___) =>
-                                    SignupDialogBox(
-                                  title: "Sign up karle bhai pehle",
+                      child: GestureDetector(
+                          onTap: () async {
+                            if (await checkLoggedIn()) {
+                            } else {
+                              Navigator.of(context).push(
+                                PageRouteBuilder(
+                                  barrierDismissible: true,
+                                  barrierColor: Colors.black.withOpacity(0.5),
+                                  opaque: false,
+                                  transitionDuration:
+                                      const Duration(milliseconds: 750),
+                                  pageBuilder: (_, __, ___) => SignupDialogBox(
+                                    title:
+                                        "Unlock access to all tests by signing up for our customizable and accurate results! For tests and much more",
+                                  ),
                                 ),
-                              ),
-                            );
-                      },child: testButton(screenHeight, screenWidth, "TAKE TEST NOW!")),
+                              );
+                            }
+                          },
+                          child: testButton(
+                              screenHeight, screenWidth, "TAKE TEST NOW!")),
                     ),
                   ),
                 ],

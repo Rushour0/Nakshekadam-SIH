@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/info_card.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/option_buttons.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
-class StudentHomePage extends StatelessWidget {
+class StudentHomePage extends StatefulWidget {
   const StudentHomePage({Key? key}) : super(key: key);
 
   @override
+  State<StudentHomePage> createState() => _StudentHomePageState();
+}
+
+class _StudentHomePageState extends State<StudentHomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (UserDetailsModelOne.userDetailsModelOne.email == "") {
+      userDocumentReference().get().then((value) {
+        UserDetailsModelOne.fromMap(value.data()!);
+        setState(() {
+          // print("usermodel : $userDetailsModelOne");
+        });
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
+    print("checking userModel : $userDetailsModelOne");
     final List<double> tempDimensions = [
       MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height
@@ -43,14 +66,23 @@ class StudentHomePage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.02),
-                    child: Text(
-                      "Welcome *Name*!",
-                      style: TextStyle(
-                        fontFamily: "Cabin",
-                        fontSize: screenWidth * 0.07,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: (userDetailsModelOne.name != "")
+                        ? Text(
+                            "Welcome ${userDetailsModelOne.name.split(" ")[0]}!",
+                            style: TextStyle(
+                              fontFamily: "Cabin",
+                              fontSize: screenWidth * 0.07,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : Text(
+                            "Welcome!",
+                            style: TextStyle(
+                              fontFamily: "Cabin",
+                              fontSize: screenWidth * 0.07,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                   Image.asset(
                     "assets/images/studentMain.png",
@@ -58,7 +90,9 @@ class StudentHomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
-                    child: const CustomCarouselSlider(imagePath: STUDENT_BANNER_IMAGE_DIRECTORY,),
+                    child: const CustomCarouselSlider(
+                      imagePath: STUDENT_BANNER_IMAGE_DIRECTORY,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: screenHeight * 0.15),

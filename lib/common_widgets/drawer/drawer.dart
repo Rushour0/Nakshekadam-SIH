@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/drawer/components/drawer_listtile.dart';
 import 'package:nakshekadam/screens/drawer/components/drawer_user_info_card.dart';
 import 'package:nakshekadam/screens/drawer/drawer_tabs/faqs/faq.dart';
 import 'package:nakshekadam/screens/drawer/drawer_tabs/send_feedback/send_feedback.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:readmore/readmore.dart';
 
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
@@ -32,7 +34,8 @@ class _CommonDrawerState extends State<CommonDrawer> {
     "My test results",
     "FAQs",
     "Send Feedback",
-    "Report Problems"
+    "Report Problems",
+    "Logout"
   ];
 
   @override
@@ -147,7 +150,13 @@ class _CommonDrawerState extends State<CommonDrawer> {
                                                               builder: (context) =>
                                                                   const SendFeedback()));
                                                     }
-                                                  : () {},
+                                                  : () async {
+                                                      if (await checkLoggedIn()) {
+                                                        signOut();
+                                                      }
+                                                      Navigator.pushNamed(
+                                                          context, "/wt");
+                                                    },
                                           index:
                                               drawerTabs.indexOf(drawerOption),
                                         ),

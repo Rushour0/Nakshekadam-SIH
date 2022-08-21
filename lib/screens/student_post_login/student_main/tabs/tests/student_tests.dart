@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
+import 'package:nakshekadam/screens/main/tabs/tests_page.dart/components/test_button.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/components/student_test_card.dart';
 import 'package:nakshekadam/strings.dart';
 
@@ -22,9 +24,10 @@ class StudentTestsPage extends StatelessWidget {
     List<String> testNames = [
       'Aptitude',
       'Interests',
-      'Academic Background',
-      'Personality & History',
+      'Academic',
+      'Personality',
     ];
+    UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -60,7 +63,7 @@ class StudentTestsPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: screenWidth * 0.03, bottom: screenHeight * 0.01),
                     child: Text(
-                      stringData["tests"]["summary"],
+                      stringData["tests"][userDetailsModelOne.role],
                       style: TextStyle(
                         fontFamily: "DM Sans",
                         fontSize: screenHeight * 0.02,
@@ -80,8 +83,11 @@ class StudentTestsPage extends StatelessWidget {
                     crossAxisCount: 2,
                     children: testNames
                         .map(
-                          (testName) => studentTestCard(screenHeight, screenWidth,
-                              testName, testNames.indexOf(testName)),
+                          (testName) => studentTestCard(
+                              screenHeight,
+                              screenWidth,
+                              testName,
+                              testNames.indexOf(testName)),
                         )
                         .toList(),
                   ),
@@ -91,6 +97,10 @@ class StudentTestsPage extends StatelessWidget {
                         top: screenHeight * 0.015,
                         bottom: screenHeight * 0.03,
                       ),
+                      child: GestureDetector(
+                          onTap: () async {},
+                          child: testButton(
+                              screenHeight, screenWidth, "VIEW RESULTS")),
                     ),
                   ),
                 ],

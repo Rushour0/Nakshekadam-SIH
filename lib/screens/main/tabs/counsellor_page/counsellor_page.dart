@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card_dialog.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
@@ -15,6 +16,7 @@ class CounsellorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
     final List<double> tempDimensions = [
       MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height
@@ -36,8 +38,7 @@ class CounsellorPage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overscroll) {
             overscroll.disallowIndicator();
@@ -45,14 +46,14 @@ class CounsellorPage extends StatelessWidget {
           },
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(bottom: screenHeight * 0.1, top: screenHeight * 0.02),
+              padding: EdgeInsets.only(
+                  bottom: screenHeight * 0.1, top: screenHeight * 0.02),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: screenWidth * 0.03),
+                    padding: EdgeInsets.only(left: screenWidth * 0.03),
                     child: Text(
                       "COUNSELLORS",
                       style: TextStyle(
@@ -66,15 +67,25 @@ class CounsellorPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         left: screenWidth * 0.03, bottom: screenHeight * 0.01),
-                    child: Text(
-                      stringData["counsellors"]["summary"],
-                      style: TextStyle(
-                        fontFamily: "DM Sans",
-                        fontSize: screenHeight * 0.02,
-                        fontWeight: FontWeight.w600,
-                        color: COLOR_THEME["descriptionText"],
-                      ),
-                    ),
+                    child: (userDetailsModelOne.role == "parent")
+                        ? Text(
+                            stringData["counsellors"]["parent"],
+                            style: TextStyle(
+                              fontFamily: "DM Sans",
+                              fontSize: screenHeight * 0.02,
+                              fontWeight: FontWeight.w600,
+                              color: COLOR_THEME["descriptionText"],
+                            ),
+                          )
+                        : Text(
+                            stringData["counsellors"]["summary"],
+                            style: TextStyle(
+                              fontFamily: "DM Sans",
+                              fontSize: screenHeight * 0.02,
+                              fontWeight: FontWeight.w600,
+                              color: COLOR_THEME["descriptionText"],
+                            ),
+                          ),
                   ),
                   Align(
                     child: Column(
@@ -100,13 +111,11 @@ class CounsellorPage extends StatelessWidget {
                           child: Padding(
                             padding:
                                 EdgeInsets.only(bottom: screenHeight * 0.03),
-                            child: 
-                              Hero(
-                                tag: "counsellorcCard$title",
-                                child: counsellorCard(
-                                    screenHeight, screenWidth, title),
-                              ),
-                            
+                            child: Hero(
+                              tag: "counsellorcCard$title",
+                              child: counsellorCard(
+                                  screenHeight, screenWidth, title),
+                            ),
                           ),
                         );
                       }).toList(),

@@ -8,8 +8,8 @@ import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 
-class WalkThroughStudent extends StatelessWidget {
-  const WalkThroughStudent({Key? key}) : super(key: key);
+class WalkThroughParent extends StatelessWidget {
+  const WalkThroughParent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,14 +116,14 @@ class WalkThroughStudent extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                            top: screenHeight * 0.15,
-                          ),
+                              top: screenHeight * 0.15,
+                              bottom: screenHeight * 0.1),
                           child: Text(
-                            "Unlock our test, contact counsellors and connect with industry experts to clear all your confusions!",
+                            "NaksheKADAM has been designed for all you parents to be able to break down different aspects of your child’s educational journey. Our certified counselors on-board have expertise in answering all your queries. Vidya bot is trained to articulate answers spanning over 58,000 verified articles. Additionally, our specially curated tests for your child will help them clear their confusions in a clear manner. Browse through different aspects and send us feedback!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: "DM Sans",
-                              fontSize: screenWidth * 0.05,
+                              fontSize: screenWidth * 0.04,
                               fontWeight: FontWeight.w500,
                               color: Colors.black87,
                             ),

@@ -4,9 +4,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/drawer/components/drawer_card_field.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/custom_text_form_field.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:readmore/readmore.dart';
 
 class DrawerUserInfoCard extends StatefulWidget {
@@ -18,6 +20,8 @@ class DrawerUserInfoCard extends StatefulWidget {
 
 class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
   TextEditingController _writeMessageController = TextEditingController();
+  UserDetailsModelTwo userDetailsModelTwo = UserDetailsModelTwo.getModel();
+  UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
   @override
   Widget build(BuildContext context) {
     final List<double> tempDimensions = [
@@ -58,7 +62,7 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
               child: Text(
-                "ERA AGGARWAL",
+                userDetailsModelOne.name.toUpperCase(),
                 softWrap: true,
                 style: TextStyle(
                   fontFamily: "DM Sans",
@@ -70,21 +74,34 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
             ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
-              child: Text(
-                "Student",
-                softWrap: true,
-                style: TextStyle(
-                  fontFamily: "DM Sans",
-                  fontSize: screenHeight * 0.025,
-                  // fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
-              ),
+              child: (userDetailsModelOne.role != "")
+                  ? Text(
+                      "${userDetailsModelOne.role[0].toUpperCase()}${userDetailsModelOne.role.substring(1).toLowerCase()}",
+                      softWrap: true,
+                      style: TextStyle(
+                        fontFamily: "DM Sans",
+                        fontSize: screenHeight * 0.025,
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    )
+                  : Text(
+                      userDetailsModelOne.role,
+                      softWrap: true,
+                      style: TextStyle(
+                        fontFamily: "DM Sans",
+                        fontSize: screenHeight * 0.025,
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    ),
             ),
+            drawerCardField("E-mail ID", userDetailsModelOne.email,
+                screenHeight, screenWidth),
+            drawerCardField("School Name", userDetailsModelTwo.schoolName,
+                screenHeight, screenWidth),
             drawerCardField(
-                "E-mail ID", "era78@gmail.com", screenHeight, screenWidth),
-            drawerCardField("School Name", "abcxyz", screenHeight, screenWidth),
-            drawerCardField("Grade", "11th", screenHeight, screenWidth),
+                "Grade", userDetailsModelTwo.grade, screenHeight, screenWidth),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: Align(
@@ -101,14 +118,22 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
                       padding: EdgeInsets.symmetric(
                           vertical: screenHeight * 0.006,
                           horizontal: screenWidth * 0.1),
-                      child: Text(
-                        "Logout",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: "DM Sans",
-                          fontSize: screenHeight * 0.03,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (await checkLoggedIn()) {
+                            signOut();
+                          }
+                          Navigator.pushNamed(context, "/wt");
+                        },
+                        child: Text(
+                          "Logout",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: "DM Sans",
+                            fontSize: screenHeight * 0.03,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

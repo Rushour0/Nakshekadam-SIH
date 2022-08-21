@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/components/student_parent_card.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/parent_details_collection.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
 class StudentParent extends StatelessWidget {
   const StudentParent({Key? key}) : super(key: key);
@@ -122,12 +124,32 @@ class StudentParent extends StatelessWidget {
                                     vertical: screenHeight * 0.015,
                                     horizontal: screenWidth * 0.05),
                                 child: GestureDetector(
-                                  onTap: (role.toLowerCase() == "student")?()=> Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: ((context) =>
-                                            const StudentDetailsCollection()),
-                                      ),
-                                    ) :() {},
+                                  onTap: (role.toLowerCase() == "student")
+                                      ? () async {
+                                          await userDocumentReference().update({
+                                            'role': 'student',
+                                          });
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  const StudentDetailsCollection()),
+                                            ),
+                                          );
+                                        }
+                                      : (role.toLowerCase() == "parent")
+                                          ? () async {
+                                              await userDocumentReference()
+                                                  .update({
+                                                'role': 'parent',
+                                              });
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      const ParentDetailsCollection()),
+                                                ),
+                                              );
+                                            }
+                                          : () {},
                                   child: studentParentCard(
                                       screenHeight, screenWidth, role),
                                 ),

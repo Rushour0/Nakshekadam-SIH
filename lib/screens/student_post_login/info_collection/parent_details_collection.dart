@@ -5,22 +5,32 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/walkthroughParent.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/walkthroughStudent.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
-class StudentDetailsCollection extends StatefulWidget {
-  const StudentDetailsCollection({Key? key}) : super(key: key);
+class ParentDetailsCollection extends StatefulWidget {
+  const ParentDetailsCollection({Key? key}) : super(key: key);
 
   @override
-  State<StudentDetailsCollection> createState() =>
-      _StudentDetailsCollectionState();
+  State<ParentDetailsCollection> createState() =>
+      _ParentDetailsCollectionState();
 }
 
-class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
+class _ParentDetailsCollectionState extends State<ParentDetailsCollection> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController marksController = TextEditingController();
+  final TextEditingController fathersOccupationController =
+      TextEditingController();
+  final TextEditingController mothersOccupationController =
+      TextEditingController();
+  final TextEditingController fathersEducationController =
+      TextEditingController();
+  final TextEditingController mothersEducationController =
+      TextEditingController();
+  final TextEditingController annualIncomeController = TextEditingController();
 
   final List<String> classes = [
     "8th", "9th", "10th", "11th", "12th",
@@ -28,63 +38,10 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
   ];
   TextEditingController selectedClass = TextEditingController();
 
-  final List<String> subjects = ["0", "1", "2", "3", "4", "5"];
-  TextEditingController selectedSubjects = TextEditingController();
-  List<TextEditingController> subjectsEditorList = [];
-
-  final List<String> question = [
-    "I am completely lost about what I am interested in as of now.",
-    "Interested in a few subject combinations but not really sure about whether it's my calling.",
-    "I am fairly sure about which subjects I want to take up but I have my doubts.",
-    "Feeling pressured by friends or family? Feeling low?"
-  ];
-  TextEditingController selectedQuestion = TextEditingController();
-
-  List<TextEditingController> interestDomainEditor = [];
-  List<String> interestDomainList = [
-    "STEM",
-    "Commerce & Management",
-    "Defense",
-    "Civil Services",
-    "Creative & Argumentative Studies",
-    "Vocational Courses"
-  ];
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    selectedSubjects.addListener(() {
-      int totalSubs = int.parse(selectedSubjects.text);
-      if (subjectsEditorList.isEmpty) {
-        for (int i = 0; i < totalSubs; i++) {
-          subjectsEditorList.add(TextEditingController());
-        }
-      } else if (totalSubs > subjectsEditorList.length) {
-        int diff = totalSubs - subjectsEditorList.length;
-        for (int i = 0; i < diff; i++) {
-          subjectsEditorList.add(TextEditingController());
-        }
-      } else if (totalSubs < subjectsEditorList.length) {
-        int diff = subjectsEditorList.length - totalSubs;
-        for (int i = 0; i < diff; i++) {
-          subjectsEditorList.removeLast();
-        }
-      }
-      setState(() {});
-    });
-
-    selectedQuestion.addListener(() {
-      if (selectedQuestion.text == question[1] ||
-          selectedQuestion.text == question[2]) {
-        if (interestDomainEditor.isEmpty) {
-          interestDomainEditor.add(TextEditingController());
-        }
-      } else {
-        interestDomainEditor.clear();
-      }
-      setState(() {});
-    });
   }
 
   @override
@@ -114,47 +71,25 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
           onPressed: () async {
             if (nameController.text == "" &&
                 marksController.text == "" &&
-                (interestDomainEditor.isNotEmpty &&
-                    interestDomainEditor[0].text == "") &&
-                selectedClass.text == "" &&
-                selectedSubjects.text == "") {
+                fathersEducationController.text == "" &&
+                mothersEducationController.text == "" &&
+                fathersOccupationController.text == "" &&
+                mothersOccupationController.text == "" &&
+                annualIncomeController.text == "") {
               return;
             }
-            List<String> subjects = [];
-            subjectsEditorList.forEach((subject) {
-              if (subject.text == "") {
-                return;
-              }
-              subjects.add(subject.text);
+            await userDocumentReference()
+                .collection("data")
+                .doc("userInfo")
+                .set({
+              "school/college name": nameController.text,
+              "class/grade": selectedClass.text,
+              "father’s occupation": fathersOccupationController.text,
+              "father’s education": fathersEducationController.text,
+              "mother’s occupation": mothersOccupationController.text,
+              "mother’s education": mothersEducationController.text,
+              "Family’s annual income": annualIncomeController.text,
             });
-            if (interestDomainEditor.isNotEmpty) {
-              await userDocumentReference()
-                  .collection("data")
-                  .doc("userInfo")
-                  .set({
-                "school/college name": nameController.text,
-                "class/grade": selectedClass.text,
-                "marks/percentage": marksController.text,
-                "number of subjects chosen": selectedSubjects.text,
-                "subjects": subjects,
-                "which of the following seems the best fit for you according to you?":
-                    selectedQuestion.text,
-                "interested domain": interestDomainEditor[0].text
-              });
-            } else {
-              await userDocumentReference()
-                  .collection("data")
-                  .doc("userInfo")
-                  .set({
-                "school/college name": nameController.text,
-                "class/grade": selectedClass.text,
-                "marks/percentage": marksController.text,
-                "number of subjects chosen": selectedSubjects.text,
-                "subjects": subjects,
-                "which of the following seems the best fit for you according to you?":
-                    selectedQuestion.text,
-              });
-            }
             await userDocumentReference().update({
               "formFilled": true,
             });
@@ -162,7 +97,7 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
 
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => WalkThroughStudent(),
+                builder: (context) => WalkThroughParent(),
               ),
             );
           },
@@ -241,7 +176,7 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
                       Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.05),
                         child: Text(
-                          "Help us with the last few details about your current academic status before you can begin unlocking our top-notch features!",
+                          "Help us with the last few details about your child’s current academic status before you can begin unlocking our top-notch features!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: "DM Sans",
@@ -310,60 +245,55 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: screenHeight * 0.025),
-                                        child: CustomDropDownField(
-                                          items: subjects,
-                                          selectedItem: selectedSubjects,
-                                          hintText:
-                                              "Number of Subjects Chosen (0-5)",
-                                        ),
-                                      ),
-                                      Column(
-                                        children: subjectsEditorList
-                                            .map(
-                                              (editor) => Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: screenHeight * 0.025),
-                                                child: normalformfield(
-                                                    editor,
-                                                    screenWidth,
-                                                    setState,
-                                                    "Subject ${subjectsEditorList.indexOf(editor) + 1}",
-                                                    TextInputType.name),
-                                              ),
-                                            )
-                                            .toList(),
+                                        child: normalformfield(
+                                            fathersOccupationController,
+                                            screenWidth,
+                                            setState,
+                                            "Father’s Occupation",
+                                            TextInputType.name),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                           top: screenHeight * 0.025,
                                         ),
-                                        child: CustomDropDownFieldMultiLine(
-                                          items: question,
-                                          selectedItem: selectedQuestion,
-                                          hintText:
-                                              "Which of the following seems the best fit for you according to you?",
-                                        ),
+                                        child: normalformfield(
+                                            mothersOccupationController,
+                                            screenWidth,
+                                            setState,
+                                            "Mother’s Occupation",
+                                            TextInputType.name),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            bottom: screenHeight * 0.1),
-                                        child: Column(
-                                          children: interestDomainEditor
-                                              .map(
-                                                (editor) => Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top:
-                                                          screenHeight * 0.025),
-                                                  child: CustomDropDownField(
-                                                    items: interestDomainList,
-                                                    selectedItem: editor,
-                                                    hintText:
-                                                        "Interested Domain",
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
+                                            top: screenHeight * 0.025),
+                                        child: normalformfield(
+                                            fathersEducationController,
+                                            screenWidth,
+                                            setState,
+                                            "Father’s Education (Eg. MBA, B.Tech)",
+                                            TextInputType.name),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: screenHeight * 0.025,
                                         ),
+                                        child: normalformfield(
+                                            mothersEducationController,
+                                            screenWidth,
+                                            setState,
+                                            "Mother’s Education (Eg. MBA, B.Tech)",
+                                            TextInputType.name),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: screenHeight * 0.1,
+                                            top: screenHeight * 0.025),
+                                        child: normalformfield(
+                                            annualIncomeController,
+                                            screenWidth,
+                                            setState,
+                                            "Family’s annual income",
+                                            TextInputType.number),
                                       ),
                                     ],
                                   ),

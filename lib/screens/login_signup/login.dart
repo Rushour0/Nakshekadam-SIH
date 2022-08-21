@@ -11,6 +11,7 @@ import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -52,7 +53,13 @@ class _LoginState extends State<Login> {
       // if (_user.phoneNumber != null) {
       //   Navigator.of(context).push(CustomPageRouter(child: const NameSex()));
       // } else {
-      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+      if (await checkFormFilled()) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/postLogin', (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/postLoginMain', (route) => false);
+      }
       // }}
     }
     setState(() {});
@@ -259,7 +266,7 @@ class _LoginState extends State<Login> {
                                       bottom: screenHeight * 0.1),
                                   child: GestureDetector(
                                     onTap: (() async {
-                                      if (await signInWithGoogle()) {
+                                      if (await signInWithGoogle("")) {
                                         // bool isAdmin = (await checkAdmin())!;
                                         // if (isAdmin) {
                                         //   print("I AM ADMIN");
@@ -270,8 +277,17 @@ class _LoginState extends State<Login> {
                                         //   Navigator.pushNamedAndRemoveUntil(
                                         //       context, '/main_page', (route) => false);
                                         // } else {
-                                        Navigator.pushNamedAndRemoveUntil(
-                                            context, '/', (route) => false);
+                                        if (await checkFormFilled()) {
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              '/postLoginMain',
+                                              (route) => false);
+                                        } else {
+                                          Navigator.pushNamedAndRemoveUntil(
+                                              context,
+                                              '/postLogin',
+                                              (route) => false);
+                                        }
                                         // }
                                       }
                                     }),

@@ -66,10 +66,10 @@ class _UpcomingExamsPageState extends State<UpcomingExamsPage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
       child: NotificationListener<OverscrollIndicatorNotification>(
-          onNotification: (overscroll) {
-            overscroll.disallowIndicator();
-            return true;
-          },
+        onNotification: (overscroll) {
+          overscroll.disallowIndicator();
+          return true;
+        },
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -117,7 +117,8 @@ class _UpcomingExamsPageState extends State<UpcomingExamsPage> {
                         ),
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
-                            borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                            borderRadius:
+                                BorderRadius.circular(screenWidth * 0.02),
                             dropdownColor: COLOR_THEME["careerTileExpanded"],
                             hint: Padding(
                               padding: EdgeInsets.only(
@@ -171,19 +172,36 @@ class _UpcomingExamsPageState extends State<UpcomingExamsPage> {
                     List<UpcomingExam> upcomingExams =
                         snapshot.data as List<UpcomingExam>;
                     List<UpcomingExam> selectedUpcomingExams = [];
-                    DateTime today = DateTime.parse(DateTime.now().toIso8601String().substring(0, 10));
-                    if(selectedSortOption == null || selectedSortOption == sortOptions[0]) {
+                    DateTime today = DateTime.parse(
+                        DateTime.now().toIso8601String().substring(0, 10));
+                    if (selectedSortOption == null ||
+                        selectedSortOption == sortOptions[0]) {
                       selectedUpcomingExams = upcomingExams;
-                    }
-                    else if(selectedSortOption == sortOptions[1]){
-                      selectedUpcomingExams = upcomingExams.where((upcomingExam) => upcomingExam.notifyDate == today).toList();
-                    }
-                    else if(selectedSortOption == sortOptions[2]){
-                      selectedUpcomingExams = upcomingExams.where((upcomingExam) => today.difference(upcomingExam.notifyDate).inDays <= 7 && today.difference(upcomingExam.notifyDate).inDays > 0).toList();
-                    }
-                    else if(selectedSortOption == sortOptions[3]){
-                      selectedUpcomingExams = upcomingExams.where((upcomingExam) => today.difference(upcomingExam.notifyDate).inDays <= 31 && today.difference(upcomingExam.notifyDate).inDays > 0
-                      ).toList();
+                    } else if (selectedSortOption == sortOptions[1]) {
+                      selectedUpcomingExams = upcomingExams
+                          .where((upcomingExam) =>
+                              upcomingExam.notifyDate == today)
+                          .toList();
+                    } else if (selectedSortOption == sortOptions[2]) {
+                      selectedUpcomingExams = upcomingExams
+                          .where((upcomingExam) =>
+                              today
+                                      .difference(upcomingExam.notifyDate)
+                                      .inDays <=
+                                  7 &&
+                              today.difference(upcomingExam.notifyDate).inDays >
+                                  0)
+                          .toList();
+                    } else if (selectedSortOption == sortOptions[3]) {
+                      selectedUpcomingExams = upcomingExams
+                          .where((upcomingExam) =>
+                              today
+                                      .difference(upcomingExam.notifyDate)
+                                      .inDays <=
+                                  31 &&
+                              today.difference(upcomingExam.notifyDate).inDays >
+                                  0)
+                          .toList();
                     }
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),

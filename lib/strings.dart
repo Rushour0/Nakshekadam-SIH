@@ -277,6 +277,8 @@ const Map<String, dynamic> stringData = {
   'counsellors': {
     "summary":
         "We have different types of counselor services that you can avail to help you make the most informed choice. Ask away! Unlock your true potential by connecting with a varied range of counsel including -",
+    "parent":
+        "We have different types of counselor services that you can avail to help your child make the most informed choice. Ask away! Unlock your child's true potential by connecting with a varied range of counsel including -",
     "cards": {
       "vidya bot": {
         "description":
@@ -301,6 +303,11 @@ const Map<String, dynamic> stringData = {
   'tests': {
     "summary":
         "We have different types of counselor services that you can avail to help you make the most informed choice. Ask away! Unlock your true potential by connecting with a varied range of counsel including -",
+    "student":
+        "For all you students dealing with uncertainty related to their choices, we bring to you customized assessments on novel parameters. We ask you concise questions on research certified constraints, fetching accurate results like never before! Our customizable parameter combinations include -",
+    "parent":
+        "For all your kids dealing with uncertainty related to their choices, we bring to you customized assessments on novel parameters. We ask you concise questions on research certified constraints, fetching accurate results like never before! Our customizable parameter combinations include -",
+    "": ""
   },
   "Customised specially for you":
       "DoESL's venture NaksheKADAM is built in mind keeping the NEP and its modifications in mind, solving all queries of 9th to 12th graders in the most coundcive manner. It provides students with relevant information regarding what subjects will lead to what career paths, what are the Higher Educational Institutions for study for pursuing such studies, what are the entrance exams required, what aptitude tests are available, etc, how to access them, making it a one-stop solution for everything. NaksheKADAM is also a safespace for students to discuss their fears and for parents to raise queries. Our verified counsellors, industry experts, AI-based tests, chatbots and comprehsive technology driven solutions are here to help all children and parents with their issues.",

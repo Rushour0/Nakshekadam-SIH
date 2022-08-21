@@ -79,7 +79,7 @@ TextFormField phoneformfield(
     ],
     keyboardType: TextInputType.emailAddress,
     decoration: InputDecoration(
-      hintText: "Email",
+      hintText: "Phone Number",
       filled: true,
       fillColor: const Color(0xffF8F9FE),
       enabledBorder: OutlineInputBorder(

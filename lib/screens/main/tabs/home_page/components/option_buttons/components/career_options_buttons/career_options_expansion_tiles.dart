@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/screens/trees/components/tree_json_text.dart';
+import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/strings.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -13,7 +15,8 @@ class CareerOptionExpansionTiles extends StatelessWidget {
     required this.dataKey,
     required this.title,
     required this.optionCardName,
-  }) : _tilesData = tilesData, super(key: key);
+  })  : _tilesData = tilesData,
+        super(key: key);
   final Map<String, dynamic> _tilesData;
   final String dataKey;
   final String title;
@@ -32,12 +35,21 @@ class CareerOptionExpansionTiles extends StatelessWidget {
     final double screenWidth = tempDimensions[0] > tempDimensions[1]
         ? tempDimensions[1]
         : tempDimensions[0];
-    return Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(screenWidth * 0.02),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: ExpansionTile(
+    return GestureDetector(
+      onTap: (dataKey == "Explore all possible paths!")
+          ? () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  TreeFromJson(jsonText: treeFromText[title.toLowerCase()]!)))
+          : () {
+              print(dataKey);
+            },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(screenWidth * 0.02),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: (dataKey != "Explore all possible paths!")
+            ? ExpansionTile(
                 title: Text(
                   dataKey,
                   style: TextStyle(
@@ -75,8 +87,9 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                                                 height: screenHeight * 0.5,
                                                 width: screenWidth * 0.9,
                                                 child: WebView(
-                                                  initialUrl:
-                                                      stringData[optionCardName][title]["Popular exams link"],
+                                                  initialUrl: stringData[
+                                                          optionCardName][title]
+                                                      ["Popular exams link"],
                                                   zoomEnabled: false,
                                                   javascriptMode: JavascriptMode
                                                       .unrestricted,
@@ -91,7 +104,10 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                                             }),
                                           );
                                         } else {
-                                          Navigator.pushNamed(context, stringData[optionCardName][title]["Popular colleges route"]);
+                                          Navigator.pushNamed(
+                                              context,
+                                              stringData[optionCardName][title]
+                                                  ["Popular colleges route"]);
                                         }
                                       },
                                       child: Card(
@@ -132,7 +148,20 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                         )
                       : Container(),
                 ],
+              )
+            : ListTile(
+                tileColor: COLOR_THEME['careerTile'],
+                title: Text(
+                  dataKey,
+                  style: TextStyle(
+                    fontFamily: "DM Sans",
+                    fontSize: screenWidth * 0.045,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                ),
               ),
-            );
+      ),
+    );
   }
 }

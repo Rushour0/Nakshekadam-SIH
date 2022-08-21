@@ -8,9 +8,11 @@ import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
+import 'package:nakshekadam/screens/splash/splash.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_parent.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/student_main_page.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/take_test.dart';
 import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
@@ -59,10 +61,8 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/main',
+      initialRoute: '/takeTest',
       routes: {
-        // '/wt': (context) => const WTOne(),
-        // '/wt': (context) => const WalkThrough(),
         '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
@@ -71,8 +71,10 @@ class MyApp extends StatelessWidget {
         '/mobno': (context) => const PhoneAuth(),
         '/personalDetails': (context) => const PersonalDetails(),
         '/aadharAuth': (context) => const AadharLoginPage(),
-        '/treeView': (context) => const TreeFromJson(),
-        // '/': (context) => const Splash(),
+        '/postLogin': (context) => const StudentParent(),
+        '/postLoginMain': (context) => const StudentMainPage(),
+        '/': (context) => const Splash(),
+        // '/takeTest': (context) => const TakeTest(),
       },
     );
   }
