@@ -269,7 +269,7 @@ class _AadharLoginPageState extends State<AadharLoginPage>
                               child: Text(
                                 "VERIFY YOUR AADHAR NUMBER",
                                 style: TextStyle(
-                                  fontFamily: "Balsamiq Sans",
+                                  fontFamily: "DM Sans",
                                   fontSize: screenWidth * 0.06,
                                   fontWeight: FontWeight.w600,
                                   color: const Color(0xff32324D),
@@ -498,7 +498,7 @@ class _AadharLoginPageState extends State<AadharLoginPage>
     //                           child: Text(
     //                             "ENTER THE OTP SENT TO THE REGISTERED PHONE NUMBER OF YOUR AADHAAR CARD",
     //                             style: TextStyle(
-    //                               fontFamily: "Balsamiq Sans",
+    //                               fontFamily: "DM Sans",
     //                               fontSize: screenWidth * 0.06,
     //                               fontWeight: FontWeight.w600,
     //                               color: const Color(0xff32324D),

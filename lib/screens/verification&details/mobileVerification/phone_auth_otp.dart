@@ -183,7 +183,7 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
                         child: Text(
                           "ENTER THE OTP SENT TO THE PHONE NUMBER *******${widget.mobileNumber.substring(widget.mobileNumber.length - 3)}",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),

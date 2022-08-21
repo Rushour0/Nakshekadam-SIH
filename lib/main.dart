@@ -4,10 +4,14 @@ import 'package:flutter/services.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/college_extraction_model.dart';
+import 'package:nakshekadam/screens/drawer/drawer_main.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/student_parent.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/student_main_page.dart';
 import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
@@ -60,7 +64,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const MainPage(),
+        '/main': (context) => const DrawerMain(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),

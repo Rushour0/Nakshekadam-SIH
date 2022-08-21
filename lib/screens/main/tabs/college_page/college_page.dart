@@ -77,27 +77,28 @@ class _CollegePageState extends State<CollegePage> {
 
   void fetchCollegeInfo() async {
     await collegeExtractionModel.fetchCollegeInfo();
-    setState(() {
-      colleges = collegeExtractionModel.allColleges;
-      print("hi");
-      if (colleges.length > 10) {
-        ind += 10;
-        selectedCollege = colleges.sublist(0, ind);
-      } else {
-        ind += colleges.length - ind;
-        selectedCollege = colleges.sublist(0, ind);
-      }
-    });
+    colleges = collegeExtractionModel.allColleges;
+        print("hi");
+        if (colleges.length > 10) {
+          ind += 10;
+          selectedCollege = colleges.sublist(0, ind);
+        } else {
+          ind += colleges.length - ind;
+          selectedCollege = colleges.sublist(0, ind);
+        }
+    if (mounted) {
+      setState(() {});
+    }
   }
 
-  void reload(){
+  void reload() {
     if (collegeExtractionModel.checkIfEmpty()) {
       if (collegeExtractionModel.allColleges.isEmpty) {
         fetchCollegeInfo();
       }
       colleges = collegeExtractionModel.allColleges;
       print(collegeExtractionModel.allColleges);
-      if (colleges.length > 10) {
+      if (colleges.length > ind + 10) {
         ind += 10;
         selectedCollege = colleges.sublist(0, ind);
       } else {
@@ -105,9 +106,10 @@ class _CollegePageState extends State<CollegePage> {
         selectedCollege = colleges.sublist(0, ind);
       }
     } else {
+      print(collegeExtractionModel.checkIfEmpty());
       colleges = collegeExtractionModel.filteredColleges;
 
-      if (colleges.length > 10) {
+      if (colleges.length > ind + 10) {
         ind += 10;
         selectedCollege = colleges.sublist(0, ind);
       } else {
@@ -122,14 +124,18 @@ class _CollegePageState extends State<CollegePage> {
     // TODO: implement initState
     super.initState();
     isLoading = false;
-    print("collegeExtractionModel.allColleges : ${collegeExtractionModel.allColleges}");
+    print(
+        "collegeExtractionModel.allColleges : ${collegeExtractionModel.allColleges}");
+    print(
+        "collegeExtractionModel.filteredColleges : ${collegeExtractionModel.filteredColleges}");
+    print(collegeExtractionModel.checkIfEmpty());
     if (collegeExtractionModel.allColleges.isEmpty) {
       fetchCollegeInfo();
     }
     if (collegeExtractionModel.checkIfEmpty()) {
       colleges = collegeExtractionModel.allColleges;
       print(collegeExtractionModel.allColleges);
-      if (colleges.length > 10) {
+      if (colleges.length > ind + 10) {
         ind += 10;
         selectedCollege = colleges.sublist(0, ind);
       } else {
@@ -137,9 +143,10 @@ class _CollegePageState extends State<CollegePage> {
         selectedCollege = colleges.sublist(0, ind);
       }
     } else {
+      print("in filter");
       colleges = collegeExtractionModel.filteredColleges;
 
-      if (colleges.length > 10) {
+      if (colleges.length > ind + 10) {
         ind += 10;
         selectedCollege = colleges.sublist(0, ind);
       } else {
@@ -148,6 +155,7 @@ class _CollegePageState extends State<CollegePage> {
       }
     }
     // fetchData = fetchCollegeInfo();
+    print("selectedCollege : $colleges");
   }
 
   @override
@@ -173,7 +181,10 @@ class _CollegePageState extends State<CollegePage> {
           onPressed: () => Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: const Duration(milliseconds: 750),
-              pageBuilder: (_, __, ___) => CollegeFilterPage(setState: setState, reload: reload,),
+              pageBuilder: (_, __, ___) => CollegeFilterPage(
+                setState: setState,
+                reload: reload,
+              ),
             ),
           ),
           child: const Icon(Icons.search_rounded),

@@ -11,6 +11,8 @@ const String BOTTOM_NAVIGATION_IMAGE_DIRECTORY =
     "assets/images/bottom_navigation_icons";
 
 const String BANNER_IMAGE_DIRECTORY = "assets/images/banner_images";
+const String STUDENT_BANNER_IMAGE_DIRECTORY =
+    "assets/images/student_banner_images";
 
 const String FEATURES_IMAGES_DIRECTORY = "assets/images/features_images";
 
@@ -23,15 +25,16 @@ const String CAREER_OPTIONS_BOTTOM_SHEETS_ILLUSTRATIONS_DIRECTORY =
 const String CAREER_OPTIONS_BOTTOM_SHEET_ICON_DIRECTORY =
     "assets/images/bottom_sheet_illustrations/career_options_icons";
 
-const String RESOURCE_CARD_IMAGES =
-    "assets/images/resource_card_images";
+const String RESOURCE_CARD_IMAGES = "assets/images/resource_card_images";
 
-const String COUNSELLOR_CARD_IMAGES =
-    "assets/images/counsellor_card_images";
+const String COUNSELLOR_CARD_IMAGES = "assets/images/counsellor_card_images";
 
-const String TESTS_CARD_IMAGES =
-    "assets/images/tests_card_images";
+const String TESTS_CARD_IMAGES = "assets/images/tests_card_images";
 
+const String POST_LOGIN_IMAGES = "assets/images/post_login_images";
+
+const String PROFESSIONAL_COUNSELLOR_IMAGES =
+    "assets/images/professional_counsellor_images";
 const Map<String, dynamic> AGORA_CONFIG = {
   "appId": "3e7fb43c9b264f02892cf9a4177e4b80",
   "appCertificate": "46fa75d4381945ed8fb0cd08f9b37dae",
@@ -51,6 +54,7 @@ const Map<String, Color> COLOR_THEME = {
   "backgroundComponents0": Color(0xFFFFDBA4),
   "backgroundComponents1": Color(0xFFFFB3B3),
   "backgroundComponents2": Color(0xFFC1EFFF),
+  "backgroundComponents3": Color(0xFFD6CDFE),
   "background": Color(0xFFFFFFFF),
 
   // Home Page Colors

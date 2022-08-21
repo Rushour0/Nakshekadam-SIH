@@ -2,11 +2,16 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:nakshekadam/globals.dart';
 
 class CustomCarouselSlider extends StatefulWidget {
-  const CustomCarouselSlider({Key? key}) : super(key: key);
-
+  const CustomCarouselSlider({
+    Key? key,
+    required this.imagePath,
+  }) : super(key: key);
+  final String imagePath;
+  
   @override
   State<CustomCarouselSlider> createState() => _CustomCarouselSliderState();
 }
@@ -29,7 +34,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
           return ClipRRect(
             borderRadius: BorderRadius.circular(screenWidth / 30),
             child: Image.asset(
-              "$BANNER_IMAGE_DIRECTORY/banner${index + 1}.png",
+              "${widget.imagePath}/banner${index + 1}.png",
               width: screenWidth * 0.9,
               fit: BoxFit.fill,
             ),

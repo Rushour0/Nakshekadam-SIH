@@ -152,7 +152,7 @@ class _SignupState extends State<Signup> {
                         child: Text(
                           "CREATE YOUR ACCOUNT",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),

@@ -5,8 +5,8 @@ import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart
 import 'package:nakshekadam/screens/main/tabs/home_page/components/info_card.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/option_buttons.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class StudentHomePage extends StatelessWidget {
+  const StudentHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,9 @@ class HomePage extends StatelessWidget {
     final double screenWidth = tempDimensions[0] > tempDimensions[1]
         ? tempDimensions[1]
         : tempDimensions[0];
-    List<String> optionNames = [
-      'career_options',
-      'industries',
-      'upcoming_exams',
-      'scholarships',
-    ];
 
     List<String> infoCardNames = [
+      "Customised specially for you",
       'Our Vision',
       'About DoESL',
       "New Education Policy' 20 - Transforming India",
@@ -47,14 +42,23 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: screenHeight * 0.01),
-                    child: OptionButtons(
-                      optionNames: optionNames,
+                    padding: EdgeInsets.only(top: screenHeight * 0.02),
+                    child: Text(
+                      "Welcome *Name*!",
+                      style: TextStyle(
+                        fontFamily: "Cabin",
+                        fontSize: screenWidth * 0.07,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                  ),
+                  Image.asset(
+                    "assets/images/studentMain.png",
+                    height: screenHeight * 0.2,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
-                    child: const CustomCarouselSlider(imagePath: BANNER_IMAGE_DIRECTORY,),
+                    child: const CustomCarouselSlider(imagePath: STUDENT_BANNER_IMAGE_DIRECTORY,),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: screenHeight * 0.15),

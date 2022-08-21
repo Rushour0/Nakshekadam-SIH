@@ -46,7 +46,7 @@ class CollegeInfoCard extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: "Cabin",
-                  fontSize: screenWidth * 0.045,
+                  fontSize: screenWidth * 0.05,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -55,11 +55,11 @@ class CollegeInfoCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0.01),
               child: Text(
                 collegeModel.institute,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: "Cabin",
-                  fontSize: screenWidth * 0.055,
+                  fontSize: screenWidth * 0.04,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -73,7 +73,7 @@ class CollegeInfoCard extends StatelessWidget {
                     style: TextStyle(
                       color: COLOR_THEME["descriptionText"],
                       fontFamily: "Cabin",
-                      fontSize: screenWidth * 0.05,
+                      fontSize: screenWidth * 0.04,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -83,7 +83,7 @@ class CollegeInfoCard extends StatelessWidget {
                     style: TextStyle(
                       color: COLOR_THEME["descriptionText"],
                       fontFamily: "Cabin",
-                      fontSize: screenWidth * 0.05,
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
                 ],
@@ -97,7 +97,7 @@ class CollegeInfoCard extends StatelessWidget {
                   style: TextStyle(
                     color: COLOR_THEME["descriptionText"],
                     fontFamily: "Cabin",
-                    fontSize: screenWidth * 0.05,
+                    fontSize: screenWidth * 0.04,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -107,7 +107,7 @@ class CollegeInfoCard extends StatelessWidget {
                   style: TextStyle(
                     color: COLOR_THEME["descriptionText"],
                     fontFamily: "Cabin",
-                    fontSize: screenWidth * 0.05,
+                    fontSize: screenWidth * 0.04,
                   ),
                 ),
               ],
@@ -120,7 +120,7 @@ class CollegeInfoCard extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: "Cabin",
-                  fontSize: screenWidth * 0.05,
+                  fontSize: screenWidth * 0.04,
                 ),
               ),
             ),

@@ -164,7 +164,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "LOGIN",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),

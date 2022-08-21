@@ -180,7 +180,7 @@ class WTOne extends StatelessWidget {
                         child: Text(
                           "Welcome to NaksheKADAM",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xff32324D),

@@ -137,7 +137,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                         child: Text(
                           "VERIFY YOUR CONTACT",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),
