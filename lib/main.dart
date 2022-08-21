@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/college_extraction_model.dart';
-import 'package:nakshekadam/screens/drawer/drawer_main.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
@@ -60,11 +59,11 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/treeView',
+      initialRoute: '/main',
       routes: {
         // '/wt': (context) => const WTOne(),
         // '/wt': (context) => const WalkThrough(),
-        '/main': (context) => const DrawerMain(),
+        '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
@@ -72,7 +71,7 @@ class MyApp extends StatelessWidget {
         '/mobno': (context) => const PhoneAuth(),
         '/personalDetails': (context) => const PersonalDetails(),
         '/aadharAuth': (context) => const AadharLoginPage(),
-        '/treeView': (context) => TreeFromJson(),
+        '/treeView': (context) => const TreeFromJson(),
         // '/': (context) => const Splash(),
       },
     );

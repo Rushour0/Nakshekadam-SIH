@@ -112,7 +112,8 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
           ),
           onPressed: () async {
             // await register();
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => WalkThroughStudent()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => WalkThroughStudent()));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -265,7 +266,6 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
                                               "Number of Subjects Chosen (0-5)",
                                         ),
                                       ),
-
                                       Column(
                                         children: subjectsEditorList
                                             .map(

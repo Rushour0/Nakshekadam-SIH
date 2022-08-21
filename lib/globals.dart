@@ -35,6 +35,9 @@ const String POST_LOGIN_IMAGES = "assets/images/post_login_images";
 
 const String PROFESSIONAL_COUNSELLOR_IMAGES =
     "assets/images/professional_counsellor_images";
+
+const String SEND_FEEDBACK_IMAGES = "assets/images/send_feedback_images";
+
 const Map<String, dynamic> AGORA_CONFIG = {
   "appId": "3e7fb43c9b264f02892cf9a4177e4b80",
   "appCertificate": "46fa75d4381945ed8fb0cd08f9b37dae",
