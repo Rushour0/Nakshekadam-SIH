@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
-import 'package:nakshekadam/services/Firebase/FireAuth/fireauth.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   bool _hidePassword = true;
   bool _hideConfirmPassword = true;
   String errorTextEmail = '',
@@ -30,11 +32,16 @@ class _SignupState extends State<Signup> {
   }
 
   Future<void> register() async {
+    if (_formkey.currentState!.validate() && nameController.text == "") {
+      return;
+    }
     if (confirmPasswordController.text != passwordController.text) {
       errorTextPassword = errorTextConfirmPassword = "Passwords do not match!";
     } else {
       List<dynamic> result = await registerUser(
-          email: emailController.text, password: passwordController.text);
+          email: emailController.text,
+          password: passwordController.text,
+          name: nameController.text);
       print(result);
       if (result[0] == 1) {
         errorTextEmail = result[1];
@@ -64,6 +71,12 @@ class _SignupState extends State<Signup> {
         //   Navigator.pushNamedAndRemoveUntil(
         //       context, '/admin_main_page', (route) => false);
         // }
+        // await userDocumentReference().update({
+        //   'name': nameController.text,
+        //   // "email": emailController.text,
+        //   // 'formFilled': false,
+        //   // 'role': 'user',
+        // });
         Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         passwordController.text =
             confirmPasswordController.text = emailController.text = '';
@@ -74,9 +87,16 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: SizedBox(
@@ -126,33 +146,59 @@ class _SignupState extends State<Signup> {
                       vertical: screenHeight * 0.007),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          style: ButtonStyle(
-                            overlayColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                          ),
-                          child: Text(
-                            "BACK",
-                            style: TextStyle(
-                              fontFamily: "Cabin",
-                              fontSize: screenWidth * 0.06,
-                              fontWeight: FontWeight.w500,
-                              color: const Color(0xff615793),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                              ),
+                              child: Text(
+                                "BACK",
+                                style: TextStyle(
+                                  fontFamily: "Cabin",
+                                  fontSize: screenWidth * 0.06,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff615793),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/login');
+                              },
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                              ),
+                              child: Text(
+                                "LOGIN",
+                                style: TextStyle(
+                                  fontFamily: "Cabin",
+                                  fontSize: screenWidth * 0.06,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff615793),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.27),
                         child: Text(
                           "CREATE YOUR ACCOUNT",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),
@@ -169,6 +215,7 @@ class _SignupState extends State<Signup> {
                             child: Column(
                               children: [
                                 Form(
+                                  key: _formkey,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   child: Column(
@@ -260,7 +307,18 @@ class _SignupState extends State<Signup> {
                                       bottom: screenHeight * 0.2),
                                   child: GestureDetector(
                                     onTap: (() async {
-                                      if (await signInWithGoogle()) {
+                                      print("name : ${nameController.text}");
+                                      if (nameController.text == "") {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content:
+                                                Text("Please enter your name"),
+                                          ),
+                                        );
+                                        return;
+                                      } else if (await signInWithGoogle(
+                                          nameController.text)) {
                                         // bool isAdmin = (await checkAdmin())!;
                                         // if (isAdmin) {
                                         //   print("I AM ADMIN");
@@ -271,8 +329,13 @@ class _SignupState extends State<Signup> {
                                         //   Navigator.pushNamedAndRemoveUntil(
                                         //       context, '/main_page', (route) => false);
                                         // } else {
+                                        // await userDocumentReference().update({
+                                        //   'name': nameController.text,
+                                        // });
                                         Navigator.pushNamedAndRemoveUntil(
-                                            context, '/', (route) => false);
+                                            context,
+                                            '/mobno',
+                                            (route) => false);
                                         // }
                                       }
                                     }),

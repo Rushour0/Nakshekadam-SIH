@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/professional_counsellor.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/strings.dart';
 
 class CounsellorDialogBox extends StatelessWidget {
@@ -88,7 +90,40 @@ class CounsellorDialogBox extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(top: screenHeight * 0.01),
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () async {
+                                if (title.toLowerCase() ==
+                                        "professional counsellors" ||
+                                    title.toLowerCase() ==
+                                        "industrial experts") {
+                                  if (await checkLoggedIn()) {
+                                    print("logged in");
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            (title.toLowerCase() ==
+                                                    "professional counsellors")
+                                                ? const ProfessionalCounsellor(
+                                                    optionList: [
+                                                      "Explore Counsellors",
+                                                      "Connected Counsellors",
+                                                      "Message history"
+                                                    ],
+                                                  )
+                                                : const ProfessionalCounsellor(
+                                                    optionList: [
+                                                      "Explore Experts",
+                                                      "Connected Experts",
+                                                      "Message history"
+                                                    ],
+                                                  ),
+                                      ),
+                                    );
+                                  } else {
+                                    print("logged out");
+                                    Navigator.pushNamed(context, "/signup");
+                                  }
+                                }
+                              },
                               child: counsellorDialogBoxButton(
                                   screenHeight,
                                   screenWidth,

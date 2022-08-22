@@ -81,7 +81,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         child: Text(
                           "PERSONAL DETAILS",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),

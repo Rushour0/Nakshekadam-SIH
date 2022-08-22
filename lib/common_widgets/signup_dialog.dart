@@ -26,7 +26,10 @@ class SignupDialogBox extends StatelessWidget {
       backgroundColor: Colors.white,
       child: SingleChildScrollView(
         padding: EdgeInsets.only(
-            bottom: screenHeight * 0.03, top: screenHeight * 0.04),
+            bottom: screenHeight * 0.03,
+            top: screenHeight * 0.04,
+            left: screenWidth * 0.05,
+            right: screenWidth * 0.05),
         child: Column(
           children: [
             Icon(CupertinoIcons.exclamationmark_circle,
@@ -34,6 +37,7 @@ class SignupDialogBox extends StatelessWidget {
                 color: COLOR_THEME['backgroundComponents0']),
             Text(
               title,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: "DM Sans",

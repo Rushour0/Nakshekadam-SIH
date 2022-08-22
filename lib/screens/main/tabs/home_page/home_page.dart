@@ -54,10 +54,10 @@ class HomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
-                    child: const CustomCarouselSlider(),
+                    child: const CustomCarouselSlider(imagePath: BANNER_IMAGE_DIRECTORY,),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: screenHeight * 0.12),
+                    padding: EdgeInsets.only(bottom: screenHeight * 0.15),
                     child: Column(
                       children: infoCardNames.map((name) {
                         int index = infoCardNames.indexOf(name);

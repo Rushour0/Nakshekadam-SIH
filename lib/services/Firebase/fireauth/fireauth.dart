@@ -2,10 +2,8 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
-import 'package:nakshekadam/globals.dart';
-
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
@@ -20,17 +18,20 @@ Future<UserCredential> signInAnon() async {
 }
 
 // google sign in
-Future<bool> signInWithGoogle() async {
+Future<bool> signInWithGoogle(String name) async {
   UserCredential? result = await google_auth.signInWithGoogle();
 
   CollectionReference users = usersCollectionReference();
 
-  if (!(await users.doc(result!.user!.email).get()).exists) {
-    initialData();
+  if (!(await users.doc(result!.user!.uid).get()).exists) {
+    initialData(name);
   }
   if (result.user!.uid == _auth.currentUser!.uid) {
     deviceFCMKeyOperations(add: true);
   }
+  userDocumentReference().update({
+    'email': result.user!.email,
+  });
   return (result.user!.uid == _auth.currentUser!.uid);
 }
 
@@ -83,7 +84,9 @@ Future<List<dynamic>> passwordResetEmailUser({required String email}) async {
 
 // New register
 Future<List<dynamic>> registerUser(
-    {required String email, required String password}) async {
+    {required String email,
+    required String password,
+    required String name}) async {
   try {
     await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -94,12 +97,14 @@ Future<List<dynamic>> registerUser(
       return [2, 'The password provided is too weak'];
     } else if (e.code == 'email-already-in-use') {
       return [1, 'The account already exists for that email'];
+    } else {
+      return [3, e.code];
     }
   }
 
   // Successful registration
 
-  initialData();
+  initialData(name);
 
   return [0, ''];
 }
@@ -125,7 +130,7 @@ Future<bool> checkFormFilled() async {
   User user = getCurrentUser()!;
   if (checkLoggedIn()) {
     Map<String, dynamic> data =
-        (await users.doc(user.email).get()).data() as Map<String, dynamic>;
+        (await users.doc(user.uid).get()).data() as Map<String, dynamic>;
     print(data);
     return data['formFilled'];
   }
@@ -135,7 +140,7 @@ Future<bool> checkFormFilled() async {
 // Get current user id
 String getCurrentUserId() {
   if (checkLoggedIn()) {
-    return _auth.currentUser!.email as String;
+    return _auth.currentUser!.uid;
   }
   return "none";
 }
@@ -166,27 +171,20 @@ Future<bool> signOutGoogle() async {
 }
 
 // Setup initial data
-void initialData() async {
+void initialData(String name) async {
   CollectionReference users = usersCollectionReference();
-  print(kIsWeb);
-  User user = getCurrentUser()!;
-  await FirebaseChatCore.instance.createUserInFirestore(
-    types.User(
-      firstName: user.displayName!.split(' ')[0],
-      id: user.uid,
-      imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
-      lastName: user.displayName!.split(' ')[1],
-      role: types.Role.counsellor,
-    ),
-  );
-  await users.doc(user.uid).set({
-    'deviceIDs': {FirebaseMessaging.instance.getToken(): 0},
-  }, SetOptions(merge: true));
+  await users.doc(_auth.currentUser!.email).set({
+    "email": _auth.currentUser!.email,
+    "formFilled": false,
+    "isAdmin": false,
+    "role": "none",
+    'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
+  });
 }
 
 Future<bool> deviceFCMKeyOperations({bool add = false}) async {
   DocumentReference userDocument = userDocumentReference();
-  late Map<String, dynamic>? deviceIDs, data;
+  Map<String, dynamic>? deviceIDs, data;
   await userDocument.get().then((value) async {
     data = value.data() as Map<String, dynamic>;
     print(data);

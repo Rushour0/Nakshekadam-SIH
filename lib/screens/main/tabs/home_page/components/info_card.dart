@@ -6,7 +6,7 @@ import 'package:readmore/readmore.dart';
 Card infoCard(
         double screenWidth, double screenHeight, String cardName, int index) =>
     Card(
-      color: COLOR_THEME['backgroundComponents$index'],
+      color: COLOR_THEME['backgroundComponents${index%3}'],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(screenWidth * 0.05),
       ),

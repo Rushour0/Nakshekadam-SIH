@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/common_widgets/backgrounds/bigTwoSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
+import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth_otp.dart';
 
 class PhoneAuth extends StatefulWidget {
   const PhoneAuth({Key? key}) : super(key: key);
@@ -15,9 +17,16 @@ class _PhoneAuthState extends State<PhoneAuth> {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: SizedBox(
@@ -33,13 +42,13 @@ class _PhoneAuthState extends State<PhoneAuth> {
           onPressed: () {
             final isValid = _formKey.currentState!.validate();
             if (isValid) {
-              // Navigator.of(context).push(
-              //   CustomPageRouter(
-              //     child: PhoneAuthOTP(
-              //       mobileNumber: _mobileNumberController.text.trim(),
-              //     ),
-              //   ),
-              // );
+              Navigator.of(context).push(
+                CustomPageRouter(
+                  child: PhoneAuthOtp(
+                    mobileNumber: phoneController.text.trim(),
+                  ),
+                ),
+              );
             }
           },
           child: Text(
@@ -104,7 +113,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                             alignment: Alignment.topRight,
                             child: TextButton(
                               onPressed: () {
-                                // Navigator.pushNamed(context, '/login');
+                                Navigator.pushNamed(context, '/postLogin');
                               },
                               style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all(
@@ -137,7 +146,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                         child: Text(
                           "VERIFY YOUR CONTACT",
                           style: TextStyle(
-                            fontFamily: "Balsamiq Sans",
+                            fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.06,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff32324D),

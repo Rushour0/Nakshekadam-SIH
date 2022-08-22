@@ -1,158 +1,179 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nakshekadam/common_widgets/drawer/drawer_cards.dart';
+import 'package:flutter/services.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
+import 'package:nakshekadam/screens/drawer/components/drawer_listtile.dart';
+import 'package:nakshekadam/screens/drawer/components/drawer_user_info_card.dart';
+import 'package:nakshekadam/screens/drawer/drawer_tabs/faqs/faq.dart';
+import 'package:nakshekadam/screens/drawer/drawer_tabs/send_feedback/send_feedback.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:readmore/readmore.dart';
+
+import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
+import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card_dialog.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/components/student_parent_card.dart';
+import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/professional_counsellor_card.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_cards.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_sort.dart';
 
 class CommonDrawer extends StatefulWidget {
-  const CommonDrawer({Key? key}) : super(key: key);
+  const CommonDrawer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CommonDrawer> createState() => _CommonDrawerState();
 }
 
 class _CommonDrawerState extends State<CommonDrawer> {
-  late String profileImageLink;
-  bool isAdmin = false;
-  List<List<String>> routesInfo = [
-    ['Logout', '/login_signup_page'],
+  TextEditingController _searchController = TextEditingController();
+  List<String> drawerTabs = [
+    "My test results",
+    "FAQs",
+    "Send Feedback",
+    "Report Problems",
+    "Logout"
   ];
 
   @override
-  void initState() {
-    profileImageLink = "https://i.ibb.co/Ttp2tmY/20180419-175104.jpg";
-    super.initState();
-    getIsAdmin().whenComplete(() => setState(() {}));
-  }
-
-  Future<void> getIsAdmin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    isAdmin = prefs.getBool('isAdmin')!;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    precacheImage(const NetworkImage(DEFAULT_PROFILE_PICTURE), context);
-
-    final num screenWidth = MediaQuery.of(context).size.width;
-    final num screenHeight = MediaQuery.of(context).size.height;
-
-    return SizedBox(
-      width: MediaQuery.of(context).size.width, //20.0,
-      child: Drawer(
-        // shape: const RoundedRectangleBorder(
-        //     borderRadius:
-        //         BorderRadius.horizontal(left: Radius.elliptical(150, 500))),
-        // backgroundColor: COLOR_THEME['drawerBackground']!.withAlpha(0x9F),
-        backgroundColor: Colors.white,
-        child: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.fromLTRB(
-            screenWidth / 20,
-            screenHeight / 20,
-            screenWidth / 20,
-            0,
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: screenHeight / 6.45),
-                child: NotificationListener<OverscrollIndicatorNotification>(
-                  onNotification: (overscroll) {
-                    overscroll.disallowIndicator();
-                    return true;
-                  },
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(
-                      vertical: screenHeight * 0.05,
-                      // horizontal: screenWidth / 20,
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        // leading: const SizedBox.shrink(),
+        toolbarHeight: screenHeight * 0.5,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        title: SizedBox(
+          width: screenWidth,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(Colors.transparent),
+              ),
+              child: const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Icon(Icons.arrow_back_ios_new_rounded)),
+            ),
+            const DrawerUserInfoCard()
+          ]),
+        ),
+      ),
+      body: Container(
+        color: Colors.white,
+        height: screenHeight,
+        width: screenWidth,
+        child: Stack(
+          children: [
+            Positioned(
+              height: screenHeight,
+              width: screenWidth,
+              child: const BigOneSmallOneBG(),
+            ),
+            Positioned(
+              top: 0,
+              width: screenWidth,
+              height: screenHeight,
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                      vertical: screenHeight * 0.007),
+                  child: NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (overscroll) {
+                      overscroll.disallowIndicator();
+                      return true;
+                    },
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenHeight * 0.02),
+                            child: Column(
+                              children: drawerTabs
+                                  .map(
+                                    (drawerOption) => Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: screenHeight * 0.015),
+                                      child: Card(
+                                        elevation: 3,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              screenWidth * 0.05),
+                                        ),
+                                        child: drawerListTile(
+                                          screenWidth: screenWidth,
+                                          title: drawerOption,
+                                          icon: (drawerOption ==
+                                                  "My test results")
+                                              ? Icons.equalizer_rounded
+                                              : (drawerOption == "FAQs")
+                                                  ? CupertinoIcons
+                                                      .question_square
+                                                  : (drawerOption ==
+                                                          "Send Feedback")
+                                                      ? Icons.feedback_outlined
+                                                      : CupertinoIcons
+                                                          .exclamationmark_octagon,
+                                          onTap: (drawerOption == "FAQs")
+                                              ? () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const Faq()));
+                                                }
+                                              : (drawerOption ==
+                                                      "Send Feedback")
+                                                  ? () {
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const SendFeedback()));
+                                                    }
+                                                  : () async {
+                                                      if (await checkLoggedIn()) {
+                                                        signOut();
+                                                      }
+                                                      Navigator.pushNamed(
+                                                          context, "/wt");
+                                                    },
+                                          index:
+                                              drawerTabs.indexOf(drawerOption),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Wrap(
-                        runSpacing: screenHeight / 50,
-                        children: !isAdmin
-                            ? [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    SmallSquareCard(
-                                      title: "Settings",
-                                      icon: Icons.settings_rounded,
-                                      route: "/settings",
-                                    ),
-                                    SmallSquareCard(
-                                      title: "Notifications",
-                                      icon: Icons.notifications,
-                                      route: "/notifications",
-                                    ),
-                                    SmallSquareCard(
-                                      title: "Payments",
-                                      icon: Icons.payments_rounded,
-                                      route: "/payments",
-                                    ),
-                                  ],
-                                ),
-                                LargeRectangleCard(
-                                  title: "Rewards",
-                                  icon: Icons.star_border_rounded,
-                                  route: "/rewards",
-                                ),
-                                LargeRectangleCard(
-                                  title: "About",
-                                  icon: Icons.info_rounded,
-                                  route: "/about",
-                                ),
-                                LargeRectangleCard(
-                                  title: "FAQs",
-                                  icon: Icons.question_answer_outlined,
-                                  route: "/faqs",
-                                ),
-                                LargeRectangleCard(
-                                  title: "Send Feedback",
-                                  icon: Icons.feedback_rounded,
-                                  route: "/feedback",
-                                ),
-                                LargeRectangleCard(
-                                  title: "Report a problem",
-                                  icon: Icons.report,
-                                  route: "/report",
-                                ),
-                                LargeRectangleCard(
-                                  title: "Logout",
-                                  icon: Icons.logout_rounded,
-                                  route: "/login_signup_page",
-                                ),
-                              ]
-                            : const [
-                                LargeRectangleCard(
-                                  title: "Logout",
-                                  icon: Icons.logout_rounded,
-                                  route: "/login_signup_page",
-                                ),
-                              ]),
                   ),
                 ),
               ),
-              Positioned(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_rounded),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ),
-                    ProfileSummaryCard(),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
