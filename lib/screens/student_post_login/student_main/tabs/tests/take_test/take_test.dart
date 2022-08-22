@@ -35,14 +35,37 @@ class _TakeTestState extends State<TakeTest> {
   }
 
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/mydata.json');
+    final String response =
+        await rootBundle.loadString('assets/jsons/Personality Test.json');
     final data = await json.decode(response);
-    setState(() {
-      personalityTestQuestions = data["data"];
-      if (personalityTestQuestions[0]["value"].runtimeType == List) {
-        personalityTestQuestions[0]["value"] =
-            personalityTestQuestions[0]["value"].asMap();
+
+    data["data"].forEach((element) {
+      print(element);
+      String tempQuestion = element["question"];
+      List<String> tempOptions = [];
+      element["options"].forEach((element) {
+        tempOptions.add(element);
+      });
+      double tempWeightage = element["weightage"];
+      Map<String, int> tempValue = {};
+      if (element["value"].runtimeType == List) {
+        print(element["value"].asMap());
+
+        tempValue = (element["value"] as List).asMap().map(
+          (key, value) {
+            return MapEntry(key.toString(), value);
+          },
+        );
       }
+      personalityTestQuestions.add({
+        "question": tempQuestion,
+        "options": tempOptions,
+        "weightage": tempWeightage,
+        "value": tempValue,
+      });
+    });
+    setState(() {
+      print(personalityTestQuestions);
     });
   }
 
@@ -138,7 +161,7 @@ class _TakeTestState extends State<TakeTest> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "APTITUDE TEST",
+                          "PERSONALITY TEST",
                           style: TextStyle(
                             fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
@@ -163,18 +186,10 @@ class _TakeTestState extends State<TakeTest> {
                         },
                         child: Expanded(
                           child: SingleChildScrollView(
-                            child: Column(
-                              children: personalityTestQuestions
-                                  .map(
-                                    (personalityTestQuestion) => ReasoningCard(
-                                      options:
-                                          personalityTestQuestion["options"],
-                                      question:
-                                          personalityTestQuestion["question"],
-                                      title: "Personality",
-                                    ),
-                                  )
-                                  .toList(),
+                            child: ReasoningCard(
+                              options: personalityTestQuestions[0]["options"],
+                              question: personalityTestQuestions[0]["question"],
+                              title: "Personality",
                             ),
                           ),
                         ),
