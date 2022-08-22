@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
-import 'chat.dart';
+import '../../screens/chat_interface/chat.dart';
 import 'util.dart';
 
 class UsersPage extends StatelessWidget {
@@ -30,9 +30,21 @@ class UsersPage extends StatelessWidget {
             }
 
             return ListView.builder(
-              itemCount: snapshot.data!.length,
+              itemCount: snapshot.data!
+                  .where(
+                    (element) =>
+                        element.role == types.Role.counsellor ||
+                        element.role == types.Role.expert,
+                  )
+                  .length,
               itemBuilder: (context, index) {
-                final user = snapshot.data![index];
+                final user = snapshot.data!
+                    .where(
+                      (element) =>
+                          element.role == types.Role.counsellor ||
+                          element.role == types.Role.expert,
+                    )
+                    .toList()[index];
 
                 return GestureDetector(
                   onTap: () {
@@ -46,7 +58,17 @@ class UsersPage extends StatelessWidget {
                     child: Row(
                       children: [
                         _buildAvatar(user),
-                        Text(getUserName(user)),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              getUserName(user),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(user.role.toString().split('.')[1]),
+                          ],
+                        ),
                       ],
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/college_extraction_model.dart';
+import 'package:nakshekadam/screens/chat_interface/messages.dart';
 import 'package:nakshekadam/screens/login_signup/aadhar_login.dart';
 import 'package:nakshekadam/screens/login_signup/login.dart';
 import 'package:nakshekadam/screens/login_signup/signup.dart';
@@ -20,6 +21,7 @@ import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
 import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
 import 'package:nakshekadam/services/FlyerFirebaseChat/main.dart';
+import 'package:nakshekadam/services/FlyerFirebaseChat/users.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/takeTest',
+      initialRoute: '/userstemp',
       routes: {
         '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
@@ -73,6 +75,8 @@ class MyApp extends StatelessWidget {
         '/aadharAuth': (context) => const AadharLoginPage(),
         '/postLogin': (context) => const StudentParent(),
         '/postLoginMain': (context) => const StudentMainPage(),
+        '/messages': (context) => const MessagesPage(),
+        '/userstemp': (context) => const UsersPage(),
         '/': (context) => const Splash(),
         // '/takeTest': (context) => const TakeTest(),
       },

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
-import 'chat.dart';
+import '../../screens/chat_interface/chat.dart';
 import 'firebase_options.dart';
 import 'login.dart';
 import 'users.dart';
