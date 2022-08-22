@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
@@ -183,6 +184,13 @@ void initialData(String name) async {
     "name": name,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
+
+  await FirebaseChatCore.instance.createUserInFirestore(types.User(
+    firstName: user.displayName!.split(' ')[0],
+    id: user.uid,
+    imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
+    lastName: user.displayName!.split(' ')[1],
+  ));
 }
 
 Future<bool> deviceFCMKeyOperations({bool add = false}) async {
