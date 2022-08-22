@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:nakshekadam/common_widgets/signup_dialog.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
@@ -120,7 +121,42 @@ class CounsellorDialogBox extends StatelessWidget {
                                     );
                                   } else {
                                     print("logged out");
-                                    Navigator.pushNamed(context, "/signup");
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        barrierDismissible: true,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        opaque: false,
+                                        transitionDuration:
+                                            const Duration(milliseconds: 750),
+                                        pageBuilder: (_, __, ___) =>
+                                            SignupDialogBox(
+                                          title:
+                                              "Unlock access to experts and counsellors right away by creating your account with us!",
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  if (await checkLoggedIn()) {
+                                    print("logged in");
+                                  } else {
+                                    print("logged out");
+                                    Navigator.of(context).push(
+                                      PageRouteBuilder(
+                                        barrierDismissible: true,
+                                        barrierColor:
+                                            Colors.black.withOpacity(0.5),
+                                        opaque: false,
+                                        transitionDuration:
+                                            const Duration(milliseconds: 750),
+                                        pageBuilder: (_, __, ___) =>
+                                            SignupDialogBox(
+                                          title:
+                                              "Unlock access to AI powered conversations with our very own Vidya who has been trained on 5000+ literary sources.",
+                                        ),
+                                      ),
+                                    );
                                   }
                                 }
                               },

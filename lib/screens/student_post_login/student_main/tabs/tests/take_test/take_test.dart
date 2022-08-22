@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,27 @@ class TakeTest extends StatefulWidget {
 }
 
 class _TakeTestState extends State<TakeTest> {
+  List<Map<String, dynamic>> personalityTestQuestions = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    readJson();
+  }
+
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/mydata.json');
+    final data = await json.decode(response);
+    setState(() {
+      personalityTestQuestions = data["data"];
+      if (personalityTestQuestions[0]["value"].runtimeType == List) {
+        personalityTestQuestions[0]["value"] =
+            personalityTestQuestions[0]["value"].asMap();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<double> tempDimensions = [
@@ -141,7 +164,17 @@ class _TakeTestState extends State<TakeTest> {
                         child: Expanded(
                           child: SingleChildScrollView(
                             child: Column(
-                              children: [ReasoningCard()],
+                              children: personalityTestQuestions
+                                  .map(
+                                    (personalityTestQuestion) => ReasoningCard(
+                                      options:
+                                          personalityTestQuestion["options"],
+                                      question:
+                                          personalityTestQuestion["question"],
+                                      title: "Personality",
+                                    ),
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ),

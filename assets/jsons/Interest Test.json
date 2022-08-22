@@ -1,0 +1,22 @@
+{"data":[
+{
+    "question":"Which one of the following seems the most interesting to you?",
+    "options":["How things around you work using innovation and technology?","Bartering to increase the amount of possessions you have.","Thinking and expressing your thoughts and observations in a deeper,creative and holistic way.","Serving the people of your country in positions of power.","Patriotic tales of freedom fighters.","Studying more about skills applicable in real life.","Making my money right away as studying too further ahead isn’t economically feasible"],
+    "value":[0,1,2,3,4,5,6],
+    "weightage":0.5
+}
+,
+{
+    "question":"Which subject combination seems the most appealing?",
+    "options":["Science & Maths","Maths & Economics","Literature, History & Political Silences","History, Geography & Political Sciences","Maths and Physical Education","I’d rather learn more on a specific skill","Studying anything doesn’t seem interesting to me."],
+    "value":[0,1,2,3,4,5,6],
+    "weightage":0.25
+}
+,
+{
+    "question":"Are you inclined towards a career choice?",
+    "options":["Science","Commerce and Management","Arts and Humanities","Civil Services","Defence","Vocational Courses","Jobs as soon as possible"],
+    "value":[0,1,2,3,4,5,6],
+    "weightage":0.25
+}
+]}

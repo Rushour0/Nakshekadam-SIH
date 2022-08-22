@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/screens/main/main_page.dart';
 import 'package:nakshekadam/screens/trees/components/tree_json_text.dart';
 import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/strings.dart';
@@ -104,10 +105,13 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                                             }),
                                           );
                                         } else {
-                                          Navigator.pushNamed(
-                                              context,
-                                              stringData[optionCardName][title]
-                                                  ["Popular colleges route"]);
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: ((context) => MainPage(
+                                                    tabIndex: 0,
+                                                  )),
+                                            ),
+                                          );
                                         }
                                       },
                                       child: Card(

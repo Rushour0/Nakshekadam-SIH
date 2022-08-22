@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/drawer/components/drawer_listtile.dart';
 import 'package:nakshekadam/screens/drawer/components/drawer_user_info_card.dart';
+import 'package:nakshekadam/screens/drawer/components/prelogin_info_card.dart';
 import 'package:nakshekadam/screens/drawer/drawer_tabs/faqs/faq.dart';
 import 'package:nakshekadam/screens/drawer/drawer_tabs/send_feedback/send_feedback.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
@@ -19,19 +20,18 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsel
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_cards.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_sort.dart';
 
-class CommonDrawer extends StatefulWidget {
-  const CommonDrawer({
+class PreLoginCommonDrawer extends StatefulWidget {
+  const PreLoginCommonDrawer({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CommonDrawer> createState() => _CommonDrawerState();
+  State<PreLoginCommonDrawer> createState() => _PreLoginCommonDrawerState();
 }
 
-class _CommonDrawerState extends State<CommonDrawer> {
+class _PreLoginCommonDrawerState extends State<PreLoginCommonDrawer> {
   TextEditingController _searchController = TextEditingController();
   List<String> drawerTabs = [
-    "My test results",
     "FAQs",
     "Send Feedback",
     "Report Problems",
@@ -54,7 +54,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         // leading: const SizedBox.shrink(),
-        toolbarHeight: screenHeight * 0.5,
+        toolbarHeight: screenHeight * 0.4,
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
@@ -73,7 +73,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
                   alignment: Alignment.centerLeft,
                   child: Icon(Icons.arrow_back_ios_new_rounded)),
             ),
-            const DrawerUserInfoCard()
+            const PreLoginDrawerUserInfoCard()
           ]),
         ),
       ),
@@ -123,17 +123,13 @@ class _CommonDrawerState extends State<CommonDrawer> {
                                         child: drawerListTile(
                                           screenWidth: screenWidth,
                                           title: drawerOption,
-                                          icon: (drawerOption ==
-                                                  "My test results")
-                                              ? Icons.equalizer_rounded
-                                              : (drawerOption == "FAQs")
-                                                  ? CupertinoIcons
-                                                      .question_square
-                                                  : (drawerOption ==
-                                                          "Send Feedback")
-                                                      ? Icons.feedback_outlined
-                                                      : CupertinoIcons
-                                                          .exclamationmark_octagon,
+                                          icon: (drawerOption == "FAQs")
+                                              ? CupertinoIcons.question_square
+                                              : (drawerOption ==
+                                                      "Send Feedback")
+                                                  ? Icons.feedback_outlined
+                                                  : CupertinoIcons
+                                                      .exclamationmark_octagon,
                                           onTap: (drawerOption == "FAQs")
                                               ? () {
                                                   Navigator.of(context).push(

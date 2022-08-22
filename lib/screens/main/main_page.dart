@@ -1,9 +1,11 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
 import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
+import 'package:nakshekadam/common_widgets/drawer/prelogin_drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
@@ -13,7 +15,11 @@ import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart
 import 'package:nakshekadam/screens/main/tabs/tests_page.dart/test_page.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({
+    Key? key,
+    this.tabIndex = 2,
+  }) : super(key: key);
+  final int tabIndex;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -22,7 +28,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  var _bottomNavIndex = 2;
+  int _bottomNavIndex = 2;
   late List<StatefulWidget> bodies;
   late TabController _tabController;
 
@@ -37,9 +43,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    _bottomNavIndex = widget.tabIndex;
     _tabController = TabController(
       animationDuration: const Duration(milliseconds: 0),
-      initialIndex: 2,
+      initialIndex: widget.tabIndex,
       length: 5,
       vsync: this,
     );
@@ -62,9 +69,16 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [MediaQuery.of(context).size.width,MediaQuery.of(context).size.height];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0];
+    final List<double> tempDimensions = [
+      MediaQuery.of(context).size.width,
+      MediaQuery.of(context).size.height
+    ];
+    final double screenHeight = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[0]
+        : tempDimensions[1];
+    final double screenWidth = tempDimensions[0] > tempDimensions[1]
+        ? tempDimensions[1]
+        : tempDimensions[0];
 
     TextStyle navigationStyle = TextStyle(
       fontFamily: "DM Sans",
@@ -75,7 +89,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       key: scaffoldKey,
-      endDrawer: CommonDrawer(),
+      endDrawer: PreLoginCommonDrawer(),
       appBar: commonAppBar(
         screenWidth: screenWidth,
         screenHeight: screenHeight,
@@ -195,8 +209,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           Positioned(
             top: screenHeight / 7,
             left: 0,
-            width: tempDimensions[0] > tempDimensions[1] ? tempDimensions[1] : tempDimensions[0],
-            height: tempDimensions[0] > tempDimensions[1] ? tempDimensions[0] : tempDimensions[1] * 0.9,
+            width: tempDimensions[0] > tempDimensions[1]
+                ? tempDimensions[1]
+                : tempDimensions[0],
+            height: tempDimensions[0] > tempDimensions[1]
+                ? tempDimensions[0]
+                : tempDimensions[1] * 0.9,
             child: TabBarView(
               // viewportFraction: 0.9,
               controller: _tabController,

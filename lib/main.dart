@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       initialRoute: '/userstemp',
       routes: {
-        '/main': (context) => const MainPage(),
+        '/main': (context) => const MainPage(
+              tabIndex: 1,
+            ),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
