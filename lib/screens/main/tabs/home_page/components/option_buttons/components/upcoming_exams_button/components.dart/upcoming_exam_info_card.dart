@@ -28,7 +28,9 @@ class UpcomingExamInfoCard extends StatelessWidget {
         ? tempDimensions[1]
         : tempDimensions[0];
     return Card(
-      color: (index % 2 == 0) ? COLOR_THEME["backgroundComponents2"] : COLOR_THEME["backgroundComponents0"],
+      color: (index % 2 == 0)
+          ? COLOR_THEME["backgroundComponents2"]
+          : COLOR_THEME["backgroundComponents0"],
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(screenWidth * 0.04),
@@ -98,23 +100,23 @@ class UpcomingExamInfoCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return Container(
-                      height: screenHeight * 0.5,
-                      width: screenWidth * 0.9,
-                      child: WebView(
-                        initialUrl: upcomingExam.link,
-                        zoomEnabled: false,
-                        javascriptMode: JavascriptMode.unrestricted,
-                        onPageStarted: (url) async {},
-                        onWebViewCreated: (controller) {
-                          webViewController = controller;
-                        },
-                      ),
-                    );
-                  }),
-                );
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return Container(
+                        height: screenHeight * 0.5,
+                        width: screenWidth * 0.9,
+                        child: WebView(
+                          initialUrl: upcomingExam.link,
+                          zoomEnabled: false,
+                          javascriptMode: JavascriptMode.unrestricted,
+                          onPageStarted: (url) async {},
+                          onWebViewCreated: (controller) {
+                            webViewController = controller;
+                          },
+                        ),
+                      );
+                    }),
+                  );
                 },
                 child: upcomingExamsCardButton(screenHeight, screenWidth),
               ),

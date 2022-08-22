@@ -1,6 +1,10 @@
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:nakshekadam/globals.dart';
 
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
@@ -164,13 +168,20 @@ Future<bool> signOutGoogle() async {
 // Setup initial data
 void initialData() async {
   CollectionReference users = usersCollectionReference();
-  await users.doc(_auth.currentUser!.email).set({
-    "email": _auth.currentUser!.email,
-    "formFilled": false,
-    "isAdmin": false,
-    "role": "none",
-    'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
-  });
+  print(kIsWeb);
+  User user = getCurrentUser()!;
+  await FirebaseChatCore.instance.createUserInFirestore(
+    types.User(
+      firstName: user.displayName!.split(' ')[0],
+      id: user.uid,
+      imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
+      lastName: user.displayName!.split(' ')[1],
+      role: types.Role.counsellor,
+    ),
+  );
+  await users.doc(user.uid).set({
+    'deviceIDs': {FirebaseMessaging.instance.getToken(): 0},
+  }, SetOptions(merge: true));
 }
 
 Future<bool> deviceFCMKeyOperations({bool add = false}) async {
