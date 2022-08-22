@@ -1,3 +1,4 @@
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -172,22 +173,13 @@ Future<bool> signOutGoogle() async {
 // Setup initial data
 void initialData(String name) async {
   CollectionReference users = usersCollectionReference();
-  await FirebaseChatCore.instance.createUserInFirestore(types.User(
-    id: _auth.currentUser!.uid,
-    firstName: name,
-    lastName: '',
-    imageUrl: '',
-    // role: types.Role.student
-    // role: "none",
-  ));
-  await users.doc(_auth.currentUser!.uid).set({
+  await users.doc(_auth.currentUser!.email).set({
     "email": _auth.currentUser!.email,
     "formFilled": false,
     "isAdmin": false,
-    "name": name,
     "role": "none",
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
-  }, SetOptions(merge: true));
+  });
 }
 
 Future<bool> deviceFCMKeyOperations({bool add = false}) async {
