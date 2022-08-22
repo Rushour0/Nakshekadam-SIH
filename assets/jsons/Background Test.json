@@ -1,0 +1,23 @@
+{"data":[
+{
+    "question":"The range of percentage marks you scored in your last graduating class?",
+    "options":["Above 75","Between 60 to 75","Below 60"],
+    "value":{"0":[0,1,2,3,4],"1":[1,2,4],"2":[5,6]},
+    "weightage":0.35
+}
+,
+{
+    "question":"Most of your extra curricular achievements and activities have been in which of these?",
+    "options":["Scientific Olympiads","Management and finance","Language, oration and debate","Social causes","Physical fitness and valor","Learning and implementing things in shorter spans of times","Doing odd jobs"],
+    "value":[0,1,2,3,4,5,6],
+    "weightage":0.40
+}
+,
+
+{
+    "question":"Your parents' annual income is below 3L",
+    "options":["Yes","No"],
+    "value":{"0":[5,6],"1":[0,1,2,3,4]},
+    "weightage":0.25
+}
+]}

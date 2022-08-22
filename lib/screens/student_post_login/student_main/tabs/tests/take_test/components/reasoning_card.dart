@@ -2,18 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:nakshekadam/globals.dart';
 
 class ReasoningCard extends StatefulWidget {
-  const ReasoningCard({Key? key}) : super(key: key);
+  const ReasoningCard({
+    Key? key,
+    required this.options,
+    required this.question,
+    required this.title,
+  }) : super(key: key);
+  final List<String> options;
+  final String question;
+  final String title;
 
   @override
   State<ReasoningCard> createState() => _ReasoningCardState();
 }
 
 class _ReasoningCardState extends State<ReasoningCard> {
-  final List<String> options = ["21", "41", "57", "27"];
-
   String? selectedOption;
 
   @override
@@ -32,7 +39,7 @@ class _ReasoningCardState extends State<ReasoningCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Reasoning :",
+          "${widget.title} :",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontFamily: "DM Sans",
@@ -52,7 +59,7 @@ class _ReasoningCardState extends State<ReasoningCard> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                "Q1. Look at this series: 53, 53, 40, 40, 27, 27, ... What number should come next?",
+                "Q ${widget.question}",
                 style: TextStyle(
                   fontFamily: "DM Sans",
                   fontSize: screenWidth * 0.05,
@@ -61,7 +68,7 @@ class _ReasoningCardState extends State<ReasoningCard> {
                 ),
               ),
               Column(
-                children: options
+                children: widget.options
                     .map(
                       (option) => RadioListTile(
                           title: Text(

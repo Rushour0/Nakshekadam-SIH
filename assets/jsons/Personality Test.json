@@ -1,0 +1,91 @@
+{
+    "data": [
+        {
+            "question": "What would your friends best describe you as?",
+            "options": [
+                "Curious",
+                "Efficient",
+                "Creative",
+                "Leader",
+                "Confrontational",
+                "Resourceful",
+                "Money-minded"
+            ],
+            "value": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "weightage": 0.25
+        },
+        {
+            "question": "A yellow sunflower is growing in the park you usually play at. What’s your first question when looking at it?",
+            "options": [
+                "Why is it growing in the direction of the sun?",
+                "How much could you sell this flower for?",
+                "How beautiful it would look once it's fully grown.",
+                "Whether this flower needs to be protected from trampling children around you.",
+                "How beautiful our national flower lotus would look here.",
+                "You’d learn practical usages surrounding gardening to grow these.",
+                "You don’t think of much and would want to return to your day and its practical likelihoods."
+            ],
+            "value": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "weightage": 0.15
+        },
+        {
+            "question": "Imagine you are a part of a product production and launch, what part do you think you would do?",
+            "options": [
+                "Developing and production",
+                "Budgeting and accounting",
+                "Ideating and marketing",
+                "Leading the team",
+                "Involving the product in militarian usages",
+                "Learning a skill to complete a portion of the project",
+                "Do manual tasks allocated for perks"
+            ],
+            "value": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "weightage": 0.25
+        },
+        {
+            "question": "Do you think studying too high up for you isn’t possible?",
+            "options": [
+                "Yes",
+                "No"
+            ],
+            "value": {
+                "0": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "1": [
+                    5,
+                    6
+                ]
+            },
+            "weightage": 0.35
+        }
+    ]
+}

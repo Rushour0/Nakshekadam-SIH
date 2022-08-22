@@ -157,7 +157,7 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
                             alignment: Alignment.topRight,
                             child: TextButton(
                               onPressed: () {
-                                // Navigator.pushNamed(context, '/login');
+                                Navigator.pushNamed(context, '/postLogin');
                               },
                               style: ButtonStyle(
                                 overlayColor: MaterialStateProperty.all(
