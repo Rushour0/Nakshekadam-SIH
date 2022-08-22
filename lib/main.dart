@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/userstemp',
+      initialRoute: '/takeTest',
       routes: {
         '/main': (context) => const MainPage(
               tabIndex: 1,
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         '/messages': (context) => const MessagesPage(),
         '/userstemp': (context) => const UsersPage(),
         '/': (context) => const Splash(),
-        // '/takeTest': (context) => const TakeTest(),
+        '/takeTest': (context) => const TakeTest(),
       },
     );
   }

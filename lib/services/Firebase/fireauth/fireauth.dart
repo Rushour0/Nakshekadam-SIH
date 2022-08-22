@@ -175,11 +175,13 @@ Future<bool> signOutGoogle() async {
 void initialData(String name) async {
   CollectionReference users = usersCollectionReference();
   User user = getCurrentUser()!;
+  user.updateDisplayName(name);
   await users.doc(_auth.currentUser!.uid).set({
     "email": _auth.currentUser!.email,
     "formFilled": false,
     "isAdmin": false,
     "role": "none",
+    "name": name,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
 
