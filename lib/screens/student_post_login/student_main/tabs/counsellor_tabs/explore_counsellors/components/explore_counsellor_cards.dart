@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
@@ -9,7 +7,12 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsel
 import 'package:readmore/readmore.dart';
 
 class ExploreCounsellorCard extends StatefulWidget {
-  const ExploreCounsellorCard({Key? key}) : super(key: key);
+  const ExploreCounsellorCard({
+    Key? key,
+    // required this.data,
+  }) : super(key: key);
+
+  // final ExplorePerson data;
 
   @override
   State<ExploreCounsellorCard> createState() => _ExploreCounsellorCardState();
@@ -19,16 +22,8 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
   TextEditingController _writeMessageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [
-      MediaQuery.of(context).size.width,
-      MediaQuery.of(context).size.height
-    ];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[0]
-        : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[1]
-        : tempDimensions[0];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(

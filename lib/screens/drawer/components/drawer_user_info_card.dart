@@ -121,7 +121,8 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
                       child: GestureDetector(
                         onTap: () async {
                           if (await checkLoggedIn()) {
-                            signOut();
+                            await signOut();
+                            await signOutGoogle();
                           }
                           Navigator.pushNamed(context, "/wt");
                         },

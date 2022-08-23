@@ -88,6 +88,7 @@ class _ChatPageState extends State<ChatPage> {
                             "student"
                         ? types.Role.student
                         : types.Role.parent,
+                    imageUrl: FirebaseChatCore.instance.firebaseUser?.photoURL,
                   ),
                 );
               }),
