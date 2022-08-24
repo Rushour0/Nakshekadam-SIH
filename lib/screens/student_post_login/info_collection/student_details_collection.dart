@@ -114,7 +114,7 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
           onPressed: () async {
             if (nameController.text == "" ||
                 marksController.text == "" ||
-                (interestDomainEditor.isNotEmpty ||
+                (interestDomainEditor.isNotEmpty &&
                     interestDomainEditor[0].text == "") ||
                 selectedClass.text == "" ||
                 selectedSubjects.text == "") {
@@ -157,8 +157,9 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
             }
             await userDocumentReference().update({
               "formFilled": true,
+              "question": question.indexOf(selectedQuestion.text) + 1,
             });
-            // print("qq : $a");
+            print("qq : ");
 
             Navigator.of(context).push(
               MaterialPageRoute(

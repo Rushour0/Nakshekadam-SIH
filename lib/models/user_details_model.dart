@@ -6,21 +6,25 @@ class UserDetailsModelOne {
   String role = "";
   String name = "";
   String email = "";
+  int question = 0;
   UserDetailsModelOne({
     required this.role,
     required this.name,
     required this.email,
+    required this.question,
   });
 
   UserDetailsModelOne copyWith({
     String? role,
     String? name,
     String? email,
+    int? question,
   }) {
     return UserDetailsModelOne(
       role: role ?? this.role,
       name: name ?? this.name,
       email: email ?? this.email,
+      question: question ?? this.question,
     );
   }
 
@@ -29,6 +33,7 @@ class UserDetailsModelOne {
       'role': role,
       'name': name,
       'email': email,
+      'question': question,
     };
   }
 
@@ -36,10 +41,12 @@ class UserDetailsModelOne {
     userDetailsModelOne.email = map['email'];
     userDetailsModelOne.role = map['role'];
     userDetailsModelOne.name = map['name'];
+    userDetailsModelOne.question = map['question'];
     return UserDetailsModelOne(
       role: map['role'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
+      question: map['question']?.toInt() ?? 0,
     );
   }
 
@@ -54,8 +61,9 @@ class UserDetailsModelOne {
       UserDetailsModelOne.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'userDetailsModelOne(role: $role, name: $name, email: $email)';
+  String toString() {
+    return 'UserDetailsModelOne(role: $role, name: $name, email: $email, question: $question)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -64,11 +72,14 @@ class UserDetailsModelOne {
     return other is UserDetailsModelOne &&
         other.role == role &&
         other.name == name &&
-        other.email == email;
+        other.email == email &&
+        other.question == question;
   }
 
   @override
-  int get hashCode => role.hashCode ^ name.hashCode ^ email.hashCode;
+  int get hashCode {
+    return role.hashCode ^ name.hashCode ^ email.hashCode ^ question.hashCode;
+  }
 }
 
 class UserDetailsModelTwo {

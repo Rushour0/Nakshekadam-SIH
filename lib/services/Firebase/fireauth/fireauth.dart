@@ -190,6 +190,7 @@ void initialData(String name) async {
     "isAdmin": false,
     "role": "none",
     "name": name,
+    "question": 0,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   }, SetOptions(merge: true));
 
