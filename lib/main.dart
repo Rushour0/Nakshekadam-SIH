@@ -13,6 +13,7 @@ import 'package:nakshekadam/screens/splash/splash.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_parent.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/student_main_page.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/display_test_result.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/take_test.dart';
 import 'package:nakshekadam/screens/trees/tree_from_json.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
@@ -63,11 +64,9 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/takeTest',
+      initialRoute: '/displayTestResult',
       routes: {
-        '/main': (context) => const MainPage(
-              tabIndex: 1,
-            ),
+        '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),
         '/login': (context) => const Login(),
         '/aadhar': (context) => const AadharLoginPage(),
@@ -80,7 +79,10 @@ class MyApp extends StatelessWidget {
         '/messages': (context) => const MessagesPage(),
         '/userstemp': (context) => const UsersPage(),
         '/': (context) => const Splash(),
-        '/takeTest': (context) => const TakeTest(),
+        '/displayTestResult': (context) => const DisplayTestResult(),
+        '/takeTest': (context) => const TakeTest(
+              testName: "Personality Test",
+            ),
       },
     );
   }

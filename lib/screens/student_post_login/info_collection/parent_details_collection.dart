@@ -69,12 +69,12 @@ class _ParentDetailsCollectionState extends State<ParentDetailsCollection> {
             ),
           ),
           onPressed: () async {
-            if (nameController.text == "" &&
-                marksController.text == "" &&
-                fathersEducationController.text == "" &&
-                mothersEducationController.text == "" &&
-                fathersOccupationController.text == "" &&
-                mothersOccupationController.text == "" &&
+            if (nameController.text == "" ||
+                marksController.text == "" ||
+                fathersEducationController.text == "" ||
+                mothersEducationController.text == "" ||
+                fathersOccupationController.text == "" ||
+                mothersOccupationController.text == "" ||
                 annualIncomeController.text == "") {
               return;
             }

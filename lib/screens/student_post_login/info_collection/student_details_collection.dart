@@ -112,11 +112,11 @@ class _StudentDetailsCollectionState extends State<StudentDetailsCollection> {
             ),
           ),
           onPressed: () async {
-            if (nameController.text == "" &&
-                marksController.text == "" &&
-                (interestDomainEditor.isNotEmpty &&
-                    interestDomainEditor[0].text == "") &&
-                selectedClass.text == "" &&
+            if (nameController.text == "" ||
+                marksController.text == "" ||
+                (interestDomainEditor.isNotEmpty ||
+                    interestDomainEditor[0].text == "") ||
+                selectedClass.text == "" ||
                 selectedSubjects.text == "") {
               return;
             }

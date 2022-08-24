@@ -11,10 +11,12 @@ class ReasoningCard extends StatefulWidget {
     required this.options,
     required this.question,
     required this.title,
+    required this.answerEditor,
   }) : super(key: key);
   final List<String> options;
   final String question;
   final String title;
+  final TextEditingController answerEditor;
 
   @override
   State<ReasoningCard> createState() => _ReasoningCardState();
@@ -83,7 +85,11 @@ class _ReasoningCardState extends State<ReasoningCard> {
                           groupValue: selectedOption,
                           onChanged: (value) {
                             selectedOption = value.toString();
-                            setState(() {});
+                            setState(() {
+                              widget.answerEditor.text = widget.options
+                                  .indexOf(selectedOption!)
+                                  .toString();
+                            });
                           }),
                     )
                     .toList(),
