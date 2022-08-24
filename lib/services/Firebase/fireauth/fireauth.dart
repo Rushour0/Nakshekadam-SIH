@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
@@ -176,6 +177,13 @@ void initialData(String name) async {
   CollectionReference users = usersCollectionReference();
   User user = getCurrentUser()!;
   user.updateDisplayName(name);
+  await FirebaseChatCore.instance.createUserInFirestore(types.User(
+    firstName: user.displayName!.split(' ')[0],
+    id: user.uid,
+    imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
+    lastName: user.displayName!.split(' ')[1],
+  ));
+
   await users.doc(_auth.currentUser!.uid).set({
     "email": _auth.currentUser!.email,
     "formFilled": false,
@@ -183,14 +191,16 @@ void initialData(String name) async {
     "role": "none",
     "name": name,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
-  });
+  }, SetOptions(merge: true));
 
-  await FirebaseChatCore.instance.createUserInFirestore(types.User(
-    firstName: user.displayName!.split(' ')[0],
-    id: user.uid,
-    imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
-    lastName: user.displayName!.split(' ')[1],
-  ));
+  await users.doc(_auth.currentUser!.uid).update({
+    "email": _auth.currentUser!.email,
+    "formFilled": false,
+    "isAdmin": false,
+    "role": "none",
+    "name": name,
+    'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
+  });
 }
 
 Future<bool> deviceFCMKeyOperations({bool add = false}) async {

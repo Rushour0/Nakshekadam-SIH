@@ -71,7 +71,6 @@ class _ChatPageState extends State<ChatPage> {
               initialData: const [],
               stream: FirebaseChatCore.instance.messages(snapshot.data!),
               builder: (context, snapshot) {
-                print(snapshot.data!);
                 return Chat(
                   showUserAvatars: true,
                   theme: DefaultChatTheme(
@@ -89,6 +88,7 @@ class _ChatPageState extends State<ChatPage> {
                             "student"
                         ? types.Role.student
                         : types.Role.parent,
+                    imageUrl: FirebaseChatCore.instance.firebaseUser?.photoURL,
                   ),
                 );
               }),

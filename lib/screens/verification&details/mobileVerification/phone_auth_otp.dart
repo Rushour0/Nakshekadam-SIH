@@ -244,7 +244,7 @@ class _PhoneAuthOtpState extends State<PhoneAuthOtp> {
                                           ),
                                         );
                                       }
-                                      userDocumentReference().update({
+                                      await userDocumentReference().update({
                                         'mobile': widget.mobileNumber,
                                       });
                                       Navigator.pushNamedAndRemoveUntil(context,

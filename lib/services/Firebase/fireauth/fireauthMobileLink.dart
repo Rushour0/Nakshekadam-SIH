@@ -23,14 +23,13 @@ Future<String> linkMobile(PhoneAuthCredential credential) async {
     }
   }
   updateInitialData();
-  
+
   return "0";
 }
 
 void updateInitialData() async {
   CollectionReference users = usersCollectionReference();
-  await users.doc(_auth.currentUser!.email).update({
+  await users.doc(_auth.currentUser!.uid).set({
     "phone": _auth.currentUser!.phoneNumber,
-  });
+  }, SetOptions(merge: true));
 }
-
