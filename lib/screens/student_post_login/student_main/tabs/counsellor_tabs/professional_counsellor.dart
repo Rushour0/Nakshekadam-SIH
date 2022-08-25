@@ -11,9 +11,11 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsel
 class ProfessionalCounsellor extends StatelessWidget {
   const ProfessionalCounsellor({
     Key? key,
+    required this.title,
     required this.optionList,
   }) : super(key: key);
   final List<String> optionList;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class ProfessionalCounsellor extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: screenHeight * 0.07),
                         child: Text(
-                          "PROFESSIONAL COUNSELLORS",
+                          title.toUpperCase(),
                           style: TextStyle(
                             fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.062,

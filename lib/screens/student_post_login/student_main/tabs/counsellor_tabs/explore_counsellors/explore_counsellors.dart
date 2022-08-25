@@ -119,19 +119,25 @@ class _ExploreCounsellorState extends State<ExploreCounsellor> {
                             padding: EdgeInsets.symmetric(
                                 vertical: screenHeight * 0.02),
                             child: StreamBuilder<
-                                QuerySnapshot<Map<String, dynamic>>>(
+                                DocumentSnapshot<Map<String, dynamic>>>(
                               stream: firestore
                                   .collection('explore_data')
+                                  .doc(widget.title
+                                      .split(' ')[1]
+                                      .substring(0,
+                                          widget.title.split(' ')[1].length - 1)
+                                      .toLowerCase())
                                   .snapshots(),
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.active) {
                                   if (snapshot.hasData) {
-                                    return Column(
-                                      children: snapshot.data!.docs.map((doc) {
-                                        Map<String, dynamic> docData =
-                                            doc.data();
-                                        return docData.keys.map((uid) {
+                                    try {
+                                      Map<String, dynamic> docData =
+                                          snapshot.data!.data()!;
+
+                                      return Column(
+                                        children: docData.keys.map((uid) {
                                           Map<String, dynamic> rawData =
                                               docData[uid];
 
@@ -144,9 +150,19 @@ class _ExploreCounsellorState extends State<ExploreCounsellor> {
                                           return ExploreCounsellorCard(
                                             data: data,
                                           );
-                                        }).toList();
-                                      }).toList()[0],
-                                    );
+                                        }).toList(),
+                                      );
+                                    } catch (e) {
+                                      print(e);
+                                      return Center(
+                                        child: Text(
+                                          "No data found",
+                                          style: TextStyle(
+                                              fontFamily: 'DM Sans',
+                                              fontSize: screenWidth * 0.05),
+                                        ),
+                                      );
+                                    }
                                   }
                                 }
                                 return Center(

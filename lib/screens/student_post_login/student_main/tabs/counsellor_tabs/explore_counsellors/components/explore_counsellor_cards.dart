@@ -48,11 +48,11 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                 Container(
                   width: screenWidth / 7,
                   height: screenWidth / 7,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: NetworkImage(
-                        DEFAULT_PROFILE_PICTURE,
+                        widget.data.imageUrl,
                       ),
                       fit: BoxFit.contain,
                     ),

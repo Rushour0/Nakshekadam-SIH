@@ -103,15 +103,17 @@ class CounsellorDialogBox extends StatelessWidget {
                                         builder: (context) =>
                                             (title.toLowerCase() ==
                                                     "professional counsellors")
-                                                ? const ProfessionalCounsellor(
-                                                    optionList: [
+                                                ? ProfessionalCounsellor(
+                                                    title: title,
+                                                    optionList: const [
                                                       "Explore Counsellors",
                                                       "Connected Counsellors",
                                                       "Message history"
                                                     ],
                                                   )
-                                                : const ProfessionalCounsellor(
-                                                    optionList: [
+                                                : ProfessionalCounsellor(
+                                                    title: title,
+                                                    optionList: const [
                                                       "Explore Experts",
                                                       "Connected Experts",
                                                       "Message history"
