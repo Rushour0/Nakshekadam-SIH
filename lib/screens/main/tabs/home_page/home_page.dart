@@ -54,7 +54,9 @@ class HomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
-                    child: const CustomCarouselSlider(imagePath: BANNER_IMAGE_DIRECTORY,),
+                    child: const CustomCarouselSlider(
+                      imagePath: BANNER_IMAGE_DIRECTORY,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: screenHeight * 0.15),

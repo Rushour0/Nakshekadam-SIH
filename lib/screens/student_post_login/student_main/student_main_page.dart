@@ -7,12 +7,9 @@ import 'package:nakshekadam/common_widgets/drawer/drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/user_details_model.dart';
-import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/counsellor_page.dart';
-import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
-import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart';
-import 'package:nakshekadam/screens/main/tabs/tests_page.dart/test_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/home_page/student_home_page.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/notifications/notifications.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/student_tests.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -164,7 +161,7 @@ class _StudentMainPageState extends State<StudentMainPage>
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                backgroundColor: COLOR_THEME['tertiary'],
+                                backgroundColor: COLOR_THEME['primary'],
                                 centerTitle: true,
                               ),
                               body: Column(
@@ -323,7 +320,7 @@ class _StudentMainPageState extends State<StudentMainPage>
                 // Put FIVE pages in the tab bar view
 
                 // NoItemsInTab(text: "0"),
-                NoItemsInTab(text: "0"),
+                NotificationsPage(),
                 StudentTestsPage(),
                 StudentHomePage(),
                 CounsellorPage(),
