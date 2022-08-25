@@ -16,7 +16,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
-  );
+  )..repeat(period: Duration(seconds: 2));
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
@@ -53,6 +53,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     super.initState();
     _controller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
+        await Future.delayed(Duration(seconds: 2));
         await check();
         return;
       }

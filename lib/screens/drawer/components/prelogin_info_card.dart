@@ -85,7 +85,8 @@ class _PreLoginDrawerUserInfoCardState
                           horizontal: screenWidth * 0.1),
                       child: GestureDetector(
                         onTap: () async {
-                          Navigator.pushNamed(context, "/wt");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, "/wt", ((route) => false));
                         },
                         child: Text(
                           "Sign-Up/Login",

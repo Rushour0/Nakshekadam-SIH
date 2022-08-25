@@ -123,8 +123,11 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
                           if (await checkLoggedIn()) {
                             await signOut();
                             await signOutGoogle();
+                            UserDetailsModelOne.clear();
+                            UserDetailsModelTwo.clear();
                           }
-                          Navigator.pushNamed(context, "/wt");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, "/wt", ((route) => false));
                         },
                         child: Text(
                           "Logout",
