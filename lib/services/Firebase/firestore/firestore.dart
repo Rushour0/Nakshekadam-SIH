@@ -22,3 +22,20 @@ Future<void> deleteDocumentByReference(DocumentReference reference) async {
   await firestore.runTransaction(
       (Transaction transaction) async => transaction.delete(reference));
 }
+
+Future<void> sendRequest({
+  required String professionalId,
+  required String requestContent,
+  required String userId,
+}) async {
+  await firestore
+      .collection('all_requests')
+      .doc(professionalId)
+      .collection('requests')
+      .doc(userId)
+      .set({
+    'requestContent': requestContent,
+    'requestStatus': 'pending',
+  });
+  return;
+}

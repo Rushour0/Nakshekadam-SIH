@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/classes/explore_person.dart';
 
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
+import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_cards.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_sort.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
 class ExploreCounsellor extends StatefulWidget {
   const ExploreCounsellor({
@@ -114,20 +118,57 @@ class _ExploreCounsellorState extends State<ExploreCounsellor> {
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: screenHeight * 0.02),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: screenHeight * 0.05),
-                                  child: ExploreCounsellorCard(),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: screenHeight * 0.05),
-                                  child: ExploreCounsellorCard(),
-                                ),
-                              ],
+                            child: StreamBuilder<
+                                QuerySnapshot<Map<String, dynamic>>>(
+                              stream: firestore
+                                  .collection('explore_data')
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.active) {
+                                  if (snapshot.hasData) {
+                                    return Column(
+                                      children: snapshot.data!.docs.map((doc) {
+                                        Map<String, dynamic> docData =
+                                            doc.data();
+                                        return docData.keys.map((uid) {
+                                          Map<String, dynamic> rawData =
+                                              docData[uid];
+
+                                          rawData.putIfAbsent('uid', () => uid);
+                                          final ExplorePerson data =
+                                              ExplorePerson.fromJson(
+                                            rawData,
+                                          );
+                                          print(data);
+                                          return ExploreCounsellorCard(
+                                            data: data,
+                                          );
+                                        }).toList();
+                                      }).toList()[0],
+                                    );
+                                  }
+                                }
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                      color: COLOR_THEME['primary']),
+                                );
+                              },
                             ),
+                            //  Column(
+                            //   children: [
+                            //     Padding(
+                            //       padding: EdgeInsets.only(
+                            //           bottom: screenHeight * 0.05),
+                            //       child: ExploreCounsellorCard(),
+                            //     ),
+                            //     Padding(
+                            //       padding: EdgeInsets.only(
+                            //           bottom: screenHeight * 0.05),
+                            //       child: ExploreCounsellorCard(),
+                            //     ),
+                            //   ],
+                            // ),
                           ),
 
                           // Padding(
