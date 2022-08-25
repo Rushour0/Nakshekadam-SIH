@@ -16,9 +16,10 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> with TickerProviderStateMixin {
+  bool isFirst = true;
   late final AnimationController _controller = AnimationController(
     vsync: this,
-  )..repeat(period: Duration(seconds: 2));
+  );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
@@ -58,9 +59,12 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller.addStatusListener((status) async {
-      if (status == AnimationStatus.completed) {
-        await Future.delayed(Duration(seconds: 2));
-        await check();
+      if (status == AnimationStatus.forward) {
+        if (isFirst) {
+          isFirst = false;
+          await Future.delayed(Duration(seconds: 5), () async => await check());
+        }
+
         return;
       }
     });
@@ -78,29 +82,26 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: COLOR_THEME['background'],
-      body: ScaleTransition(
-        scale: _animation,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.width / 2,
-                child: Lottie.network(
-                  'https://nakshekadam.rushour0.repl.co/lottieJson',
-                  fit: BoxFit.contain,
-                  controller: _controller,
-                  onLoaded: (composition) {
-                    _controller
-                      ..duration = composition.duration
-                      ..forward();
-                  },
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.width / 2,
+              child: Lottie.network(
+                'https://nakshekadam.rushour0.repl.co/lottieJson',
+                fit: BoxFit.contain,
+                controller: _controller,
+                onLoaded: (composition) {
+                  _controller
+                    ..duration = composition.duration
+                    ..repeat();
+                },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

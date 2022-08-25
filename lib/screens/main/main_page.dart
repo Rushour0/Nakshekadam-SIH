@@ -9,6 +9,7 @@ import 'package:nakshekadam/common_widgets/drawer/prelogin_drawer.dart';
 import 'package:nakshekadam/common_widgets/no_items.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
+import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_card_dialog.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/counsellor_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/home_page.dart';
 import 'package:nakshekadam/screens/main/tabs/resources_page/resources_page.dart';
@@ -126,32 +127,63 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // Padding(
-            //   padding: EdgeInsets.only(bottom: screenHeight * 0.01),
-            //   child: _bottomNavIndex != 3
-            //       ? FloatingActionButton(
-            //           backgroundColor: COLOR_THEME['floatingActionButton'],
-            //           onPressed: () {},
-            //           child: Icon(
-            //             Icons.chat,
-            //           ),
-            //         )
-            //       : FloatingActionButton.extended(
-            //           label: Text(
-            //             "Chat with our AI Counsellors",
-            //             style: TextStyle(
-            //               fontSize: screenWidth * 0.04,
-            //               fontFamily: "DM Sans",
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //           backgroundColor: COLOR_THEME['floatingActionButton'],
-            //           onPressed: () {},
-            //           icon: Icon(
-            //             Icons.chat,
-            //           ),
-            //         ),
-            // ),
+            Padding(
+              padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+              child: _bottomNavIndex != 0
+                  ? _bottomNavIndex != 3
+                      ? FloatingActionButton(
+                          backgroundColor: COLOR_THEME['primary'],
+                          onPressed: () async {
+                            await Navigator.of(context).push(
+                              PageRouteBuilder(
+                                barrierDismissible: true,
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                opaque: false,
+                                transitionDuration:
+                                    const Duration(milliseconds: 750),
+                                pageBuilder: (_, __, ___) =>
+                                    CounsellorDialogBox(
+                                  title: 'Vidya Bot',
+                                ),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            Icons.chat,
+                          ),
+                        )
+                      : FloatingActionButton.extended(
+                          label: Text(
+                            "Chat with our AI Counsellors",
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.04,
+                              fontFamily: "DM Sans",
+                              color: Colors.white,
+                            ),
+                          ),
+                          backgroundColor: COLOR_THEME['primary'],
+                          onPressed: () async {
+                            await Navigator.of(context).push(
+                              PageRouteBuilder(
+                                barrierDismissible: true,
+                                barrierColor: Colors.black.withOpacity(0.5),
+                                opaque: false,
+                                transitionDuration:
+                                    const Duration(milliseconds: 750),
+                                pageBuilder: (_, __, ___) =>
+                                    CounsellorDialogBox(
+                                  title: 'Vidya Bot',
+                                ),
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.chat,
+                          ),
+                        )
+                  : null,
+            ),
+            Divider(),
             CustomNavigationBar(
               selectedColor: COLOR_THEME['bottomNavigationSelected'],
               currentIndex: _bottomNavIndex,

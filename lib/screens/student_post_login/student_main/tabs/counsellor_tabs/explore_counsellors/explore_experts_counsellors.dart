@@ -10,18 +10,19 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsel
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/components/explore_counsellor_sort.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
-class ExploreCounsellor extends StatefulWidget {
-  const ExploreCounsellor({
+class ExploreExpertCounsellor extends StatefulWidget {
+  const ExploreExpertCounsellor({
     Key? key,
     required this.title,
   }) : super(key: key);
   final String title;
 
   @override
-  State<ExploreCounsellor> createState() => _ExploreCounsellorState();
+  State<ExploreExpertCounsellor> createState() =>
+      _ExploreExpertCounsellorState();
 }
 
-class _ExploreCounsellorState extends State<ExploreCounsellor> {
+class _ExploreExpertCounsellorState extends State<ExploreExpertCounsellor> {
   TextEditingController _searchController = TextEditingController();
   Map<String, bool> domainData = {
     "STEM": false,

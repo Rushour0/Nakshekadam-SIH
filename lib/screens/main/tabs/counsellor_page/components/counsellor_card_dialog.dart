@@ -103,7 +103,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                         builder: (context) =>
                                             (title.toLowerCase() ==
                                                     "professional counsellors")
-                                                ? ProfessionalCounsellor(
+                                                ? CounsellorORExpert(
                                                     title: title,
                                                     optionList: const [
                                                       "Explore Counsellors",
@@ -111,7 +111,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                                       "Message history"
                                                     ],
                                                   )
-                                                : ProfessionalCounsellor(
+                                                : CounsellorORExpert(
                                                     title: title,
                                                     optionList: const [
                                                       "Explore Experts",
