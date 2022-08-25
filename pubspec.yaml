@@ -61,6 +61,7 @@ dependencies:
   shared_preferences: ^2.0.15
   sms_autofill: ^2.2.0
   syncfusion_flutter_charts: ^20.2.45
+  url_launcher: ^6.1.5
   uuid: ^3.0.6
   webdriver: ^3.0.0
   webview_flutter: ^3.0.4

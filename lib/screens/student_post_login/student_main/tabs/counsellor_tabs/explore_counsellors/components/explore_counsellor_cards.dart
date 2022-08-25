@@ -8,6 +8,7 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsel
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExploreCounsellorCard extends StatefulWidget {
   const ExploreCounsellorCard({
@@ -168,6 +169,16 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                downloaderButton(
+                    link: widget.data.educationFile, title: 'Education'),
+                downloaderButton(
+                    link: widget.data.experienceFile, title: 'Experience'),
+              ],
+            ),
+
             const Divider(
               thickness: 2,
               color: Colors.grey,
@@ -199,4 +210,18 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
       ),
     );
   }
+}
+
+Widget downloaderButton({
+  required link,
+  required title,
+}) {
+  return ElevatedButton(
+    onPressed: link != null
+        ? () {
+            launchUrl(Uri.parse(link));
+          }
+        : null,
+    child: Text('Download'),
+  );
 }
