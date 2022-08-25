@@ -5,6 +5,8 @@ import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_parent.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -14,9 +16,10 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> with TickerProviderStateMixin {
+  bool isFirst = true;
   late final AnimationController _controller = AnimationController(
     vsync: this,
-  )..repeat(period: Duration(seconds: 2));
+  );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
@@ -36,6 +39,10 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       //       context, '/admin_main_page', (route) => false);
       // }
       if (await checkFormFilled()) {
+        String id = await userDocumentReference().get().then((value) =>
+            value.data()!['role'] + value.data()!['question'].toString());
+        PushNotificationService.registerCustomNotificationListeners(
+            id: id, title: id, description: id);
         print("WHATS UP !");
         Navigator.pushNamedAndRemoveUntil(
             context, '/postLoginMain', (route) => false);
@@ -52,9 +59,12 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller.addStatusListener((status) async {
-      if (status == AnimationStatus.completed) {
-        await Future.delayed(Duration(seconds: 2));
-        await check();
+      if (status == AnimationStatus.forward) {
+        if (isFirst) {
+          isFirst = false;
+          await Future.delayed(Duration(seconds: 5), () async => await check());
+        }
+
         return;
       }
     });
@@ -72,29 +82,26 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: COLOR_THEME['background'],
-      body: ScaleTransition(
-        scale: _animation,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.width / 2,
-                child: Lottie.network(
-                  'https://nakshekadam.rushour0.repl.co/lottieJson',
-                  fit: BoxFit.contain,
-                  controller: _controller,
-                  onLoaded: (composition) {
-                    _controller
-                      ..duration = composition.duration
-                      ..forward();
-                  },
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.width / 2,
+              child: Lottie.network(
+                'https://nakshekadam.rushour0.repl.co/lottieJson',
+                fit: BoxFit.contain,
+                controller: _controller,
+                onLoaded: (composition) {
+                  _controller
+                    ..duration = composition.duration
+                    ..repeat();
+                },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:nakshekadam/classes/explore_person.dart';
-import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/chat_interface/chat.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/custom_text_form_field.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:readmore/readmore.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class ExploreCounsellorCard extends StatefulWidget {
   const ExploreCounsellorCard({
@@ -24,6 +25,71 @@ class ExploreCounsellorCard extends StatefulWidget {
 
 class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
   TextEditingController _writeMessageController = TextEditingController();
+  int requestStatus = 0;
+  types.User? personUid, otherUser;
+
+  void checkIfPending(ExplorePerson user) async {
+    Map<String, dynamic>? data;
+    try {
+      data = (await usersCollectionReference()
+              .doc(getCurrentUserId())
+              .collection('requests')
+              .doc(user.uid)
+              .get())
+          .data()!;
+    } catch (e) {
+      requestStatus = 0;
+      return;
+    }
+    if (data['requestStatus'] == 'pending') {
+      requestStatus = 1;
+    } else if (data['requestStatus'] == 'accepted') {
+      requestStatus = 2;
+    } else {
+      requestStatus = -1;
+    }
+
+    setState(() {});
+  }
+
+  Future<void> loadUser(ExplorePerson user) async {
+    final doc = await usersCollectionReference().doc(user.uid).get();
+
+    Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+    // print(data);
+
+    data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
+    data['id'] = doc.id;
+    data['lastSeen'] = data['lastSeen']?.millisecondsSinceEpoch;
+    data['role'] = data['role'];
+    data['updatedAt'] = data['updatedAt']?.millisecondsSinceEpoch;
+
+    personUid = types.User.fromJson(data);
+
+    final otherDoc =
+        await usersCollectionReference().doc(getCurrentUserId()).get();
+
+    data = doc.data()! as Map<String, dynamic>;
+    // print(data);
+
+    data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
+    data['id'] = doc.id;
+    data['lastSeen'] = data['lastSeen']?.millisecondsSinceEpoch;
+    data['role'] = data['role'];
+    data['updatedAt'] = data['updatedAt']?.millisecondsSinceEpoch;
+
+    otherUser = types.User.fromJson(data);
+    setState(() {});
+
+    // print(currentUser);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfPending(widget.data);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -109,12 +175,14 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
               screenHeight,
               screenWidth,
             ),
-            customTextField(
-              "Experience",
-              "${widget.data.experience} years",
-              screenHeight,
-              screenWidth,
-            ),
+            widget.data.experience != null
+                ? customTextField(
+                    "Experience",
+                    "${widget.data.experience} years",
+                    screenHeight,
+                    screenWidth,
+                  )
+                : null,
             customTextField(
               "Specialisation",
               widget.data.specialisation,
@@ -169,15 +237,6 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                downloaderButton(
-                    link: widget.data.educationFile, title: 'Education'),
-                downloaderButton(
-                    link: widget.data.experienceFile, title: 'Experience'),
-              ],
-            ),
 
             const Divider(
               thickness: 2,
@@ -197,12 +256,36 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                 onTap: () async {
                   await sendRequest(
                     professionalId: widget.data.uid,
-                    requestContent: _writeMessageController.text,
                     userId: getCurrentUserId(),
                   );
+                  setState(() {});
                 },
-                child: counsellorDialogBoxButton(
-                    screenHeight, screenWidth, "Send Connection Request"),
+                child: requestStatus != 2
+                    ? counsellorDialogBoxButton(
+                        screenHeight,
+                        screenWidth,
+                        requestStatus == 0
+                            ? "Send Connection Request"
+                            : requestStatus == 1
+                                ? "Pending"
+                                : "Retry Connecting?")
+                    : ElevatedButton(
+                        onPressed: () async {
+                          await loadUser(widget.data);
+                          final room = await FirebaseChatCore.instance
+                              .createRoom(personUid!, otherUser!);
+                          print(room);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (builder) => ChatPage(
+                                room: room,
+                              ),
+                              // builder: (builder) => UsersPage(),
+                            ),
+                          );
+                        },
+                        child: Text('Open Chat')),
               ),
             ),
           ],
@@ -210,18 +293,4 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
       ),
     );
   }
-}
-
-Widget downloaderButton({
-  required link,
-  required title,
-}) {
-  return ElevatedButton(
-    onPressed: link != null
-        ? () {
-            launchUrl(Uri.parse(link));
-          }
-        : null,
-    child: Text('Download'),
-  );
 }

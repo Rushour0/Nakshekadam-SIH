@@ -6,10 +6,10 @@ import 'package:nakshekadam/screens/student_post_login/info_collection/component
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_details_collection.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/professional_counsellor_card.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/connected_counsellors/connected_counsellors.dart';
-import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/explore_counsellors.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/explore_experts_counsellors.dart';
 
-class ProfessionalCounsellor extends StatelessWidget {
-  const ProfessionalCounsellor({
+class CounsellorORExpert extends StatelessWidget {
+  const CounsellorORExpert({
     Key? key,
     required this.title,
     required this.optionList,
@@ -19,16 +19,8 @@ class ProfessionalCounsellor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<double> tempDimensions = [
-      MediaQuery.of(context).size.width,
-      MediaQuery.of(context).size.height
-    ];
-    final double screenHeight = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[0]
-        : tempDimensions[1];
-    final double screenWidth = tempDimensions[0] > tempDimensions[1]
-        ? tempDimensions[1]
-        : tempDimensions[0];
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -103,7 +95,7 @@ class ProfessionalCounsellor extends StatelessWidget {
                                         ? () => Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: ((context) =>
-                                                    ExploreCounsellor(
+                                                    ExploreExpertCounsellor(
                                                       title: option,
                                                     )),
                                               ),

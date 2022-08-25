@@ -29,9 +29,9 @@ class ExplorePerson {
   final String uid;
   final String name;
   final String imageUrl;
-  final String experience;
+  final String? experience;
   final String educationFile;
-  final String experienceFile;
+  final String? experienceFile;
   final String qualification;
   final String specialisation;
   final String universityName;

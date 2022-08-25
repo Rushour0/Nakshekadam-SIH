@@ -103,7 +103,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                         builder: (context) =>
                                             (title.toLowerCase() ==
                                                     "professional counsellors")
-                                                ? ProfessionalCounsellor(
+                                                ? CounsellorORExpert(
                                                     title: title,
                                                     optionList: const [
                                                       "Explore Counsellors",
@@ -111,7 +111,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                                       "Message history"
                                                     ],
                                                   )
-                                                : ProfessionalCounsellor(
+                                                : CounsellorORExpert(
                                                     title: title,
                                                     optionList: const [
                                                       "Explore Experts",
@@ -123,6 +123,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                     );
                                   } else {
                                     print("logged out");
+                                    Navigator.pop(context);
                                     Navigator.of(context).push(
                                       PageRouteBuilder(
                                         barrierDismissible: true,
@@ -144,6 +145,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                     print("logged in");
                                   } else {
                                     print("logged out");
+                                    Navigator.pop(context);
                                     Navigator.of(context).push(
                                       PageRouteBuilder(
                                         barrierDismissible: true,
