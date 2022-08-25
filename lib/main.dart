@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: true,
-      initialRoute: '/displayTestResult',
+      initialRoute: '/',
       routes: {
         '/main': (context) => const MainPage(),
         '/wt': (context) => const WalkThrough(),

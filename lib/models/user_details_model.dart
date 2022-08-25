@@ -37,6 +37,13 @@ class UserDetailsModelOne {
     };
   }
 
+  UserDetailsModelOne.clear() {
+    userDetailsModelOne.email = "";
+    userDetailsModelOne.role = "";
+    userDetailsModelOne.name = "";
+    userDetailsModelOne.question = 0;
+  }
+
   factory UserDetailsModelOne.fromMap(Map<String, dynamic> map) {
     userDetailsModelOne.email = map['email'];
     userDetailsModelOne.role = map['role'];
@@ -114,6 +121,12 @@ class UserDetailsModelTwo {
       'marks/percentage': marks,
       'school/college name': schoolName,
     };
+  }
+
+  UserDetailsModelTwo.clear() {
+    userDetailsModelTwo.grade = "";
+    userDetailsModelTwo.marks = "";
+    userDetailsModelTwo.schoolName = "";
   }
 
   factory UserDetailsModelTwo.fromMap(Map<String, dynamic> map) {

@@ -15,6 +15,7 @@ import 'package:nakshekadam/screens/main/tabs/tests_page.dart/test_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/home_page/student_home_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/student_tests.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class StudentMainPage extends StatefulWidget {
   const StudentMainPage({Key? key}) : super(key: key);
@@ -95,6 +96,8 @@ class _StudentMainPageState extends State<StudentMainPage>
         ? tempDimensions[1]
         : tempDimensions[0];
 
+    WebViewController webViewController;
+
     TextStyle navigationStyle = TextStyle(
       fontFamily: "DM Sans",
       color: Colors.white,
@@ -141,32 +144,108 @@ class _StudentMainPageState extends State<StudentMainPage>
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // Padding(
-            //   padding: EdgeInsets.only(bottom: screenHeight * 0.01),
-            //   child: _bottomNavIndex != 3
-            //       ? FloatingActionButton(
-            //           backgroundColor: COLOR_THEME['floatingActionButton'],
-            //           onPressed: () {},
-            //           child: Icon(
-            //             Icons.chat,
-            //           ),
-            //         )
-            //       : FloatingActionButton.extended(
-            //           label: Text(
-            //             "Chat with our AI Counsellors",
-            //             style: TextStyle(
-            //               fontSize: screenWidth * 0.04,
-            //               fontFamily: "DM Sans",
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //           backgroundColor: COLOR_THEME['floatingActionButton'],
-            //           onPressed: () {},
-            //           icon: Icon(
-            //             Icons.chat,
-            //           ),
-            //         ),
-            // ),
+            Padding(
+              padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+              child: _bottomNavIndex != 3
+                  ? FloatingActionButton(
+                      backgroundColor: COLOR_THEME['floatingActionButton'],
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: Text(
+                                  "Vidya Bot",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "DM Sans",
+                                    fontSize: screenWidth * 0.07,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                backgroundColor: COLOR_THEME['secondary'],
+                                centerTitle: true,
+                              ),
+                              body: Column(
+                                children: [
+                                  Expanded(
+                                    child: WebView(
+                                      initialUrl:
+                                          "https://nakshekadam-chatbot.netlify.app/",
+                                      zoomEnabled: false,
+                                      javascriptMode:
+                                          JavascriptMode.unrestricted,
+                                      onPageStarted: (url) async {},
+                                      onWebViewCreated: (controller) {
+                                        webViewController = controller;
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        );
+                      },
+                      child: Icon(
+                        Icons.chat,
+                      ),
+                    )
+                  : FloatingActionButton.extended(
+                      label: Text(
+                        "Chat with our AI Counsellors",
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.04,
+                          fontFamily: "DM Sans",
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: COLOR_THEME['floatingActionButton'],
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: Text(
+                                  "Vidya Bot",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "DM Sans",
+                                    fontSize: screenWidth * 0.07,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                backgroundColor: COLOR_THEME['secondary'],
+                                centerTitle: true,
+                              ),
+                              body: Column(
+                                children: [
+                                  Expanded(
+                                    child: WebView(
+                                      initialUrl:
+                                          "https://nakshekadam-chatbot.netlify.app/",
+                                      zoomEnabled: false,
+                                      javascriptMode:
+                                          JavascriptMode.unrestricted,
+                                      onPageStarted: (url) async {},
+                                      onWebViewCreated: (controller) {
+                                        webViewController = controller;
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.chat,
+                      ),
+                    ),
+            ),
             CustomNavigationBar(
               selectedColor: COLOR_THEME['bottomNavigationSelected'],
               currentIndex: _bottomNavIndex,
