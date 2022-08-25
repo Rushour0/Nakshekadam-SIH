@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:nakshekadam/classes/explore_person.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
@@ -7,8 +10,11 @@ import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsel
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/custom_text_form_field.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ExploreCounsellorCard extends StatefulWidget {
   const ExploreCounsellorCard({
@@ -169,15 +175,6 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                downloaderButton(
-                    link: widget.data.educationFile, title: 'Education'),
-                downloaderButton(
-                    link: widget.data.experienceFile, title: 'Experience'),
-              ],
-            ),
 
             const Divider(
               thickness: 2,
@@ -197,7 +194,6 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                 onTap: () async {
                   await sendRequest(
                     professionalId: widget.data.uid,
-                    requestContent: _writeMessageController.text,
                     userId: getCurrentUserId(),
                   );
                 },
@@ -210,18 +206,4 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
       ),
     );
   }
-}
-
-Widget downloaderButton({
-  required link,
-  required title,
-}) {
-  return ElevatedButton(
-    onPressed: link != null
-        ? () {
-            launchUrl(Uri.parse(link));
-          }
-        : null,
-    child: Text('Download'),
-  );
 }
