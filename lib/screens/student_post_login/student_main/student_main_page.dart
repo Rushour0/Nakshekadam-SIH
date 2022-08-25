@@ -35,7 +35,7 @@ class _StudentMainPageState extends State<StudentMainPage>
   // UserDetailsModelTwo userDetailsModelTwo = UserDetailsModelTwo.getModel();
 
   List<String> tabNames = [
-    'Notifications',
+    'Notifs',
     'Tests',
     'Home',
     'Counsellors',
@@ -164,7 +164,7 @@ class _StudentMainPageState extends State<StudentMainPage>
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                backgroundColor: COLOR_THEME['secondary'],
+                                backgroundColor: COLOR_THEME['tertiary'],
                                 centerTitle: true,
                               ),
                               body: Column(
@@ -246,52 +246,58 @@ class _StudentMainPageState extends State<StudentMainPage>
                       ),
                     ),
             ),
-            CustomNavigationBar(
-              selectedColor: COLOR_THEME['bottomNavigationSelected'],
-              currentIndex: _bottomNavIndex,
-              backgroundColor: COLOR_THEME['bottomNavigation']!,
-              elevation: 0,
-              borderRadius: Radius.circular(screenWidth / 20),
-              // isFloating: true,
-              // selectedtitleStyle: TextStyle(
-              //   fontSize: screenWidth / 34,
-              //   fontFamily: 'DM Sans',
-              //   color: COLOR_THEME['bottomNavigationSelected'],
-              // ),
-              // unselectedtitleStyle: TextStyle(
-              //   fontSize: screenWidth / 34,
-              //   fontFamily: 'DM Sans',
-              //   color: COLOR_THEME['bottomNavigationUnselected'],
-              // ),
-              items: tabNames
-                  .map(
-                    (tabName) => CustomNavigationBarItem(
-                      selectedTitle: Text(
-                        tabName,
-                        style: navigationStyle,
+            SizedBox(
+              height: screenHeight * 0.075,
+              child: CustomNavigationBar(
+                selectedColor: COLOR_THEME['bottomNavigationSelected'],
+                currentIndex: _bottomNavIndex,
+                backgroundColor: COLOR_THEME['bottomNavigation']!,
+                elevation: 0,
+                borderRadius: Radius.circular(screenWidth / 20),
+                // isFloating: true,
+                // selectedtitleStyle: TextStyle(
+                //   fontSize: screenWidth / 34,
+                //   fontFamily: 'DM Sans',
+                //   color: COLOR_THEME['bottomNavigationSelected'],
+                // ),
+                // unselectedtitleStyle: TextStyle(
+                //   fontSize: screenWidth / 34,
+                //   fontFamily: 'DM Sans',
+                //   color: COLOR_THEME['bottomNavigationUnselected'],
+                // ),
+                items: tabNames
+                    .map(
+                      (tabName) => CustomNavigationBarItem(
+                        selectedTitle: Text(
+                          tabName,
+                          style: navigationStyle,
+                        ),
+                        title: Text(
+                          tabName,
+                          style: navigationStyle,
+                        ),
+                        selectedIcon: ImageIcon(
+                          // size: screenWidth * 0.09,
+                          AssetImage(
+                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                          color: COLOR_THEME['bottomNavigationSelected'],
+                        ),
+                        icon: ImageIcon(
+                          AssetImage(
+                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                          color: COLOR_THEME['bottomNavigationUnselected'],
+                        ),
                       ),
-                      title: Container(),
-                      selectedIcon: ImageIcon(
-                        // size: screenWidth * 0.09,
-                        AssetImage(
-                            "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
-                        color: COLOR_THEME['bottomNavigationSelected'],
-                      ),
-                      icon: ImageIcon(
-                        AssetImage(
-                            "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
-                        color: COLOR_THEME['bottomNavigationUnselected'],
-                      ),
-                    ),
-                  )
-                  .toList(),
-              onTap: (index) => setState(
-                () {
-                  _bottomNavIndex = index;
-                  _tabController.index = index;
-                },
+                    )
+                    .toList(),
+                onTap: (index) => setState(
+                  () {
+                    _bottomNavIndex = index;
+                    _tabController.index = index;
+                  },
+                ),
+                //other params
               ),
-              //other params
             ),
           ],
         ),

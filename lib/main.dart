@@ -18,7 +18,6 @@ import 'package:nakshekadam/screens/verification&details/personal_details.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
 import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
-import 'package:nakshekadam/services/FlyerFirebaseChat/users.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,7 +73,6 @@ class MyApp extends StatelessWidget {
         '/postLogin': (context) => const StudentParent(),
         '/postLoginMain': (context) => const StudentMainPage(),
         '/messages': (context) => const MessagesPage(),
-        '/userstemp': (context) => const UsersPage(),
         '/': (context) => const Splash(),
         '/displayTestResult': (context) => const DisplayTestResult(),
         '/takeTest': (context) => const TakeTest(

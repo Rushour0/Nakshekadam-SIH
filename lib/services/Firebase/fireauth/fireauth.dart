@@ -9,6 +9,7 @@ import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -48,7 +49,11 @@ Future<List<dynamic>> signInUser(
       email: email,
       password: password,
     );
-    deviceFCMKeyOperations(add: true);
+    await deviceFCMKeyOperations(add: true);
+    String id = await userDocumentReference().get().then((value) =>
+        value.data()!['role'] + value.data()!['question'].toString());
+    PushNotificationService.registerCustomNotificationListeners(
+        id: id, title: id, description: id);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       return [1, 'No user found for that email'];
@@ -94,6 +99,10 @@ Future<List<dynamic>> registerUser(
       email: email,
       password: password,
     );
+    String id = await userDocumentReference().get().then((value) =>
+        value.data()!['role'] + value.data()!['question'].toString());
+    PushNotificationService.registerCustomNotificationListeners(
+        id: id, title: id, description: id);
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
       return [2, 'The password provided is too weak'];

@@ -123,6 +123,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                     );
                                   } else {
                                     print("logged out");
+                                    Navigator.pop(context);
                                     Navigator.of(context).push(
                                       PageRouteBuilder(
                                         barrierDismissible: true,
@@ -144,6 +145,7 @@ class CounsellorDialogBox extends StatelessWidget {
                                     print("logged in");
                                   } else {
                                     print("logged out");
+                                    Navigator.pop(context);
                                     Navigator.of(context).push(
                                       PageRouteBuilder(
                                         barrierDismissible: true,

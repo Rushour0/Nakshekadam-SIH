@@ -5,6 +5,8 @@ import 'package:nakshekadam/common_widgets/customPageRouter.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/student_post_login/info_collection/student_parent.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -36,6 +38,10 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
       //       context, '/admin_main_page', (route) => false);
       // }
       if (await checkFormFilled()) {
+        String id = await userDocumentReference().get().then((value) =>
+            value.data()!['role'] + value.data()!['question'].toString());
+        PushNotificationService.registerCustomNotificationListeners(
+            id: id, title: id, description: id);
         print("WHATS UP !");
         Navigator.pushNamedAndRemoveUntil(
             context, '/postLoginMain', (route) => false);

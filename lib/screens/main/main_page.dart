@@ -176,7 +176,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         tabName,
                         style: navigationStyle,
                       ),
-                      title: Container(),
+                      title: Text(
+                        tabName,
+                        style: navigationStyle,
+                      ),
                       selectedIcon: ImageIcon(
                         // size: screenWidth * 0.09,
                         AssetImage(

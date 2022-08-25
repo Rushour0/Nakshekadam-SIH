@@ -29,7 +29,7 @@ class CounsellorPage extends StatelessWidget {
         : tempDimensions[0];
 
     List<String> counsellorTypes = [
-      'Vidya Bot',
+      // 'Vidya Bot',
       'Industrial Experts',
       'Professional Counsellors'
     ];
