@@ -6,7 +6,7 @@ import 'package:readmore/readmore.dart';
 Card infoCard(
         double screenWidth, double screenHeight, String cardName, int index) =>
     Card(
-      color: COLOR_THEME['backgroundComponents${index%3}'],
+      color: COLOR_THEME['backgroundComponents${index % 3}'],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(screenWidth * 0.05),
       ),
@@ -18,7 +18,12 @@ Card infoCard(
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                cardName,
+                cardName
+                    .replaceAll("0", "")
+                    .replaceAll("1", "")
+                    .replaceAll("2", "")
+                    .replaceAll("3", "")
+                    .replaceAll("4", ""),
                 style: TextStyle(
                   fontFamily: "DM Sans",
                   fontSize: screenWidth * 0.08,
@@ -42,17 +47,15 @@ Card infoCard(
                   color: Colors.black,
                 ),
                 lessStyle: TextStyle(
-                  fontFamily: "Cabin",
-                  fontSize: screenWidth * 0.04,
-                  color: Colors.blue,
-                  fontStyle: FontStyle.italic
-                ),
+                    fontFamily: "Cabin",
+                    fontSize: screenWidth * 0.04,
+                    color: Colors.blue,
+                    fontStyle: FontStyle.italic),
                 moreStyle: TextStyle(
-                  fontFamily: "Cabin",
-                  fontSize: screenWidth * 0.04,
-                  color: Colors.blue,
-                  fontStyle: FontStyle.italic
-                ),
+                    fontFamily: "Cabin",
+                    fontSize: screenWidth * 0.04,
+                    color: Colors.blue,
+                    fontStyle: FontStyle.italic),
               ),
             ),
           ],

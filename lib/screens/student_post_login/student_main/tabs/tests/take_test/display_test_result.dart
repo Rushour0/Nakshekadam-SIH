@@ -341,11 +341,9 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  Padding(
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.02),
-                                    width: screenWidth,
-                                    height: screenWidth * 1.05,
                                     child: CircularChart(
                                       domain: "STEM",
                                       percentage: 0.89,
@@ -355,9 +353,37 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.02),
                                     child: TestExpansionTile(
-                                      percentage: 0.89,
+                                      testName: "APTITUDE",
                                     ),
-                                  )
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: screenHeight * 0.02),
+                                    child: TestExpansionTile(
+                                      testName: "INTERESTS",
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: screenHeight * 0.02),
+                                    child: TestExpansionTile(
+                                      testName: "ACADEMIC BACKGROUND",
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: screenHeight * 0.02),
+                                    child: TestExpansionTile(
+                                      testName: "PERSONALITY & HISTORY",
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: screenHeight * 0.02),
+                                    child: TestExpansionTile(
+                                      testName: "CUMULATIVE ANALYSIS",
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

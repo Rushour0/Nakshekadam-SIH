@@ -45,7 +45,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
         : tempDimensions[0];
 
     List<String> infoCardNames = [
-      "Customised specially for you",
+      "Customised specially for you${userDetailsModelOne.question}",
       'Our Vision',
       'About DoESL',
       "New Education Policy' 20 - Transforming India",

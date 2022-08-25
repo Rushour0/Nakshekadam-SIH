@@ -119,7 +119,7 @@ class WalkThroughParent extends StatelessWidget {
                               top: screenHeight * 0.15,
                               bottom: screenHeight * 0.1),
                           child: Text(
-                            "NaksheKADAM has been designed for all you parents to be able to break down different aspects of your child’s educational journey. Our certified counselors on-board have expertise in answering all your queries. Vidya bot is trained to articulate answers spanning over 58,000 verified articles. Additionally, our specially curated tests for your child will help them clear their confusions in a clear manner. Browse through different aspects and send us feedback!",
+                            "Unlock our test, contact counsellors and connect with industry experts to clear all your child’s confusions!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: "DM Sans",

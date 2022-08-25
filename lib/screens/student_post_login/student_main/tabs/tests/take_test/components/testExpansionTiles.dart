@@ -3,13 +3,14 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:nakshekadam/globals.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/domain_wise_percentage.dart';
 
 class TestExpansionTile extends StatelessWidget {
   const TestExpansionTile({
     Key? key,
-    required this.percentage,
+    required this.testName,
   }) : super(key: key);
-  final double percentage;
+  final String testName;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class TestExpansionTile extends StatelessWidget {
         collapsedBackgroundColor: COLOR_THEME["careerTile"],
         backgroundColor: COLOR_THEME["careerTile"],
         title: Text(
-          "Aptitude",
+          testName,
           style: TextStyle(
             fontFamily: "DM Sans",
             fontWeight: FontWeight.bold,
@@ -45,37 +46,17 @@ class TestExpansionTile extends StatelessWidget {
           color: Colors.black,
         ),
         children: [
-          Text(
-            "STEM",
-            style: TextStyle(
-              fontFamily: "DM Sans",
-              fontWeight: FontWeight.bold,
-              fontSize: screenWidth * 0.05,
-              color: Colors.black,
-            ),
-          ),
-          SliderTheme(
-            data: SliderThemeData(
-              inactiveTrackColor: COLOR_THEME['secondary'],
-              activeTrackColor: Colors.black26,
-              trackHeight: 10,
-              thumbShape: const RoundSliderThumbShape(
-                enabledThumbRadius: 0,
-              ),
-              thumbColor: Colors.black12,
-              overlayColor: Colors.transparent,
-              overlayShape: const RoundSliderOverlayShape(
-                overlayRadius: 0,
-              ),
-              trackShape: const RectangularSliderTrackShape(),
-            ),
-            child: Slider(
-              value: percentage,
-              min: 0,
-              max: 1,
-              onChanged: (value) {},
-            ),
-          ),
+          domainWisePercentage(screenHeight, screenWidth, "STEM", 0.89),
+          domainWisePercentage(
+              screenHeight, screenWidth, "Commerce & Management", 0.89),
+          domainWisePercentage(screenHeight, screenWidth, "Defense", 0.50),
+          domainWisePercentage(
+              screenHeight, screenWidth, "Civil Services", 0.75),
+          domainWisePercentage(screenHeight, screenWidth,
+              "Creative & Argumentative Studies", 0.30),
+          domainWisePercentage(
+              screenHeight, screenWidth, "Vocational Courses", 0.70),
+          domainWisePercentage(screenHeight, screenWidth, "Other Fields", 0.69),
         ],
       ),
     );
