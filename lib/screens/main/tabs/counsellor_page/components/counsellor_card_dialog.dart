@@ -4,6 +4,7 @@ import 'package:nakshekadam/common_widgets/signup_dialog.dart';
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/explore_counsellors/explore_experts_counsellors.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/professional_counsellor.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:nakshekadam/strings.dart';
@@ -96,35 +97,24 @@ class CounsellorDialogBox extends StatelessWidget {
                                         "professional counsellors" ||
                                     title.toLowerCase() ==
                                         "industrial experts") {
-                                  if (await checkLoggedIn()) {
+                                  if (checkLoggedIn()) {
                                     print("logged in");
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            (title.toLowerCase() ==
-                                                    "professional counsellors")
-                                                ? CounsellorORExpert(
-                                                    title: title,
-                                                    optionList: const [
-                                                      "Explore Counsellors",
-                                                      "Connected Counsellors",
-                                                      "Message history"
-                                                    ],
-                                                  )
-                                                : CounsellorORExpert(
-                                                    title: title,
-                                                    optionList: const [
-                                                      "Explore Experts",
-                                                      "Connected Experts",
-                                                      "Message history"
-                                                    ],
-                                                  ),
-                                      ),
+                                          builder: (context) => (title
+                                                      .toLowerCase() ==
+                                                  "professional counsellors")
+                                              ? ExploreExpertCounsellor(
+                                                  title: title,
+                                                )
+                                              : ExploreExpertCounsellor(
+                                                  title: title,
+                                                )),
                                     );
                                   } else {
                                     print("logged out");
                                     Navigator.pop(context);
-                                    Navigator.of(context).push(
+                                    await Navigator.of(context).push(
                                       PageRouteBuilder(
                                         barrierDismissible: true,
                                         barrierColor:

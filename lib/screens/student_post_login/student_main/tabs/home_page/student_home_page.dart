@@ -15,6 +15,13 @@ class StudentHomePage extends StatefulWidget {
 }
 
 class _StudentHomePageState extends State<StudentHomePage> {
+  List<String> optionNames = [
+    'career_options',
+    'industries',
+    'upcoming_exams',
+    'scholarships',
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -87,6 +94,12 @@ class _StudentHomePageState extends State<StudentHomePage> {
                   Image.asset(
                     "assets/images/studentMain.png",
                     height: screenHeight * 0.2,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight * 0.01),
+                    child: OptionButtons(
+                      optionNames: optionNames,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
