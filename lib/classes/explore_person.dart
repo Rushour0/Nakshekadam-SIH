@@ -14,16 +14,18 @@ class ExplorePerson {
     required this.universityName,
   });
 
-  // ExplorePerson.fromJson(Map<String, dynamic> json) : (name = json['name'],
-  //   uid = json['uid'],
-  //   imageUrl = json['imageUrl'],
-  //   experience = json['experience'],
-  //   educationFile = json['educationFile'],
-  //   experienceFile = json['experienceFile'],
-  //   qualification = json['qualification'],
-  //   specialisation = json['specialisation'],
-  //   universityName = json['universityName']);
-
+  ExplorePerson.fromJson(Map<String, dynamic> json)
+      : this(
+          name: json['name'],
+          uid: json['uid'],
+          imageUrl: json['imageUrl'],
+          experience: json['experience'],
+          educationFile: json['educationFile'],
+          experienceFile: json['experienceFile'],
+          qualification: json['qualification'],
+          specialisation: json['specialisation'],
+          universityName: json['universityName'],
+        );
   final String uid;
   final String name;
   final String imageUrl;

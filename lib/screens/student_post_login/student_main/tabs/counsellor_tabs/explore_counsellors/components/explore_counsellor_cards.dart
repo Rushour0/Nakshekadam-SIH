@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nakshekadam/classes/explore_person.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/counsellor_tabs/components/custom_text_form_field.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:readmore/readmore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExploreCounsellorCard extends StatefulWidget {
   const ExploreCounsellorCard({
     Key? key,
-    // required this.data,
+    required this.data,
   }) : super(key: key);
 
-  // final ExplorePerson data;
+  final ExplorePerson data;
 
   @override
   State<ExploreCounsellorCard> createState() => _ExploreCounsellorCardState();
@@ -24,6 +28,8 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    print(widget.data);
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -43,11 +49,11 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                 Container(
                   width: screenWidth / 7,
                   height: screenWidth / 7,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: NetworkImage(
-                        DEFAULT_PROFILE_PICTURE,
+                        widget.data.imageUrl,
                       ),
                       fit: BoxFit.contain,
                     ),
@@ -69,7 +75,7 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Dr. Name Sharma",
+                          widget.data.name,
                           softWrap: true,
                           style: TextStyle(
                             fontFamily: "DM Sans",
@@ -78,31 +84,49 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                             color: Colors.black,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: screenHeight * 0.005),
-                          child: Text(
-                            "Available slots : 7",
-                            softWrap: true,
-                            style: TextStyle(
-                              fontFamily: "DM Sans",
-                              fontSize: screenHeight * 0.02,
-                              // fontWeight: FontWeight.bold,
-                              color: COLOR_THEME["descriptionText"],
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.only(top: screenHeight * 0.005),
+                        //   child: Text(
+                        //     "Available slots : 7",
+                        //     softWrap: true,
+                        //     style: TextStyle(
+                        //       fontFamily: "DM Sans",
+                        //       fontSize: screenHeight * 0.02,
+                        //       // fontWeight: FontWeight.bold,
+                        //       color: COLOR_THEME["descriptionText"],
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
                 )
               ],
             ),
-            customTextField("Domain", "STEM", screenHeight, screenWidth),
-            customTextField("Experiance", "n years", screenHeight, screenWidth),
             customTextField(
-                "Specialization", "abcd feild", screenHeight, screenWidth),
-            customTextField("University Name", "New York University",
-                screenHeight, screenWidth),
+              "Qualification",
+              widget.data.qualification,
+              screenHeight,
+              screenWidth,
+            ),
+            customTextField(
+              "Experience",
+              "${widget.data.experience} years",
+              screenHeight,
+              screenWidth,
+            ),
+            customTextField(
+              "Specialisation",
+              widget.data.specialisation,
+              screenHeight,
+              screenWidth,
+            ),
+            customTextField(
+              "University Name",
+              widget.data.universityName,
+              screenHeight,
+              screenWidth,
+            ),
             const Divider(
               thickness: 2,
               color: Colors.grey,
@@ -118,12 +142,12 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
               ),
             ),
             ReadMoreText(
-              "Mr. Sharma is an extremely helpful and experienced individual in this domain. Would definitely recommend him to others.",
+              "${widget.data.name} is an extremely helpful and experienced individual in this domain. Would definitely recommend him to others.",
               textAlign: TextAlign.left,
               trimLines: 3,
               colorClickableText: Colors.blue,
               trimMode: TrimMode.Line,
-              trimCollapsedText: "Read More",
+              trimCollapsedText: " Read More",
               trimExpandedText: " Read Less",
               style: TextStyle(
                 fontFamily: "DM Sans",
@@ -145,22 +169,38 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                downloaderButton(
+                    link: widget.data.educationFile, title: 'Education'),
+                downloaderButton(
+                    link: widget.data.experienceFile, title: 'Experience'),
+              ],
+            ),
+
             const Divider(
               thickness: 2,
               color: Colors.grey,
             ),
-            Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(screenWidth * 0.05),
-              ),
-              child: mutliLineTestFormField(
-                  _writeMessageController, "Write a message", screenWidth, 6),
-            ),
+            // Card(
+            //   color: Colors.white,
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(screenWidth * 0.05),
+            //   ),
+            //   child: mutliLineTestFormField(
+            //       _writeMessageController, "Write a message", screenWidth, 6),
+            // ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  await sendRequest(
+                    professionalId: widget.data.uid,
+                    requestContent: _writeMessageController.text,
+                    userId: getCurrentUserId(),
+                  );
+                },
                 child: counsellorDialogBoxButton(
                     screenHeight, screenWidth, "Send Connection Request"),
               ),
@@ -170,4 +210,18 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
       ),
     );
   }
+}
+
+Widget downloaderButton({
+  required link,
+  required title,
+}) {
+  return ElevatedButton(
+    onPressed: link != null
+        ? () {
+            launchUrl(Uri.parse(link));
+          }
+        : null,
+    child: Text('Download'),
+  );
 }
