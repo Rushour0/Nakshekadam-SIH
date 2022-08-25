@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
 
-domainWisePercentage(double screenHeight, double screenWidth, String stream,
-        double percentage) =>
+Padding domainWisePercentage(double screenHeight, double screenWidth,
+        String stream, double percentage) =>
     Padding(
       padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
       child: Column(

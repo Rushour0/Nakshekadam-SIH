@@ -1,0 +1,73 @@
+{
+    "data": [
+        {
+            "question": "The sum of first five prime numbers is:",
+            "options": [
+                "11",
+                "18",
+                "26",
+                "28"
+            ],
+            "value": {
+                "3": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "0": [],
+                "2": [],
+                "1": [],
+                "4": []
+            },
+            "weightage": 0.16
+        },
+        {
+            "question": "The difference between a positive proper fraction and its reciprocal is 9/20. The fraction is:",
+            "options": [
+                "3/5",
+                "3/10",
+                "4/5",
+                "4/3"
+            ],
+            "value": {
+                "2": [
+                    0,
+                    1,
+                    2
+                ],
+                "0": [],
+                "1": [],
+                "3": [],
+                "4": []
+            },
+            "weightage": 0.16
+        },
+        {
+            "question": "4500 x ?= 3375",
+            "options": [
+                "2/5",
+                "3/4",
+                "3/5",
+                "None of these"
+            ],
+            "value": {
+                "1": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "0": [],
+                "2": [],
+                "3": [],
+                "4": []
+            },
+            "weightage": 0.16
+        }
+    ]
+}

@@ -127,7 +127,7 @@ class _DrawerUserInfoCardState extends State<DrawerUserInfoCard> {
                             UserDetailsModelTwo.clear();
                           }
                           Navigator.pushNamedAndRemoveUntil(
-                              context, "/wt", ((route) => false));
+                              context, "/signup", ((route) => false));
                         },
                         child: Text(
                           "Logout",

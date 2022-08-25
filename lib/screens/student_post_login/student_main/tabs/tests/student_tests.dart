@@ -3,6 +3,7 @@ import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/main/tabs/tests_page.dart/components/test_button.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/components/student_test_card.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/take_test.dart';
 import 'package:nakshekadam/strings.dart';
 
 class StudentTestsPage extends StatelessWidget {
@@ -23,8 +24,8 @@ class StudentTestsPage extends StatelessWidget {
 
     List<String> testNames = [
       'Aptitude',
-      'Interests',
-      'Academic',
+      'Interest',
+      'Background',
       'Personality',
     ];
     UserDetailsModelOne userDetailsModelOne = UserDetailsModelOne.getModel();
@@ -84,10 +85,8 @@ class StudentTestsPage extends StatelessWidget {
                     children: testNames
                         .map(
                           (testName) => studentTestCard(
-                              screenHeight,
-                              screenWidth,
-                              testName,
-                              testNames.indexOf(testName)),
+                              title: testName,
+                              index: testNames.indexOf(testName)),
                         )
                         .toList(),
                   ),
@@ -98,9 +97,12 @@ class StudentTestsPage extends StatelessWidget {
                         bottom: screenHeight * 0.03,
                       ),
                       child: GestureDetector(
-                          onTap: () async {},
-                          child: testButton(
-                              screenHeight, screenWidth, "VIEW RESULTS")),
+                        onTap: () async {
+                          Navigator.pushNamed(context, "/displayTestResult");
+                        },
+                        child: testButton(
+                            screenHeight, screenWidth, "VIEW RESULTS"),
+                      ),
                     ),
                   ),
                 ],

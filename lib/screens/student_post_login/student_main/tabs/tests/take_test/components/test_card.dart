@@ -5,8 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:nakshekadam/globals.dart';
 
-class ReasoningCard extends StatefulWidget {
-  const ReasoningCard({
+class TestCard extends StatefulWidget {
+  const TestCard({
     Key? key,
     required this.options,
     required this.question,
@@ -19,10 +19,10 @@ class ReasoningCard extends StatefulWidget {
   final TextEditingController answerEditor;
 
   @override
-  State<ReasoningCard> createState() => _ReasoningCardState();
+  State<TestCard> createState() => _TestCardState();
 }
 
-class _ReasoningCardState extends State<ReasoningCard> {
+class _TestCardState extends State<TestCard> {
   String? selectedOption;
 
   @override

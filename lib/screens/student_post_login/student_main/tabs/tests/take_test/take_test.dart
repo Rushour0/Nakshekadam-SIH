@@ -16,7 +16,7 @@ import 'package:nakshekadam/common_widgets/enums/test_enum.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/test_marks_model.dart';
-import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/reasoning_card.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/test_card.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/testDialogBox.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
@@ -121,17 +121,88 @@ class _TakeTestState extends State<TakeTest> {
       }
     }
 
-    String nextTestName() {
-      if (widget.testName == "Personality Test") {
+    Future<String> nextTestName(String current_testName) async {
+      var futureForTestGiven = await userDocumentReference().get();
+      List fetchedTestGiven =
+          (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+      print(current_testName);
+      if (current_testName == "Reasoning") {
+        if (fetchedTestGiven[1] == 1) {
+          return nextTestName("Personality Test");
+        }
+        return "Numerical Ability";
+      } else if (current_testName == "Numerical Ability") {
+        if (fetchedTestGiven[1] == 1) {
+          return nextTestName("Personality Test");
+        }
+        return "Personality Test";
+      } else if (current_testName == "Personality Test") {
+        if (fetchedTestGiven[2] == 1) {
+          return nextTestName("Background Test");
+        }
         return "Background Test";
-      } else if (widget.testName == "Background Test") {
+      } else if (current_testName == "Background Test") {
+        if (fetchedTestGiven[3] == 1) {
+          return nextTestName("Interest Test");
+        }
         return "Interest Test";
       }
+
       return "Result";
     }
 
-    void saveResultAndEmptyModel() {
-      if (widget.testName == "Personality Test") {
+    Future<void> saveResultAndEmptyModel() async {
+      if (widget.testName == "Reasoning") {
+        testMarksDetails.aptitude_test = {
+          "stem": testMarksDetails.stem,
+          "commerce & management": testMarksDetails.commerce_management,
+          "creative & argumentative studies":
+              testMarksDetails.creative_argumentative_studies,
+          "civil services": testMarksDetails.civil_services,
+          "defense": testMarksDetails.defense,
+          "vocational courses": testMarksDetails.vocational_courses,
+          "jobs as soon as possible": testMarksDetails.jobs_as_soon_as_possible,
+        };
+        await userDocumentReference()
+            .collection("data")
+            .doc("aptitude_test")
+            .set(testMarksDetails.aptitude_test);
+        var futureForTestGiven = await userDocumentReference().get();
+        List fetchedTestGiven =
+            (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+        fetchedTestGiven[0] = 1;
+        await userDocumentReference().update({"testGiven": fetchedTestGiven});
+      } else if (widget.testName == "Numerical Ability") {
+        double stem = testMarksDetails.aptitude_test["stem"]!;
+        double cm = testMarksDetails.aptitude_test["commerce & management"]!;
+        double cas =
+            testMarksDetails.aptitude_test["creative & argumentative studies"]!;
+        double cs = testMarksDetails.aptitude_test["civil services"]!;
+        double d = testMarksDetails.aptitude_test["defense"]!;
+        double vc = testMarksDetails.aptitude_test["vocational courses"]!;
+        double jasap =
+            testMarksDetails.aptitude_test["jobs as soon as possible"]!;
+        testMarksDetails.aptitude_test = {
+          "stem": testMarksDetails.stem + stem,
+          "commerce & management": testMarksDetails.commerce_management + cm,
+          "creative & argumentative studies":
+              testMarksDetails.creative_argumentative_studies + cas,
+          "civil services": testMarksDetails.civil_services + cs,
+          "defense": testMarksDetails.defense + d,
+          "vocational courses": testMarksDetails.vocational_courses + vc,
+          "jobs as soon as possible":
+              testMarksDetails.jobs_as_soon_as_possible + jasap,
+        };
+        await userDocumentReference()
+            .collection("data")
+            .doc("aptitude_test")
+            .set(testMarksDetails.aptitude_test);
+        var futureForTestGiven = await userDocumentReference().get();
+        List fetchedTestGiven =
+            (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+        fetchedTestGiven[0] = 1;
+        await userDocumentReference().update({"testGiven": fetchedTestGiven});
+      } else if (widget.testName == "Personality Test") {
         testMarksDetails.personality_marks = {
           "stem": testMarksDetails.stem,
           "commerce & management": testMarksDetails.commerce_management,
@@ -142,6 +213,15 @@ class _TakeTestState extends State<TakeTest> {
           "vocational courses": testMarksDetails.vocational_courses,
           "jobs as soon as possible": testMarksDetails.jobs_as_soon_as_possible,
         };
+        await userDocumentReference()
+            .collection("data")
+            .doc("personality_marks")
+            .set(testMarksDetails.personality_marks);
+        var futureForTestGiven = await userDocumentReference().get();
+        List fetchedTestGiven =
+            (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+        fetchedTestGiven[1] = 1;
+        await userDocumentReference().update({"testGiven": fetchedTestGiven});
       } else if (widget.testName == "Background Test") {
         testMarksDetails.background_test = {
           "stem": testMarksDetails.stem,
@@ -153,8 +233,17 @@ class _TakeTestState extends State<TakeTest> {
           "vocational courses": testMarksDetails.vocational_courses,
           "jobs as soon as possible": testMarksDetails.jobs_as_soon_as_possible,
         };
+        await userDocumentReference()
+            .collection("data")
+            .doc("background_test")
+            .set(testMarksDetails.background_test);
+        var futureForTestGiven = await userDocumentReference().get();
+        List fetchedTestGiven =
+            (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+        fetchedTestGiven[2] = 1;
+        await userDocumentReference().update({"testGiven": fetchedTestGiven});
       } else if (widget.testName == "Interest Test") {
-        testMarksDetails.background_test = {
+        testMarksDetails.interest_test = {
           "stem": testMarksDetails.stem,
           "commerce & management": testMarksDetails.commerce_management,
           "creative & argumentative studies":
@@ -164,6 +253,15 @@ class _TakeTestState extends State<TakeTest> {
           "vocational courses": testMarksDetails.vocational_courses,
           "jobs as soon as possible": testMarksDetails.jobs_as_soon_as_possible,
         };
+        await userDocumentReference()
+            .collection("data")
+            .doc("interest_test")
+            .set(testMarksDetails.interest_test);
+        var futureForTestGiven = await userDocumentReference().get();
+        List fetchedTestGiven =
+            (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
+        fetchedTestGiven[3] = 1;
+        await userDocumentReference().update({"testGiven": fetchedTestGiven});
       }
       testMarksDetails.stem = 0.0;
       testMarksDetails.commerce_management = 0.0;
@@ -210,9 +308,28 @@ class _TakeTestState extends State<TakeTest> {
                 ),
               ),
               onPressed: () async {
-                print(personalityTestQuestions[currentIndex]["value"]
-                        [answerEditor.text]
-                    .runtimeType);
+                if (answerEditor.text == "") {
+                  return;
+                }
+                print("answer : ${answerEditor.text}");
+                print(
+                    "value : ${personalityTestQuestions[currentIndex]["value"][answerEditor.text]}");
+                print(
+                    "value runtimeType : ${personalityTestQuestions[currentIndex]["value"][answerEditor.text].runtimeType}");
+                if (widget.testName == "Background Test" &&
+                    personalityTestQuestions[currentIndex]["question"] ==
+                        "Your parents' annual income is below 3L") {
+                  print("question entered");
+                  bool answer = false;
+                  print(personalityTestQuestions[currentIndex]["options"]
+                      [int.parse(answerEditor.text)]);
+                  if (personalityTestQuestions[currentIndex]["options"]
+                          [int.parse(answerEditor.text)] ==
+                      "Yes") {
+                    answer = true;
+                  }
+                  await userDocumentReference().update({"under_3L": answer});
+                }
                 if (personalityTestQuestions[currentIndex]["value"]
                             [answerEditor.text]
                         .runtimeType !=
@@ -233,6 +350,7 @@ class _TakeTestState extends State<TakeTest> {
                         TestEnum.values[value]);
                   });
                 }
+
                 if (currentIndex < totalLength - 1) {
                   setState(() {
                     answerEditor.text = "";
@@ -244,8 +362,27 @@ class _TakeTestState extends State<TakeTest> {
                   print(testMarksDetails.civil_services);
                   print(testMarksDetails.creative_argumentative_studies);
                   print(testMarksDetails.jobs_as_soon_as_possible);
-                  String nextTest = nextTestName();
-                  if (nextTest != "Result") {
+                  await saveResultAndEmptyModel();
+                  String nextTest = await nextTestName(widget.testName);
+                  print("next text : $nextTest");
+                  if (nextTest == "Result") {
+                    var futureForTestGiven =
+                        await userDocumentReference().get();
+                    List fetchedTestGiven = (futureForTestGiven.data()
+                        as Map<String, dynamic>)["testGiven"];
+                    if (fetchedTestGiven.contains(0)) {
+                      nextTest = await nextTestName("Reasoning");
+                    }
+                  }
+                  print("next text : $nextTest");
+                  if (nextTest == "Numerical Ability") {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => TakeTest(testName: nextTest),
+                      ),
+                    );
+                  } else if (nextTest != "Result") {
+                    print("going to next test");
                     Navigator.of(context).push(
                       PageRouteBuilder(
                         barrierDismissible: true,
@@ -303,7 +440,11 @@ class _TakeTestState extends State<TakeTest> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          widget.testName.toUpperCase(),
+                          (widget.testName.toLowerCase() != "reasoning" ||
+                                  widget.testName.toLowerCase() !=
+                                      "numerical ability")
+                              ? widget.testName.toUpperCase()
+                              : "APTITUDE TEST",
                           style: TextStyle(
                             fontFamily: "DM Sans",
                             fontSize: screenWidth * 0.08,
@@ -329,20 +470,52 @@ class _TakeTestState extends State<TakeTest> {
                         child: (personalityTestQuestions.isNotEmpty)
                             ? Expanded(
                                 child: SingleChildScrollView(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: screenWidth * 0.15),
-                                    child: ReasoningCard(
-                                      options:
+                                  child: (widget.testName ==
+                                              "Background Test" &&
                                           personalityTestQuestions[currentIndex]
-                                              ["options"],
-                                      question:
-                                          personalityTestQuestions[currentIndex]
-                                              ["question"],
-                                      title: widget.testName,
-                                      answerEditor: answerEditor,
-                                    ),
-                                  ),
+                                                  ["question"] ==
+                                              "Your parents' annual income is below 3L")
+                                      ? Column(
+                                          children: [
+                                            Text(
+                                              "We feel thrilled that you chose to share your grievances with us. Considering you mentioned your family's annual income on the lower side, we would like to recommend you a few scholarships and free study resources customized for you.",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontFamily: 'Cabin',
+                                                fontSize: screenWidth * 0.05,
+                                                color: Colors.green,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom: screenWidth * 0.15),
+                                              child: TestCard(
+                                                options:
+                                                    personalityTestQuestions[
+                                                            currentIndex]
+                                                        ["options"],
+                                                question:
+                                                    personalityTestQuestions[
+                                                            currentIndex]
+                                                        ["question"],
+                                                title: widget.testName,
+                                                answerEditor: answerEditor,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom: screenWidth * 0.15),
+                                          child: TestCard(
+                                            options: personalityTestQuestions[
+                                                currentIndex]["options"],
+                                            question: personalityTestQuestions[
+                                                currentIndex]["question"],
+                                            title: widget.testName,
+                                            answerEditor: answerEditor,
+                                          ),
+                                        ),
                                 ),
                               )
                             : const Center(

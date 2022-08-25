@@ -7,11 +7,15 @@ class UserDetailsModelOne {
   String name = "";
   String email = "";
   int question = 0;
+  List<int> testGiven = [0, 0, 0, 0];
+  bool under_3L = false;
   UserDetailsModelOne({
     required this.role,
     required this.name,
     required this.email,
     required this.question,
+    required this.testGiven,
+    required this.under_3L,
   });
 
   UserDetailsModelOne copyWith({
@@ -19,12 +23,16 @@ class UserDetailsModelOne {
     String? name,
     String? email,
     int? question,
+    List<int>? testGiven,
+    bool? under_3L,
   }) {
     return UserDetailsModelOne(
       role: role ?? this.role,
       name: name ?? this.name,
       email: email ?? this.email,
       question: question ?? this.question,
+      testGiven: testGiven ?? this.testGiven,
+      under_3L: under_3L ?? this.under_3L,
     );
   }
 
@@ -34,6 +42,8 @@ class UserDetailsModelOne {
       'name': name,
       'email': email,
       'question': question,
+      'testGiven': testGiven,
+      'under_3L': under_3L,
     };
   }
 
@@ -49,11 +59,15 @@ class UserDetailsModelOne {
     userDetailsModelOne.role = map['role'];
     userDetailsModelOne.name = map['name'];
     userDetailsModelOne.question = map['question'];
+    userDetailsModelOne.testGiven = List<int>.from(map['testGiven']);
+    userDetailsModelOne.under_3L = map['under_3L'];
     return UserDetailsModelOne(
       role: map['role'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       question: map['question']?.toInt() ?? 0,
+      testGiven: List<int>.from(map['testGiven']),
+      under_3L: map['under_3L'] ?? false,
     );
   }
 
@@ -69,7 +83,7 @@ class UserDetailsModelOne {
 
   @override
   String toString() {
-    return 'UserDetailsModelOne(role: $role, name: $name, email: $email, question: $question)';
+    return 'UserDetailsModelOne(role: $role, name: $name, email: $email, question: $question, testGiven: $testGiven, under_3L: $under_3L)';
   }
 
   @override
@@ -80,12 +94,19 @@ class UserDetailsModelOne {
         other.role == role &&
         other.name == name &&
         other.email == email &&
-        other.question == question;
+        other.question == question &&
+        listEquals(other.testGiven, testGiven) &&
+        other.under_3L == under_3L;
   }
 
   @override
   int get hashCode {
-    return role.hashCode ^ name.hashCode ^ email.hashCode ^ question.hashCode;
+    return role.hashCode ^
+        name.hashCode ^
+        email.hashCode ^
+        question.hashCode ^
+        testGiven.hashCode ^
+        under_3L.hashCode;
   }
 }
 
