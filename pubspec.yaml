@@ -43,7 +43,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_chat_ui: ^1.6.4
-  flutter_downloader: ^1.8.1
   flutter_firebase_chat_core: ^1.6.3
   flutter_launcher_icons: ^0.10.0
   flutter_local_notifications: ^9.7.0

@@ -20,6 +20,7 @@ class UsersPage extends StatelessWidget {
           stream: FirebaseChatCore.instance.users(),
           initialData: const [],
           builder: (context, snapshot) {
+            print(snapshot.data);
             if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Container(
                 alignment: Alignment.center,
@@ -31,20 +32,21 @@ class UsersPage extends StatelessWidget {
             }
 
             return ListView.builder(
-              itemCount: snapshot.data!
-                  .where(
-                    (element) =>
-                        element.role == types.Role.counsellor ||
-                        element.role == types.Role.expert,
-                  )
+              itemCount: snapshot
+                  .data!
+                  // .where(
+                  //   (element) =>
+                  //       element.role == types.Role.counsellor ||
+                  //       element.role == types.Role.expert,
+                  // )
                   .length,
               itemBuilder: (context, index) {
                 final user = snapshot.data!
-                    .where(
-                      (element) =>
-                          element.role == types.Role.counsellor ||
-                          element.role == types.Role.expert,
-                    )
+                    // .where(
+                    //   (element) =>
+                    //       element.role == types.Role.counsellor ||
+                    //       element.role == types.Role.expert,
+                    // )
                     .toList()[index];
 
                 return GestureDetector(

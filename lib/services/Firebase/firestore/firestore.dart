@@ -33,23 +33,24 @@ Future<void> sendRequest({
   User user = getCurrentUser()!;
 
   Map<String, dynamic> data = {
-    getCurrentUserId(): {
-      'name': user.displayName ??
-          "${(temp['firstName'] as String)} ${(temp['lastName'] as String)}",
-      'clientType': temp['question'] > 0 ? 'student' : 'parent',
-      'type': temp['question'],
-      'photoURL': user.photoURL,
-      'standard': temp['standard'],
-      'specialisation': temp['specialisation'],
-      'universityName': temp['universityName'],
-    }
+    'name': user.displayName ??
+        "${(temp['firstName'] as String)} ${(temp['lastName'] as String)}",
+    'uid': user.uid,
+    'clientType': temp['question'] > 0 ? 'student' : 'parent',
+    'type': temp['question'],
+    'photoURL': user.photoURL,
+    'testStatus': (temp['testGiven'] as List).map((e) {
+      return e;
+    }).toList(),
   };
-  userDocumentReference()
+  data.putIfAbsent('standard', () => '');
+  print(temp);
+  await userDocumentReference()
       .collection('data')
       .doc('userInfo')
       .get()
       .then((value) {
-    data.putIfAbsent('standard', () => value['class/grade']);
+    data['standard'] = value.data()!['class/grade'];
   });
 
   await userDocumentCollection(collection: 'requests').doc(professionalId).set({
@@ -65,5 +66,11 @@ Future<void> sendRequest({
       .set({
     'requestStatus': 'pending',
   });
+  await firestore
+      .collection('all_requests')
+      .doc(professionalId)
+      .collection('requests')
+      .doc(userId)
+      .set(data, SetOptions(merge: true));
   return;
 }
