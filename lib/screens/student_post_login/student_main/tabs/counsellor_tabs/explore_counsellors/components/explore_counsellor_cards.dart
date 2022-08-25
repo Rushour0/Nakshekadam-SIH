@@ -175,12 +175,14 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
               screenHeight,
               screenWidth,
             ),
-            customTextField(
-              "Experience",
-              "${widget.data.experience} years",
-              screenHeight,
-              screenWidth,
-            ),
+            widget.data.experience != null
+                ? customTextField(
+                    "Experience",
+                    "${widget.data.experience} years",
+                    screenHeight,
+                    screenWidth,
+                  )
+                : null,
             customTextField(
               "Specialisation",
               widget.data.specialisation,
@@ -256,6 +258,7 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
                     professionalId: widget.data.uid,
                     userId: getCurrentUserId(),
                   );
+                  setState(() {});
                 },
                 child: requestStatus != 2
                     ? counsellorDialogBoxButton(
