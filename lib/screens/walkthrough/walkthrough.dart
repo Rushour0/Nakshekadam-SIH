@@ -104,7 +104,7 @@ class _WalkThroughState extends State<WalkThrough>
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/signup');
+                      Navigator.pushNamed(context, '/signup');
                     },
                     child: Text(
                       "SIGN UP",
@@ -134,7 +134,7 @@ class _WalkThroughState extends State<WalkThrough>
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, '/login');
+                            Navigator.pushNamed(context, '/login');
                           },
                           child: Text(
                             "Login",

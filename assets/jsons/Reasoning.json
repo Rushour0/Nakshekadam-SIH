@@ -1,0 +1,69 @@
+{
+    "data": [
+        {
+            "question": "Look at this series: 53, 53, 40, 40, 27, 27, ... What number should come next?",
+            "options": [
+                "21",
+                "41",
+                "27",
+                "53"
+            ],
+            "value": {
+                "1": [
+                    0,
+                    1,
+                    3,
+                    4
+                ],
+                "0": [],
+                "2": [],
+                "3": [],
+                "4": []
+            },
+            "weightage": 0.16
+        },
+        {
+            "question": "Marathon is to race as hibernation is to",
+            "options": [
+                "winter",
+                "bear",
+                "dream",
+                "sleep"
+            ],
+            "value": {
+                "3": [
+                    0,
+                    4,
+                    5,
+                    2
+                ],
+                "0": [],
+                "2": [],
+                "1": [],
+                "4": []
+            },
+            "weightage": 0.16
+        },
+        {
+            "question": "Complete the series : SCD, TEF, UGH, ____, WKL",
+            "options": [
+                "CMN",
+                "UJI",
+                "VIJ",
+                "IJT"
+            ],
+            "value": {
+                "2": [
+                    1,
+                    2,
+                    5
+                ],
+                "0": [],
+                "1": [],
+                "3": [],
+                "4": []
+            },
+            "weightage": 0.16
+        }
+    ]
+}

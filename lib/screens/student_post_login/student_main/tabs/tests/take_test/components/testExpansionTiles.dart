@@ -9,8 +9,10 @@ class TestExpansionTile extends StatelessWidget {
   const TestExpansionTile({
     Key? key,
     required this.testName,
+    required this.marksMap,
   }) : super(key: key);
   final String testName;
+  final Map<String, double> marksMap;
 
   @override
   Widget build(BuildContext context) {
@@ -45,19 +47,23 @@ class TestExpansionTile extends StatelessWidget {
           Icons.arrow_drop_down,
           color: Colors.black,
         ),
-        children: [
-          domainWisePercentage(screenHeight, screenWidth, "STEM", 0.89),
-          domainWisePercentage(
-              screenHeight, screenWidth, "Commerce & Management", 0.89),
-          domainWisePercentage(screenHeight, screenWidth, "Defense", 0.50),
-          domainWisePercentage(
-              screenHeight, screenWidth, "Civil Services", 0.75),
-          domainWisePercentage(screenHeight, screenWidth,
-              "Creative & Argumentative Studies", 0.30),
-          domainWisePercentage(
-              screenHeight, screenWidth, "Vocational Courses", 0.70),
-          domainWisePercentage(screenHeight, screenWidth, "Other Fields", 0.69),
-        ],
+        children: marksMap.keys.map((domain) {
+          return domainWisePercentage(
+              screenHeight, screenWidth, domain, marksMap[domain]!);
+        }).toList(),
+        // children: [
+        //   domainWisePercentage(screenHeight, screenWidth, "STEM", 0.89),
+        //   domainWisePercentage(
+        //       screenHeight, screenWidth, "Commerce & Management", 0.89),
+        //   domainWisePercentage(screenHeight, screenWidth, "Defense", 0.50),
+        //   domainWisePercentage(
+        //       screenHeight, screenWidth, "Civil Services", 0.75),
+        //   domainWisePercentage(screenHeight, screenWidth,
+        //       "Creative & Argumentative Studies", 0.30),
+        //   domainWisePercentage(
+        //       screenHeight, screenWidth, "Vocational Courses", 0.70),
+        //   domainWisePercentage(screenHeight, screenWidth, "Other Fields", 0.69),
+        // ],
       ),
     );
   }

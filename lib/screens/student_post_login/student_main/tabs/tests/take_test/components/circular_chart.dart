@@ -31,10 +31,18 @@ class CircularChart extends StatelessWidget {
       ChartData("marks", percentage, color: COLOR_THEME["secondary"]!),
       ChartData("empty", 1 - percentage, color: Colors.grey),
     ];
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(
+    return Container(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(screenWidth * 0.03),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -45,29 +53,32 @@ class CircularChart extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Highest Score",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "DM Sans",
-                          fontSize: screenWidth * 0.06,
+                  SizedBox(
+                    width: screenWidth * 0.5,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Highest Score",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "DM Sans",
+                            fontSize: screenWidth * 0.06,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Domain suggested: $domain",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontFamily: "DM Sans",
-                          fontSize: screenWidth * 0.04,
+                        Text(
+                          "Domain suggested: $domain",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontFamily: "DM Sans",
+                            fontSize: screenWidth * 0.04,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Text(
                     "${percentage * 100}%",

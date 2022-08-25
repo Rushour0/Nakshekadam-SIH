@@ -1,5 +1,7 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/common_appbar.dart';
 import 'package:nakshekadam/common_widgets/common_appbar/components/language_dropdown.dart';
@@ -12,10 +14,13 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/home_pa
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/notifications/notifications.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/student_tests.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class StudentMainPage extends StatefulWidget {
-  const StudentMainPage({Key? key}) : super(key: key);
+  const StudentMainPage({
+    Key? key,
+    this.tabIndex = 2,
+  }) : super(key: key);
+  final int tabIndex;
 
   @override
   State<StudentMainPage> createState() => _StudentMainPageState();
@@ -42,6 +47,8 @@ class _StudentMainPageState extends State<StudentMainPage>
   @override
   void initState() {
     super.initState();
+    _bottomNavIndex = widget.tabIndex;
+
     userDocumentReference().get().then((value) {
       UserDetailsModelOne.fromMap(value.data()!);
       setState(() {
@@ -60,7 +67,7 @@ class _StudentMainPageState extends State<StudentMainPage>
     });
     _tabController = TabController(
       animationDuration: const Duration(milliseconds: 0),
-      initialIndex: 2,
+      initialIndex: widget.tabIndex,
       length: 5,
       vsync: this,
     );

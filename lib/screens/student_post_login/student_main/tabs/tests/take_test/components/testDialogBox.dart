@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/screens/main/tabs/counsellor_page/components/counsellor_dialogbox_button.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/student_main_page.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/take_test.dart';
 import 'package:nakshekadam/strings.dart';
 
@@ -84,11 +85,7 @@ class TestDialogBox extends StatelessWidget {
               padding: EdgeInsets.only(top: screenHeight * 0.02),
               child: GestureDetector(
                 onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => TakeTest(testName: testName),
-                  //   ),
-                  // );
+                  Navigator.pushNamed(context, "/displayTestResult");
                 },
                 child: Card(
                   color: COLOR_THEME['buttonBackground'],
@@ -101,6 +98,40 @@ class TestDialogBox extends StatelessWidget {
                         vertical: screenHeight * 0.01),
                     child: Text(
                       "Show Results",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "DM Sans",
+                        fontSize: screenWidth * 0.05,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.02),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const StudentMainPage(
+                        tabIndex: 1,
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  color: COLOR_THEME['buttonBackground'],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth * 0.05,
+                        vertical: screenHeight * 0.01),
+                    child: Text(
+                      "Test Page",
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: "DM Sans",
