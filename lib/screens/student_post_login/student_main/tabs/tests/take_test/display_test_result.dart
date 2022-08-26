@@ -12,6 +12,7 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/t
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/scholarshipExpansionTile.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/testExpansionTiles.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
+import 'package:http/http.dart' as http;
 
 class DisplayTestResult extends StatefulWidget {
   const DisplayTestResult({
@@ -364,18 +365,51 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                       vertical: screenHeight * 0.007),
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "TEST RESULTS",
-                          style: TextStyle(
-                            fontFamily: "DM Sans",
-                            fontSize: screenWidth * 0.08,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: () async {
+                                var url = Uri.parse(
+                                    "https://nakshekadam.tushar725mittal.repl.co/colleges");
+
+                                final response = await http.get(url);
+                                print("response : $response");
+                                if (response.statusCode == 200) {}
+                              },
+                              child: Card(
+                                color: COLOR_THEME["secondary"],
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: screenWidth * 0.04,
+                                      vertical: screenHeight * 0.01),
+                                  child: Text(
+                                    "DOWNLOAD FULL REPORT",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: screenWidth * 0.035,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       NotificationListener<OverscrollIndicatorNotification>(
                         onNotification: (overscroll) {
@@ -389,14 +423,28 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                   EdgeInsets.only(bottom: screenWidth * 0.15),
                               child: Column(
                                 children: [
+                                  Text(
+                                    "TEST RESULTS",
+                                    style: TextStyle(
+                                      fontFamily: "DM Sans",
+                                      fontSize: screenWidth * 0.08,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
                                   (userDetailsModelOne.under_3L)
-                                      ? Text(
-                                          "We feel thrilled that you chose to share your grievances with us. Considering you mentioned your family's annual income on the lower side, we would like to recommend you a few scholarships and free study resources customized for you.",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'Cabin',
-                                            fontSize: screenWidth * 0.05,
-                                            color: Colors.green,
+                                      ? Padding(
+                                          padding: EdgeInsets.only(
+                                              top: screenHeight * 0.02),
+                                          child: Text(
+                                            "We feel thrilled that you chose to share your grievances with us. Considering you mentioned your family's annual income on the lower side, we would like to recommend you a few scholarships and free study resources customized for you.",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: 'Cabin',
+                                              fontSize: screenWidth * 0.05,
+                                              color: Colors.green,
+                                            ),
                                           ),
                                         )
                                       : Container(),
