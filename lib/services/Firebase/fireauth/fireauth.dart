@@ -10,6 +10,7 @@ import 'package:nakshekadam/services/Firebase/fireAuth/google_auth.dart'
     as google_auth;
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
+import 'package:nakshekadam/services/Firebase/realtime_database/realtime_database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -234,6 +235,21 @@ void initialData(String name) async {
     "name": name,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
+}
+
+Future<bool> reportPerson({
+  required String id,
+  required String roomId,
+}) async {
+  FirebaseChatCore.instance.deleteRoom(roomId);
+  await firestore.collection('reports').doc(id).set({
+    'reportedId': id,
+    'roomId': roomId,
+    'reporterId': getCurrentUserId(),
+  });
+
+  await requestStatusUpdate(userId: id);
+  return false;
 }
 
 void initialDatalogin() async {

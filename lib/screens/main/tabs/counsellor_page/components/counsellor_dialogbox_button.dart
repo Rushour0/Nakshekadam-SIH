@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nakshekadam/globals.dart';
 
-Card counsellorDialogBoxButton(double screenHeight, double screenWidth, String buttontext) => Card(
-      color: COLOR_THEME["bottomNavigation"],
+Card counsellorDialogBoxButton(
+        double screenHeight, double screenWidth, String buttontext) =>
+    Card(
+      color: buttontext == 'Reported'
+          ? Colors.red.shade400
+          : COLOR_THEME["bottomNavigation"],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(screenWidth * 0.02),
       ),
@@ -12,7 +16,7 @@ Card counsellorDialogBoxButton(double screenHeight, double screenWidth, String b
           padding: EdgeInsets.symmetric(
               vertical: screenHeight * 0.01, horizontal: screenWidth * 0.05),
           child: Text(
-            buttontext,
+            buttontext.toUpperCase(),
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "DM Sans",
