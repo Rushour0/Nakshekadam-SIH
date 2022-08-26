@@ -3,6 +3,7 @@ import 'package:nakshekadam/common_widgets/backgrounds/bigThreeBg.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/user_details_model.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
+import 'package:nakshekadam/screens/main/tabs/college_page/college_page.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/carousel.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/info_card.dart';
 import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/option_buttons.dart';
@@ -136,9 +137,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                                 if (userDetailsModelOne.testGiven.contains(1)) {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) => MainPage(
-                                        tabIndex: 0,
-                                      ),
+                                      builder: (context) => CollegePage(),
                                     ),
                                   );
                                 } else {
