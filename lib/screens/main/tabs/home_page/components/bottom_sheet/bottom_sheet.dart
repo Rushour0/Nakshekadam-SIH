@@ -57,7 +57,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
               title: title,
               screenWidth: screenWidth,
             ),
-            routeName == 'career_options'
+            (routeName == 'career_options' ||
+                    routeName == 'post_login_career_options')
                 ? Expanded(
                     child:
                         NotificationListener<OverscrollIndicatorNotification>(
@@ -91,6 +92,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                       title: career,
                                       summary: CAREER_OPTIONS_SUMMARY[career],
                                       side: screenWidth * 0.45,
+                                      routeName: routeName,
                                     ),
                                   )
                                   .toList() +

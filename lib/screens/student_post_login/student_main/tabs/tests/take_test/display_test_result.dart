@@ -6,7 +6,10 @@ import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/cumulative_marks.dart';
 import 'package:nakshekadam/models/test_marks_model.dart';
 import 'package:nakshekadam/models/user_details_model.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/bottom_sheet/bottom_sheet.dart';
+import 'package:nakshekadam/screens/main/tabs/home_page/components/option_buttons/components/career_options_buttons/career_option_bottom_sheet.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/circular_chart.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/scholarshipExpansionTile.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/testExpansionTiles.dart';
 import 'package:nakshekadam/services/Firebase/firestore/firestore.dart';
 
@@ -669,7 +672,29 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                     fit: BoxFit.fitWidth,
                                   ),
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () async {
+                                      await showModalBottomSheet(
+                                          constraints: BoxConstraints(
+                                            maxHeight: screenHeight * 0.95,
+                                          ),
+                                          isScrollControlled: true,
+                                          isDismissible: false,
+                                          // enableDrag: false,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              screenWidth,
+                                            ),
+                                          ),
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (builder) {
+                                            return CareerOptionBottomSheet(
+                                                title: higestScoreNameValue.keys
+                                                    .elementAt(0),
+                                                optionCardName:
+                                                    "post_login_career_options");
+                                          });
+                                    },
                                     child: Card(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(
@@ -693,14 +718,38 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    "Read about all other streams",
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontStyle: FontStyle.italic,
-                                      color: COLOR_THEME["secondary"],
-                                      fontFamily: "DM Sans",
-                                      fontSize: screenWidth * 0.04,
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await showModalBottomSheet(
+                                          constraints: BoxConstraints(
+                                            maxHeight: screenHeight * 0.95,
+                                          ),
+                                          isScrollControlled: true,
+                                          isDismissible: false,
+                                          // enableDrag: false,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              screenWidth,
+                                            ),
+                                          ),
+                                          backgroundColor: Colors.transparent,
+                                          context: context,
+                                          builder: (builder) {
+                                            return CustomBottomSheet(
+                                              routeName:
+                                                  "post_login_career_options",
+                                            );
+                                          });
+                                    },
+                                    child: Text(
+                                      "Read about all other streams",
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        fontStyle: FontStyle.italic,
+                                        color: COLOR_THEME["secondary"],
+                                        fontFamily: "DM Sans",
+                                        fontSize: screenWidth * 0.04,
+                                      ),
                                     ),
                                   ),
                                   Padding(
@@ -722,8 +771,11 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                     child: CircularChart(
                                       domain: higestScoreNameValue.keys
                                           .elementAt(0),
-                                      percentage: higestScoreNameValue.values
-                                          .elementAt(0),
+                                      percentage: double.parse(
+                                        higestScoreNameValue.values
+                                            .elementAt(0)
+                                            .toStringAsFixed(2),
+                                      ),
                                     ),
                                   ),
                                   Column(
@@ -756,9 +808,10 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        top: screenHeight * 0.02),
+                                        top: screenHeight * 0.02,
+                                        bottom: screenHeight * 0.02),
                                     child: TestExpansionTile(
-                                      testName: "CUMULATIVE ANALYSIS",
+                                      testName: "Cumulative Analysis",
                                       marksMap: {
                                         "stem": cumulativeMarks.stem,
                                         "commerce & management":
@@ -777,6 +830,9 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                       },
                                     ),
                                   ),
+                                  (userDetailsModelOne.under_3L)
+                                      ? ScholarshipExpansionTile()
+                                      : Container(),
                                 ],
                               ),
                             ),

@@ -52,8 +52,8 @@ class TestExpansionTile extends StatelessWidget {
             return domainWisePercentage(
                 screenHeight, screenWidth, "other fields", marksMap[domain]!);
           }
-          return domainWisePercentage(
-              screenHeight, screenWidth, domain, marksMap[domain]!);
+          return domainWisePercentage(screenHeight, screenWidth, domain,
+              double.parse(marksMap[domain]!.toStringAsFixed(2)));
         }).toList(),
       ),
     );

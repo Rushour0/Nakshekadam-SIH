@@ -32,7 +32,7 @@ class TestsPage extends StatelessWidget {
 
     List<String> testNames = [
       'Aptitude',
-      'Interests',
+      'Interest',
       'Background',
       'Personality',
     ];

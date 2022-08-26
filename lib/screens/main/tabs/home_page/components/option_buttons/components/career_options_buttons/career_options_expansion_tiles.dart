@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:nakshekadam/models/college_extraction_model.dart';
 import 'package:nakshekadam/screens/main/main_page.dart';
 import 'package:nakshekadam/screens/trees/components/tree_json_text.dart';
 import 'package:nakshekadam/screens/trees/tree_from_json.dart';
@@ -37,7 +38,8 @@ class CareerOptionExpansionTiles extends StatelessWidget {
         ? tempDimensions[1]
         : tempDimensions[0];
     return GestureDetector(
-      onTap: (dataKey == "Explore all possible paths!")
+      onTap: (dataKey == "Explore all possible paths!" ||
+              dataKey == "Detailed career paths")
           ? () => Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
                   TreeFromJson(jsonText: treeFromText[title.toLowerCase()]!)))
@@ -49,7 +51,8 @@ class CareerOptionExpansionTiles extends StatelessWidget {
           borderRadius: BorderRadius.circular(screenWidth * 0.02),
         ),
         clipBehavior: Clip.antiAlias,
-        child: (dataKey != "Explore all possible paths!")
+        child: (dataKey != "Explore all possible paths!" &&
+                dataKey != "Detailed career paths")
             ? ExpansionTile(
                 title: Text(
                   dataKey,
@@ -76,7 +79,9 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                             children: [
                               Text(_tilesData[dataKey]),
                               (dataKey == "Popular exams" ||
-                                      dataKey == "Popular colleges")
+                                      dataKey == "Popular colleges" ||
+                                      dataKey ==
+                                          "Recommended colleges and exams")
                                   ? GestureDetector(
                                       onTap: () async {
                                         if (dataKey == "Popular exams") {
@@ -104,7 +109,8 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                                               );
                                             }),
                                           );
-                                        } else {
+                                        } else if (dataKey ==
+                                            "Popular colleges") {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: ((context) => MainPage(
@@ -112,6 +118,19 @@ class CareerOptionExpansionTiles extends StatelessWidget {
                                                   )),
                                             ),
                                           );
+                                        } else {
+                                          CollegeExtractionModel
+                                              collegeExtractionModel =
+                                              CollegeExtractionModel.getModel();
+                                          collegeExtractionModel
+                                              .disciplineSearchController
+                                              .text = title;
+                                          await collegeExtractionModel
+                                              .filterColleges();
+                                          await Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MainPage(tabIndex: 0)));
                                         }
                                       },
                                       child: Card(
