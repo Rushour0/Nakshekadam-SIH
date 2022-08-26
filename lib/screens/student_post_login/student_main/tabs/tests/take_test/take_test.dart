@@ -16,6 +16,7 @@ import 'package:nakshekadam/common_widgets/enums/test_enum.dart';
 import 'package:nakshekadam/common_widgets/formfields.dart';
 import 'package:nakshekadam/globals.dart';
 import 'package:nakshekadam/models/test_marks_model.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/components/test_done_dialogbox.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/test_card.dart';
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/components/testDialogBox.dart';
 import 'package:nakshekadam/screens/walkthrough/wtpages/wttwo.dart';
@@ -127,9 +128,6 @@ class _TakeTestState extends State<TakeTest> {
           (futureForTestGiven.data() as Map<String, dynamic>)["testGiven"];
       print(current_testName);
       if (current_testName == "Reasoning") {
-        if (fetchedTestGiven[1] == 1) {
-          return nextTestName("Personality Test");
-        }
         return "Numerical Ability";
       } else if (current_testName == "Numerical Ability") {
         if (fetchedTestGiven[1] == 1) {
@@ -147,6 +145,7 @@ class _TakeTestState extends State<TakeTest> {
         }
         return "Interest Test";
       }
+      print("hello");
 
       return "Result";
     }
@@ -371,7 +370,13 @@ class _TakeTestState extends State<TakeTest> {
                     List fetchedTestGiven = (futureForTestGiven.data()
                         as Map<String, dynamic>)["testGiven"];
                     if (fetchedTestGiven.contains(0)) {
-                      nextTest = await nextTestName("Reasoning");
+                      if (fetchedTestGiven[0] == 0) {
+                        nextTest = "Reasoning";
+                      } else {
+                        nextTest = await nextTestName("Numerical Ability");
+                      }
+                    } else {
+                      Navigator.pushNamed(context, '/displayTestResult');
                     }
                   }
                   print("next text : $nextTest");

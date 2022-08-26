@@ -150,64 +150,65 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
   Map<String, bool> testList = {};
 
   Map<String, double> higestScore() {
-    if (cumulativeMarks.stem > cumulativeMarks.commerce_management &&
-        cumulativeMarks.stem > cumulativeMarks.creative_argumentative_studies &&
-        cumulativeMarks.stem > cumulativeMarks.civil_services &&
-        cumulativeMarks.stem > cumulativeMarks.defense &&
-        cumulativeMarks.stem > cumulativeMarks.vocational_courses &&
-        cumulativeMarks.stem > cumulativeMarks.jobs_as_soon_as_possible) {
-      return {"STEM": cumulativeMarks.stem};
-    } else if (cumulativeMarks.commerce_management > cumulativeMarks.stem &&
-        cumulativeMarks.commerce_management >
+    if (cumulativeMarks.stem >= cumulativeMarks.commerce_management &&
+        cumulativeMarks.stem >=
             cumulativeMarks.creative_argumentative_studies &&
-        cumulativeMarks.commerce_management > cumulativeMarks.civil_services &&
-        cumulativeMarks.commerce_management > cumulativeMarks.defense &&
-        cumulativeMarks.commerce_management >
+        cumulativeMarks.stem >= cumulativeMarks.civil_services &&
+        cumulativeMarks.stem >= cumulativeMarks.defense &&
+        cumulativeMarks.stem >= cumulativeMarks.vocational_courses &&
+        cumulativeMarks.stem >= cumulativeMarks.jobs_as_soon_as_possible) {
+      return {"STEM": cumulativeMarks.stem};
+    } else if (cumulativeMarks.commerce_management >= cumulativeMarks.stem &&
+        cumulativeMarks.commerce_management >=
+            cumulativeMarks.creative_argumentative_studies &&
+        cumulativeMarks.commerce_management >= cumulativeMarks.civil_services &&
+        cumulativeMarks.commerce_management >= cumulativeMarks.defense &&
+        cumulativeMarks.commerce_management >=
             cumulativeMarks.vocational_courses &&
-        cumulativeMarks.commerce_management >
+        cumulativeMarks.commerce_management >=
             cumulativeMarks.jobs_as_soon_as_possible) {
       return {"Commerce & Management": cumulativeMarks.commerce_management};
-    } else if (cumulativeMarks.creative_argumentative_studies >
+    } else if (cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.stem &&
-        cumulativeMarks.creative_argumentative_studies >
+        cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.commerce_management &&
-        cumulativeMarks.creative_argumentative_studies >
+        cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.civil_services &&
-        cumulativeMarks.creative_argumentative_studies >
+        cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.defense &&
-        cumulativeMarks.creative_argumentative_studies >
+        cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.vocational_courses &&
-        cumulativeMarks.creative_argumentative_studies >
+        cumulativeMarks.creative_argumentative_studies >=
             cumulativeMarks.jobs_as_soon_as_possible) {
       return {
         "Creative & Argumentative Studies":
             cumulativeMarks.creative_argumentative_studies
       };
-    } else if (cumulativeMarks.civil_services > cumulativeMarks.stem &&
-        cumulativeMarks.civil_services > cumulativeMarks.commerce_management &&
-        cumulativeMarks.civil_services >
+    } else if (cumulativeMarks.civil_services >= cumulativeMarks.stem &&
+        cumulativeMarks.civil_services >= cumulativeMarks.commerce_management &&
+        cumulativeMarks.civil_services >=
             cumulativeMarks.creative_argumentative_studies &&
-        cumulativeMarks.civil_services > cumulativeMarks.defense &&
-        cumulativeMarks.civil_services > cumulativeMarks.vocational_courses &&
-        cumulativeMarks.civil_services >
+        cumulativeMarks.civil_services >= cumulativeMarks.defense &&
+        cumulativeMarks.civil_services >= cumulativeMarks.vocational_courses &&
+        cumulativeMarks.civil_services >=
             cumulativeMarks.jobs_as_soon_as_possible) {
       return {"Civil Services": cumulativeMarks.civil_services};
-    } else if (cumulativeMarks.defense > cumulativeMarks.stem &&
-        cumulativeMarks.defense > cumulativeMarks.commerce_management &&
-        cumulativeMarks.defense >
+    } else if (cumulativeMarks.defense >= cumulativeMarks.stem &&
+        cumulativeMarks.defense >= cumulativeMarks.commerce_management &&
+        cumulativeMarks.defense >=
             cumulativeMarks.creative_argumentative_studies &&
-        cumulativeMarks.defense > cumulativeMarks.civil_services &&
-        cumulativeMarks.defense > cumulativeMarks.vocational_courses &&
-        cumulativeMarks.defense > cumulativeMarks.jobs_as_soon_as_possible) {
+        cumulativeMarks.defense >= cumulativeMarks.civil_services &&
+        cumulativeMarks.defense >= cumulativeMarks.vocational_courses &&
+        cumulativeMarks.defense >= cumulativeMarks.jobs_as_soon_as_possible) {
       return {"Defense": cumulativeMarks.defense};
-    } else if (cumulativeMarks.vocational_courses > cumulativeMarks.stem &&
-        cumulativeMarks.vocational_courses >
+    } else if (cumulativeMarks.vocational_courses >= cumulativeMarks.stem &&
+        cumulativeMarks.vocational_courses >=
             cumulativeMarks.commerce_management &&
-        cumulativeMarks.vocational_courses >
+        cumulativeMarks.vocational_courses >=
             cumulativeMarks.creative_argumentative_studies &&
-        cumulativeMarks.vocational_courses > cumulativeMarks.civil_services &&
-        cumulativeMarks.vocational_courses > cumulativeMarks.defense &&
-        cumulativeMarks.vocational_courses >
+        cumulativeMarks.vocational_courses >= cumulativeMarks.civil_services &&
+        cumulativeMarks.vocational_courses >= cumulativeMarks.defense &&
+        cumulativeMarks.vocational_courses >=
             cumulativeMarks.jobs_as_soon_as_possible) {
       return {"Vocational Courses": cumulativeMarks.vocational_courses};
     } else {
@@ -388,6 +389,17 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                   EdgeInsets.only(bottom: screenWidth * 0.15),
                               child: Column(
                                 children: [
+                                  (userDetailsModelOne.under_3L)
+                                      ? Text(
+                                          "We feel thrilled that you chose to share your grievances with us. Considering you mentioned your family's annual income on the lower side, we would like to recommend you a few scholarships and free study resources customized for you.",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: 'Cabin',
+                                            fontSize: screenWidth * 0.05,
+                                            color: Colors.green,
+                                          ),
+                                        )
+                                      : Container(),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: screenHeight * 0.05),
@@ -569,12 +581,18 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                                                     averageCumulativeMarks(
                                                                         totalCumulativeIndex);
                                                                     setState(
-                                                                        () {});
+                                                                        () {
+                                                                      higestScoreNameValue =
+                                                                          higestScore();
+                                                                    });
                                                                   } else {
                                                                     averageCumulativeMarks(
                                                                         totalCumulativeIndex);
                                                                     setState(
-                                                                        () {});
+                                                                        () {
+                                                                      higestScoreNameValue =
+                                                                          higestScore();
+                                                                    });
                                                                   }
                                                                 },
                                                                 child: Text(
@@ -607,7 +625,10 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                                                               key] =
                                                                           false;
                                                                       setState(
-                                                                          () {});
+                                                                          () {
+                                                                        higestScoreNameValue =
+                                                                            higestScore();
+                                                                      });
                                                                     }
                                                                   });
                                                                   int totalCumulativeIndex =
@@ -621,8 +642,10 @@ class _DisplayTestResultState extends State<DisplayTestResult> {
                                                                   });
                                                                   averageCumulativeMarks(
                                                                       totalCumulativeIndex);
-                                                                  setState(
-                                                                      () {});
+                                                                  setState(() {
+                                                                    higestScoreNameValue =
+                                                                        higestScore();
+                                                                  });
                                                                 },
                                                                 child: Text(
                                                                   "Clear all",

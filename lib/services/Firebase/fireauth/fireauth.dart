@@ -38,6 +38,23 @@ Future<bool> signInWithGoogle(String name) async {
   return (result.user!.uid == _auth.currentUser!.uid);
 }
 
+Future<bool> logInWithGoogle() async {
+  UserCredential? result = await google_auth.signInWithGoogle();
+
+  CollectionReference users = usersCollectionReference();
+
+  if (!(await users.doc(result!.user!.uid).get()).exists) {
+    initialDatalogin();
+  }
+  if (result.user!.uid == _auth.currentUser!.uid) {
+    deviceFCMKeyOperations(add: true);
+  }
+  userDocumentReference().update({
+    'email': result.user!.email,
+  });
+  return (result.user!.uid == _auth.currentUser!.uid);
+}
+
 // Email pass sign in
 Future<List<dynamic>> signInUser(
     {required String email, required String password}) async {
@@ -211,6 +228,27 @@ void initialData(String name) async {
     "isAdmin": false,
     "role": "none",
     "name": name,
+    'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
+  });
+}
+
+void initialDatalogin() async {
+  CollectionReference users = usersCollectionReference();
+  User user = getCurrentUser()!;
+  await FirebaseChatCore.instance.createUserInFirestore(types.User(
+    firstName: user.displayName!.split(' ')[0],
+    id: user.uid,
+    imageUrl: user.photoURL ?? DEFAULT_PROFILE_PICTURE,
+    lastName: user.displayName!.split(' ')[1],
+  ));
+
+  await users.doc(_auth.currentUser!.uid).set({
+    "email": _auth.currentUser!.email,
+    'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
+  }, SetOptions(merge: true));
+
+  await users.doc(_auth.currentUser!.uid).update({
+    "email": _auth.currentUser!.email,
     'deviceIDs': {await FirebaseMessaging.instance.getToken(): 0},
   });
 }

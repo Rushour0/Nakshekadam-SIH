@@ -27,7 +27,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
   Widget build(BuildContext context) {
     final String routeName = widget.routeName;
     late WebViewController webViewController;
-    String title = routeName.replaceAll('_', ' ').toUpperCase();
+    String title = routeName
+        .replaceAll('_', ' ')
+        .replaceAll("post login ", "")
+        .toUpperCase();
     final List<double> tempDimensions = [
       MediaQuery.of(context).size.width,
       MediaQuery.of(context).size.height
