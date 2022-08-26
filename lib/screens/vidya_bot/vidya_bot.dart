@@ -45,7 +45,7 @@ class _VidyaBotState extends State<VidyaBot> {
         children: [
           Expanded(
             child: WebView(
-              initialUrl: "$link?uid=$uid",
+              initialUrl: "$link/?uid=$uid",
               initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
               allowsInlineMediaPlayback: true,
               onWebResourceError: (error) => print(error),
