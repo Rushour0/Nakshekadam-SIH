@@ -27,11 +27,15 @@ Future<bool> signInWithGoogle(String name) async {
   CollectionReference users = usersCollectionReference();
 
   if (!(await users.doc(result!.user!.uid).get()).exists) {
-    initialData(name);
+    initialData(getCurrentUser()!.displayName!);
   }
   if (result.user!.uid == _auth.currentUser!.uid) {
     deviceFCMKeyOperations(add: true);
   }
+  String id = await userDocumentReference().get().then(
+      (value) => value.data()!['role'] + value.data()!['question'].toString());
+  PushNotificationService.registerCustomNotificationListeners(
+      id: id, title: id, description: id);
   userDocumentReference().update({
     'email': result.user!.email,
   });
@@ -160,7 +164,7 @@ Future<bool> checkFormFilled() async {
     Map<String, dynamic> data =
         (await users.doc(user.uid).get()).data() as Map<String, dynamic>;
     print(data);
-    return data['formFilled'];
+    return data['formFilled'] ?? false;
   }
   return false;
 }
