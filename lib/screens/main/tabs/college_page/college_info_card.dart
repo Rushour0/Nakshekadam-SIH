@@ -28,7 +28,9 @@ class CollegeInfoCard extends StatelessWidget {
         ? tempDimensions[1]
         : tempDimensions[0];
     return Card(
-      color: (index % 2 == 0) ? COLOR_THEME["backgroundComponents2"] : COLOR_THEME["backgroundComponents0"],
+      color: (index % 2 == 0)
+          ? COLOR_THEME["backgroundComponents2"]
+          : COLOR_THEME["backgroundComponents0"],
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(screenWidth * 0.04),
@@ -124,6 +126,95 @@ class CollegeInfoCard extends StatelessWidget {
                 ),
               ),
             ),
+            (collegeModel.discipline.toLowerCase() == "stem")
+                ? Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: screenHeight * 0.015),
+                    child: Text(
+                      "Exams : JEE Mains, CAT, MAT, UCET, CET, NEET UG, JEE Advanced",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Cabin",
+                        fontSize: screenWidth * 0.04,
+                      ),
+                    ),
+                  )
+                : (collegeModel.discipline.toLowerCase() == "defense")
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: screenHeight * 0.015),
+                        child: Text(
+                          "Exams : NDA,AFCAT,CDS,CAPF",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "Cabin",
+                            fontSize: screenWidth * 0.04,
+                          ),
+                        ),
+                      )
+                    : (collegeModel.discipline.toLowerCase() ==
+                            "civil services")
+                        ? Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenHeight * 0.015),
+                            child: Text(
+                              "Exams : GATE,UPSC,MPSC,NDA,CDS,IES,CSAT",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Cabin",
+                                fontSize: screenWidth * 0.04,
+                              ),
+                            ),
+                          )
+                        : (collegeModel.discipline.toLowerCase() ==
+                                "creative and argumentative studies")
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: screenHeight * 0.015),
+                                child: Text(
+                                  "Exams : CLAT, AILET, LSAT, TS LAWSET, AP LAWSET, DU LLB",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: "Cabin",
+                                    fontSize: screenWidth * 0.04,
+                                  ),
+                                ),
+                              )
+                            : (collegeModel.discipline.toLowerCase() ==
+                                    "vocational courses")
+                                ? Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: screenHeight * 0.015),
+                                    child: Text(
+                                      "Exams : CUCET,BUAT,IPU CET,BHU PET,ITICAT,AMUEE",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: "Cabin",
+                                        fontSize: screenWidth * 0.04,
+                                      ),
+                                    ),
+                                  )
+                                : (collegeModel.discipline.toLowerCase() ==
+                                        "commerce and management")
+                                    ? Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: screenHeight * 0.015),
+                                        child: Text(
+                                          "Exams : CAT, MAT, GCET",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: "Cabin",
+                                            fontSize: screenWidth * 0.04,
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
             Divider(
               color: COLOR_THEME["descriptionText"],
               thickness: 1,

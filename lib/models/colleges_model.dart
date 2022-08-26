@@ -20,7 +20,6 @@ class CollegeModel {
     required this.programme,
   });
 
-
   CollegeModel copyWith({
     String? examinationSystem,
     int? intake,
@@ -71,7 +70,8 @@ class CollegeModel {
 
   String toJson() => json.encode(toMap());
 
-  factory CollegeModel.fromJson(String source) => CollegeModel.fromMap(json.decode(source));
+  factory CollegeModel.fromJson(String source) =>
+      CollegeModel.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -81,27 +81,27 @@ class CollegeModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is CollegeModel &&
-      other.examinationSystem == examinationSystem &&
-      other.intake == intake &&
-      other.level == level &&
-      other.department == department &&
-      other.discipline == discipline &&
-      other.faculty == faculty &&
-      other.institute == institute &&
-      other.programme == programme;
+        other.examinationSystem == examinationSystem &&
+        other.intake == intake &&
+        other.level == level &&
+        other.department == department &&
+        other.discipline == discipline &&
+        other.faculty == faculty &&
+        other.institute == institute &&
+        other.programme == programme;
   }
 
   @override
   int get hashCode {
     return examinationSystem.hashCode ^
-      intake.hashCode ^
-      level.hashCode ^
-      department.hashCode ^
-      discipline.hashCode ^
-      faculty.hashCode ^
-      institute.hashCode ^
-      programme.hashCode;
+        intake.hashCode ^
+        level.hashCode ^
+        department.hashCode ^
+        discipline.hashCode ^
+        faculty.hashCode ^
+        institute.hashCode ^
+        programme.hashCode;
   }
 }

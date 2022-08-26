@@ -7,12 +7,14 @@ class CareerOptionsCard extends StatefulWidget {
   CareerOptionsCard({
     Key? key,
     required this.title,
+    required this.routeName,
     required this.summary,
     required this.side,
   }) : super(key: key);
   final String title;
   final String summary;
   final double side;
+  final String routeName;
 
   @override
   State<CareerOptionsCard> createState() => _CareerOptionsCardState();
@@ -71,7 +73,7 @@ class _CareerOptionsCardState extends State<CareerOptionsCard> {
             context: context,
             builder: (builder) {
               return CareerOptionBottomSheet(
-                  title: widget.title, optionCardName: "career_options");
+                  title: widget.title, optionCardName: widget.routeName);
             });
       },
       child: Container(
