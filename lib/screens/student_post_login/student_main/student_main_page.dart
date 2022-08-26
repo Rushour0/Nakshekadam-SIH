@@ -1,5 +1,7 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/info/info.dart';
+
 import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -43,7 +45,6 @@ class _StudentMainPageState extends State<StudentMainPage>
     'Tests',
     'Home',
     'Counsellors',
-    'More',
   ];
 
   @override
@@ -213,30 +214,50 @@ class _StudentMainPageState extends State<StudentMainPage>
                 //   color: COLOR_THEME['bottomNavigationUnselected'],
                 // ),
                 items: tabNames
-                    .map(
-                      (tabName) => CustomNavigationBarItem(
+                        .map(
+                          (tabName) => CustomNavigationBarItem(
+                            selectedTitle: Text(
+                              tabName,
+                              style: navigationStyle,
+                            ),
+                            title: Text(
+                              tabName,
+                              style: navigationStyle,
+                            ),
+                            selectedIcon: ImageIcon(
+                              // size: screenWidth * 0.09,
+                              AssetImage(
+                                  "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                              color: COLOR_THEME['bottomNavigationSelected'],
+                            ),
+                            icon: ImageIcon(
+                              AssetImage(
+                                  "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                              color: COLOR_THEME['bottomNavigationUnselected'],
+                            ),
+                          ),
+                        )
+                        .toList() +
+                    [
+                      CustomNavigationBarItem(
                         selectedTitle: Text(
-                          tabName,
+                          'About',
                           style: navigationStyle,
                         ),
                         title: Text(
-                          tabName,
+                          'About',
                           style: navigationStyle,
                         ),
-                        selectedIcon: ImageIcon(
-                          // size: screenWidth * 0.09,
-                          AssetImage(
-                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        selectedIcon: Icon(
+                          Icons.info_outline_rounded,
                           color: COLOR_THEME['bottomNavigationSelected'],
                         ),
-                        icon: ImageIcon(
-                          AssetImage(
-                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        icon: Icon(
+                          Icons.info_outline_rounded,
                           color: COLOR_THEME['bottomNavigationUnselected'],
                         ),
                       ),
-                    )
-                    .toList(),
+                    ],
                 onTap: (index) => setState(
                   () {
                     _bottomNavIndex = index;
@@ -274,7 +295,8 @@ class _StudentMainPageState extends State<StudentMainPage>
                 StudentTestsPage(),
                 StudentHomePage(),
                 CounsellorPage(),
-                NoItemsInTab(text: "4"),
+                InfoPage(),
+                // NoItemsInTab(text: "4"),
               ],
             ),
           ),
