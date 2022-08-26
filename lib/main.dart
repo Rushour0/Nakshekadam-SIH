@@ -15,6 +15,7 @@ import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/t
 import 'package:nakshekadam/screens/student_post_login/student_main/tabs/tests/take_test/take_test.dart';
 import 'package:nakshekadam/screens/verification&details/mobileVerification/phone_auth.dart';
 import 'package:nakshekadam/screens/verification&details/personal_details.dart';
+import 'package:nakshekadam/screens/vidya_bot/vidya_bot.dart';
 import 'package:nakshekadam/screens/walkthrough/walkthrough.dart';
 import 'package:nakshekadam/services/Firebase/firebase_options.dart';
 import 'package:nakshekadam/services/Firebase/push_notification/push_notification_service.dart';
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
         '/messages': (context) => const MessagesPage(),
         '/': (context) => const Splash(),
         '/displayTestResult': (context) => const DisplayTestResult(),
+        'vidya_bot': (context) => const VidyaBot(),
         '/takeTest': (context) => const TakeTest(
               testName: "Personality Test",
             ),

@@ -69,15 +69,16 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
     final otherDoc =
         await usersCollectionReference().doc(getCurrentUserId()).get();
 
-    data = doc.data()! as Map<String, dynamic>;
+    data = otherDoc.data()! as Map<String, dynamic>;
     // print(data);
 
     data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
-    data['id'] = doc.id;
+    data['id'] = otherDoc.id;
     data['lastSeen'] = data['lastSeen']?.millisecondsSinceEpoch;
     data['role'] = data['role'];
     data['updatedAt'] = data['updatedAt']?.millisecondsSinceEpoch;
 
+    print(doc.id);
     otherUser = types.User.fromJson(data);
     setState(() {});
 

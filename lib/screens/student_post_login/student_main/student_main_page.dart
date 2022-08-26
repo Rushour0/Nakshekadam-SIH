@@ -1,5 +1,7 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
@@ -153,44 +155,16 @@ class _StudentMainPageState extends State<StudentMainPage>
               child: _bottomNavIndex != 3
                   ? FloatingActionButton(
                       backgroundColor: COLOR_THEME['floatingActionButton'],
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text(
-                                  "Vidya Bot",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "DM Sans",
-                                    fontSize: screenWidth * 0.07,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                backgroundColor: COLOR_THEME['primary'],
-                                centerTitle: true,
-                              ),
-                              body: Column(
-                                children: [
-                                  Expanded(
-                                    child: WebView(
-                                      initialUrl:
-                                          "https://nakshekadam-chatbot.netlify.app/",
-                                      zoomEnabled: false,
-                                      javascriptMode:
-                                          JavascriptMode.unrestricted,
-                                      onPageStarted: (url) async {},
-                                      onWebViewCreated: (controller) {
-                                        webViewController = controller;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        );
+                      onPressed: () async {
+                        // await Navigator.pushNamed(context, 'vidya_bot');
+                        String uid = getCurrentUserId();
+                        await launchUrl(
+                            mode: LaunchMode.externalApplication,
+                            webViewConfiguration: const WebViewConfiguration(
+                              enableJavaScript: true,
+                            ),
+                            Uri.parse(
+                                "https://nakshekadam-vidya-bot.loca.lt?uid=$uid"));
                       },
                       child: Icon(
                         Icons.chat,
@@ -206,44 +180,13 @@ class _StudentMainPageState extends State<StudentMainPage>
                         ),
                       ),
                       backgroundColor: COLOR_THEME['floatingActionButton'],
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text(
-                                  "Vidya Bot",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "DM Sans",
-                                    fontSize: screenWidth * 0.07,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                backgroundColor: COLOR_THEME['secondary'],
-                                centerTitle: true,
-                              ),
-                              body: Column(
-                                children: [
-                                  Expanded(
-                                    child: WebView(
-                                      initialUrl:
-                                          "https://nakshekadam-chatbot.netlify.app/",
-                                      zoomEnabled: false,
-                                      javascriptMode:
-                                          JavascriptMode.unrestricted,
-                                      onPageStarted: (url) async {},
-                                      onWebViewCreated: (controller) {
-                                        webViewController = controller;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        );
+                      onPressed: () async {
+                        // await Navigator.pushNamed(context, 'vidya_bot');
+                        String uid = getCurrentUserId();
+                        await launchUrl(
+                            mode: LaunchMode.externalApplication,
+                            Uri.parse(
+                                "https://nakshekadam-vidya-bot.loca.lt?uid=$uid"));
                       },
                       icon: Icon(
                         Icons.chat,

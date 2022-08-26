@@ -31,6 +31,9 @@ class _ChatPageState extends State<ChatPage> {
             topLeft: Radius.circular(screenWidth / 20),
           ),
         ),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+        ],
         // automaticallyImplyLeading: false,
         backgroundColor: COLOR_THEME['drawerBackground'],
         title: Padding(
