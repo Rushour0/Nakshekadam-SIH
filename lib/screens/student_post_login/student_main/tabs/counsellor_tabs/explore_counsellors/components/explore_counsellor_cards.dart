@@ -27,6 +27,7 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
   TextEditingController _writeMessageController = TextEditingController();
   int requestStatus = 0;
   types.User? personUid, otherUser;
+  bool isFirst = true;
 
   void checkIfPending(ExplorePerson user) async {
     Map<String, dynamic>? data;
@@ -45,11 +46,16 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
       requestStatus = 1;
     } else if (data['requestStatus'] == 'accepted') {
       requestStatus = 2;
-    } else {
+    } else if (data['requestStatus'] == 'rejected') {
       requestStatus = -1;
+    } else {
+      requestStatus = -2;
     }
 
-    setState(() {});
+    if (isFirst) {
+      setState(() {});
+      isFirst = false;
+    }
   }
 
   Future<void> loadUser(ExplorePerson user) async {
@@ -69,17 +75,17 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
     final otherDoc =
         await usersCollectionReference().doc(getCurrentUserId()).get();
 
-    data = doc.data()! as Map<String, dynamic>;
+    data = otherDoc.data()! as Map<String, dynamic>;
     // print(data);
 
     data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
-    data['id'] = doc.id;
+    data['id'] = otherDoc.id;
     data['lastSeen'] = data['lastSeen']?.millisecondsSinceEpoch;
     data['role'] = data['role'];
     data['updatedAt'] = data['updatedAt']?.millisecondsSinceEpoch;
 
+    print(doc.id);
     otherUser = types.User.fromJson(data);
-    setState(() {});
 
     // print(currentUser);
   }
@@ -95,6 +101,7 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
 
+    checkIfPending(widget.data);
     print(widget.data);
     return Card(
       elevation: 4,
@@ -254,21 +261,25 @@ class _ExploreCounsellorCardState extends State<ExploreCounsellorCard> {
               padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: GestureDetector(
                 onTap: () async {
-                  await sendRequest(
-                    professionalId: widget.data.uid,
-                    userId: getCurrentUserId(),
-                  );
+                  if (requestStatus == 0) {
+                    await sendRequest(
+                      professionalId: widget.data.uid,
+                      userId: getCurrentUserId(),
+                    );
+                  }
                   setState(() {});
                 },
                 child: requestStatus != 2
                     ? counsellorDialogBoxButton(
                         screenHeight,
                         screenWidth,
-                        requestStatus == 0
-                            ? "Send Connection Request"
-                            : requestStatus == 1
-                                ? "Pending"
-                                : "Retry Connecting?")
+                        requestStatus == -2
+                            ? "Reported"
+                            : requestStatus == 0
+                                ? "Send Connection Request"
+                                : requestStatus == 1
+                                    ? "Pending"
+                                    : "Retry Connecting?")
                     : ElevatedButton(
                         onPressed: () async {
                           await loadUser(widget.data);

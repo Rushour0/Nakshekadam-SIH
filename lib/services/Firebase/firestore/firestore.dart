@@ -74,3 +74,22 @@ Future<void> sendRequest({
       .set(data, SetOptions(merge: true));
   return;
 }
+
+Future<void> requestStatusUpdate({required String userId}) async {
+  await firestore
+      .collection('all_requests')
+      .doc(userId)
+      .collection('requests')
+      .doc(getCurrentUserId())
+      .update({
+    'requestStatus': 'reported',
+  });
+
+  await usersCollectionReference()
+      .doc(getCurrentUserId())
+      .collection('requests')
+      .doc(userId)
+      .update({
+    'requestStatus': 'reported',
+  });
+}

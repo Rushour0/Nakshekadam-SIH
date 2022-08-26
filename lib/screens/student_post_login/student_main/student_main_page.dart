@@ -1,5 +1,9 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:nakshekadam/screens/student_post_login/student_main/tabs/info/info.dart';
+
+import 'package:nakshekadam/services/Firebase/fireauth/fireauth.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:nakshekadam/common_widgets/backgrounds/bigOneSmallOneBg.dart';
@@ -41,7 +45,6 @@ class _StudentMainPageState extends State<StudentMainPage>
     'Tests',
     'Home',
     'Counsellors',
-    'More',
   ];
 
   @override
@@ -153,44 +156,16 @@ class _StudentMainPageState extends State<StudentMainPage>
               child: _bottomNavIndex != 3
                   ? FloatingActionButton(
                       backgroundColor: COLOR_THEME['floatingActionButton'],
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text(
-                                  "Vidya Bot",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "DM Sans",
-                                    fontSize: screenWidth * 0.07,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                backgroundColor: COLOR_THEME['primary'],
-                                centerTitle: true,
-                              ),
-                              body: Column(
-                                children: [
-                                  Expanded(
-                                    child: WebView(
-                                      initialUrl:
-                                          "https://nakshekadam-chatbot.netlify.app/",
-                                      zoomEnabled: false,
-                                      javascriptMode:
-                                          JavascriptMode.unrestricted,
-                                      onPageStarted: (url) async {},
-                                      onWebViewCreated: (controller) {
-                                        webViewController = controller;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        );
+                      onPressed: () async {
+                        // await Navigator.pushNamed(context, 'vidya_bot');
+                        String uid = getCurrentUserId();
+                        await launchUrl(
+                            mode: LaunchMode.externalApplication,
+                            webViewConfiguration: const WebViewConfiguration(
+                              enableJavaScript: true,
+                            ),
+                            Uri.parse(
+                                "https://nakshekadam-vidya-bot.loca.lt?uid=$uid"));
                       },
                       child: Icon(
                         Icons.chat,
@@ -206,44 +181,13 @@ class _StudentMainPageState extends State<StudentMainPage>
                         ),
                       ),
                       backgroundColor: COLOR_THEME['floatingActionButton'],
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return Scaffold(
-                              appBar: AppBar(
-                                title: Text(
-                                  "Vidya Bot",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "DM Sans",
-                                    fontSize: screenWidth * 0.07,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                backgroundColor: COLOR_THEME['secondary'],
-                                centerTitle: true,
-                              ),
-                              body: Column(
-                                children: [
-                                  Expanded(
-                                    child: WebView(
-                                      initialUrl:
-                                          "https://nakshekadam-chatbot.netlify.app/",
-                                      zoomEnabled: false,
-                                      javascriptMode:
-                                          JavascriptMode.unrestricted,
-                                      onPageStarted: (url) async {},
-                                      onWebViewCreated: (controller) {
-                                        webViewController = controller;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        );
+                      onPressed: () async {
+                        // await Navigator.pushNamed(context, 'vidya_bot');
+                        String uid = getCurrentUserId();
+                        await launchUrl(
+                            mode: LaunchMode.externalApplication,
+                            Uri.parse(
+                                "https://nakshekadam-vidya-bot.loca.lt?uid=$uid"));
                       },
                       icon: Icon(
                         Icons.chat,
@@ -270,30 +214,50 @@ class _StudentMainPageState extends State<StudentMainPage>
                 //   color: COLOR_THEME['bottomNavigationUnselected'],
                 // ),
                 items: tabNames
-                    .map(
-                      (tabName) => CustomNavigationBarItem(
+                        .map(
+                          (tabName) => CustomNavigationBarItem(
+                            selectedTitle: Text(
+                              tabName,
+                              style: navigationStyle,
+                            ),
+                            title: Text(
+                              tabName,
+                              style: navigationStyle,
+                            ),
+                            selectedIcon: ImageIcon(
+                              // size: screenWidth * 0.09,
+                              AssetImage(
+                                  "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                              color: COLOR_THEME['bottomNavigationSelected'],
+                            ),
+                            icon: ImageIcon(
+                              AssetImage(
+                                  "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                              color: COLOR_THEME['bottomNavigationUnselected'],
+                            ),
+                          ),
+                        )
+                        .toList() +
+                    [
+                      CustomNavigationBarItem(
                         selectedTitle: Text(
-                          tabName,
+                          'About',
                           style: navigationStyle,
                         ),
                         title: Text(
-                          tabName,
+                          'About',
                           style: navigationStyle,
                         ),
-                        selectedIcon: ImageIcon(
-                          // size: screenWidth * 0.09,
-                          AssetImage(
-                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        selectedIcon: Icon(
+                          Icons.info_outline_rounded,
                           color: COLOR_THEME['bottomNavigationSelected'],
                         ),
-                        icon: ImageIcon(
-                          AssetImage(
-                              "$BOTTOM_NAVIGATION_IMAGE_DIRECTORY/${tabName.toLowerCase()}.png"),
+                        icon: Icon(
+                          Icons.info_outline_rounded,
                           color: COLOR_THEME['bottomNavigationUnselected'],
                         ),
                       ),
-                    )
-                    .toList(),
+                    ],
                 onTap: (index) => setState(
                   () {
                     _bottomNavIndex = index;
@@ -331,7 +295,8 @@ class _StudentMainPageState extends State<StudentMainPage>
                 StudentTestsPage(),
                 StudentHomePage(),
                 CounsellorPage(),
-                NoItemsInTab(text: "4"),
+                InfoPage(),
+                // NoItemsInTab(text: "4"),
               ],
             ),
           ),
