@@ -1,0 +1,13 @@
+00:00:00 - App open- NaksheKadam Animation
+00:00:08 - Read from walktrough pages
+00:00:13 - We can either go through the signup process or we can even access some features without login or signup.
+00:00:15 - After we login without signup main page opens where we can read about our vision, about ministry and new education policy.
+00:00:08 - On hompage we can access many options, like career options in which you can view all information about every domain.
+00:00:32 - Lets check STEM field, here we can read about STEM's overview
+	-> 00:00:37 - explore all possible paths, here we can see all possible ways in STEM, degrees, jobs etc.
+	-> 00:00:49 - get info about subjects needed to study for this domain
+	-> 00:00:52 - get popular exams information
+	-> 00:00:54 - get popular colleges information
+00:01:07 - You can also check Tests tab, but to take test you have to first Sign-Up.
+00:01:12 - You can also check the counsellors tab, but to get access to these services you have to sign up first.
+00:01:20 - But you can get free access to resources without login.
