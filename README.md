@@ -1,10 +1,6 @@
 # Nakshekadam-SIH
 
 Check out the Demo Video for our project: 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
-    <source src="SIH Demo Video.mp4" type="video/mp4">
-   
-  </video>
-</figure>
+
+https://user-images.githubusercontent.com/72869428/193145843-b66c9a38-800c-4111-97f2-bd43a62a870f.mp4
 
