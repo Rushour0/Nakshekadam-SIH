@@ -1,0 +1,69 @@
+{
+    "0": {
+        "question": "Hey, Vidya here! Nice to meet you.👋 I will help you browse through the Nakshekadam App!✌️ Would you like to see all the features of the Nakshekadam App?😁",
+        "options": {
+            "yes": "1",
+            "no": "1"
+        }
+    },
+    "1":{
+        "question":" Please tell me who is using this app?",
+        "options":{
+            "student":"2a",
+            "parent":"2b"
+        }
+    },
+    "2a":{
+        "question":"Hey buddy! What would you like to delve into today?👋",
+        "options":{
+            
+            "Explore all the distinct career options!🤩":"bCareerOptions",
+            "Explore exciting jobs in multiple different industries🏭":"bIndustries",
+            "Explore upcoming exams!📄":"bUpcomingExams",
+            "Explore great scholarships!💸":"bScholarships",
+            "Go through all the colleges present in India!🏫":"/colleges",
+            "Attempt aptitude tests and know your definite career path!🎓":"/tests",
+            "Talk with one our Career Counsellors and get your doubts resolved!👩‍🏫":"/counsellors",
+            "Explore the trove of valuable resources!📚":"/resources",
+            "Sign Up to experience all the cool features!💻":"/signup"
+        }
+    },
+    "2b":{
+        "question":"Hello! What would you like to explore today?",
+        "options":{
+            "Explore all the distinct career options for your child!":"bCareerOptions",
+            "Explore exciting jobs in multiple different industries your child can take up!":"bIndustries",
+            "Explore upcoming exams!":"bUpcomingExams",
+            "Explore great scholarships to reduce your child's education expenses":"bscholarships",
+            "Go through all the colleges present in India and see which is the best for your ward!":"/colleges",
+            "Have a chat with one of our counsellors to clean your doubts!":"/counsellors",
+            "Sign Up to experience all the cool features!":"/signup"
+        }
+    },
+    "3a":{
+        "question":"Hi we have divided all the major career options into 7 domain! Please choose one domain of your interest and explore away!",
+        "options":{
+            "Sciences, Technology, Engineering and Mathematics":"bSTEM",
+            "Commerce and Management":"bCommerceAndManagement",
+            "Creative and Argumentative Studies":"bCreativeAndArgumentative",
+            "Defense":"bDefense",
+            "Civil Service":"bCivilServices",
+            "Vocational Courses":"bVocationalCourses",
+            "Jobs as soon as possible!":"bJobs"
+        }
+    },
+    "4a":{
+        "question":"Hi we have divided all the major career options into 7 domain! Please choose one domain and explore away!",
+        "options":{
+            "Sciences, Technology, Engineering and Mathematics":"bSTEM",
+            "Commerce and Management":"bCommerceAndManagement",
+            "Creative and Argumentative Studies":"bCreativeAndArgumentative",
+            "Defense":"bDefense",
+            "Civil Service":"bCivilServices",
+            "Vocational Courses":"bVocationalCourses",
+            "Jobs as soon as possible!":"bJobs"
+        }
+    }
+    
+
+}
